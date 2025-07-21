@@ -85,3 +85,81 @@
    - ai-keisuke.bat → ai-darari-nu.bat にファイル名変更
    - 仮想環境名: ai-keisuke-env → ai-darari-nu-env に統一
    - リネームコミット: "Rename project: ai-keisuke → AI Darari-nu"
+
+---
+
+## 技術的詳細・トラブルシューティング記録
+
+### ファイル復旧の詳細プロセス
+**問題発生**: MultiEditツール使用中にファイルが予期せず消失
+- **症状**: ls -laで.DS_Storeと.claudeディレクトリのみ表示
+- **検索コマンド**: `find /Users/watanabehidetaka/Claudecode -name "main.py"`
+- **発見場所**: `/Users/watanabehidetaka/Claudecode/名称未設定フォルダ/ai-keisuke/`
+- **復旧コマンド**: `cp -r "名称未設定フォルダ/ai-keisuke/"* .`
+- **結果**: 全107ファイル完全復旧、データ損失なし
+
+### プロンプトカスタマイズ技術詳細
+
+#### X投稿プロンプト強化 (`prompt/x_post.txt`)
+- **旧版**: 140字以内、基本的な引き戦略
+- **新版**: 痛み訴求 + N=1読者想定 + 常識逆転テクニック
+- **主要改善点**:
+  - 「釣り」ギリギリ手前のフック作成
+  - AIらしさ完全排除、人間味重視
+  - 実体験・リアル情報の強調
+  - 視覚的読みやすさ（改行・リズム）
+
+#### 記事作成プロンプト強化 (`prompt/article.txt`)
+- **旧版**: 基本PREP法、丁寧語
+- **新版**: パワーワード + ベネフィット重視 + 感情移入
+- **出力改善**:
+  - 魅力的タイトル（「おや？」引き出し）
+  - リアル体験談重視
+  - 痛み解決の具体的要点3つ
+
+### システム構成詳細
+- **メインプログラム**: main.py (124,917バイト)
+- **アーキテクチャ**: 反応ベース（👍🎤❓❤️✏️📝）
+- **AI統合**: OpenAI GPT-4/4-mini + Whisper API
+- **データ管理**: JSON形式、自動エンコーディング判定
+- **ファイル制限**: 音声100MB、動画500MB、テキスト1MB
+- **プレミアム機能**: 3層認証、使用回数制限
+
+### Git操作完全履歴
+```bash
+# GitHub CLI でリポジトリ作成
+gh repo create ai-Dararinu_DiscordBOT --public
+
+# 初期セットアップ
+git init
+git add . && git commit -m "Initial commit: AI Darari-nu Discord Bot"
+git branch -M main && git remote add origin [URL]
+git push -u origin main
+
+# プロジェクトリネーム
+git add . && git commit -m "Rename project: ai-keisuke → AI Darari-nu"
+git push
+
+# ログ更新
+git add Log.md && git commit -m "Update session log with GitHub repository information"
+git push
+```
+
+### コミット履歴詳細
+1. **4b02870** - Initial commit (107ファイル、5,125行)
+2. **2e9f044** - Rename project (CLAUDE.md + バッチファイル名変更)
+3. **8d09ea0** - Log update (GitHub情報追加)
+
+### デプロイ準備状況
+- ✅ GitHubバックアップ完了
+- ✅ プロンプトカスタマイズ完了
+- ✅ プロジェクト名統一完了
+- 🔄 フォルダ名変更（手動作業待ち）
+- 🔄 ❤️褒めメッセージ機能削除（未実装）
+- 🔄 XサーバーVPSデプロイ（次フェーズ）
+
+### 重要な学習ポイント
+1. **ファイル操作**: MultiEdit使用時は事前バックアップ必須
+2. **復旧手順**: find + cp コマンドでの緊急復旧方法
+3. **Git管理**: 頻繁なコミット・プッシュでデータ保護
+4. **プロンプト設計**: 人間らしさ + 戦略的心理学の重要性
