@@ -6,20 +6,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **⚠️ DO NOT EDIT FILES IN THIS DIRECTORY ⚠️**
 
-This `/ai-keisuke/` directory is the PRODUCTION environment running the live Discord bot on the main branch. 
+This `/ai-Darari-nu/` directory is the PRODUCTION environment running the live Discord bot on the main branch. 
 
 **Important rules:**
 - This directory should NEVER be manually edited or modified
 - The bot runs continuously from this directory
 - Updates only happen through GitHub main branch merges
-- All development work should be done in `/ai-keisuke-dev/` directory instead
+- All development work should be done in `/ai-Darari-nu-dev/` directory instead
 
 **Only exception:** Updates are automatically applied when the main branch is updated through GitHub.
 
 ### Website Updates
-- Website source: `/Users/keisukeohno/Dropbox/xPersonal/project/mp0059_program/20250613_ai_keisuke/webpage/`
+- Website source: `/Users/dararinu/Dropbox/xPersonal/project/mp0059_program/20250613_ai_darari_nu/webpage/`
 - Main file: `index.html` (all styles embedded)
-- Deploy changes by pushing to GitHub (ai-keisuke repository)
+- Deploy changes by pushing to GitHub (ai-Dararinu_DiscordBOT repository)
 
 ## Architecture Overview
 
