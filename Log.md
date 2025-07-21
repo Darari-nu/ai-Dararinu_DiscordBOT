@@ -68,3 +68,20 @@
 3. ✅ **文字起こし開始メッセージの敬語化** (`main.py`)
    - 音声: "🎤 音声の文字起こしを開始しますね‼️ 少々お待ちください"
    - 動画: "🎬 動画から音声を抽出して文字起こしを開始しますね‼️ 少々お待ちください"
+
+4. ✅ **ファイル紛失からの緊急復旧**
+   - 原因: ファイル編集中の予期しない消失
+   - 復旧方法: 「名称未設定フォルダ」のバックアップから全ファイル復元
+   - 結果: 107ファイル、5,125行を完全復旧
+
+5. ✅ **GitHubリポジトリ作成・初期コミット**
+   - リポジトリ名: `ai-Dararinu_DiscordBOT`
+   - URL: https://github.com/Darari-nu/ai-Dararinu_DiscordBOT
+   - 初期コミット: "Initial commit: AI Darari-nu Discord Bot"
+   - 内容: 107ファイル、5,125行をプッシュ
+
+6. ✅ **プロジェクトリネーム完了** (ai-keisuke → AI Darari-nu)
+   - CLAUDE.md: ディレクトリパス・リポジトリ参照を更新
+   - ai-keisuke.bat → ai-darari-nu.bat にファイル名変更
+   - 仮想環境名: ai-keisuke-env → ai-darari-nu-env に統一
+   - リネームコミット: "Rename project: ai-keisuke → AI Darari-nu"
