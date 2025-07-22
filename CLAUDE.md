@@ -17,9 +17,13 @@ This bot is now deployed and running 24/7 on Xserver VPS:
 
 **Deployment Information:**
 - **IP**: 210.131.217.175
+- **User**: root
 - **Deploy Date**: 2025-07-22
 - **Auto-start**: Yes (systemd enabled)
 - **Log Location**: `journalctl -u ai-darari-nu-bot`
+- **Repository**: https://github.com/Darari-nu/ai-Dararinu_DiscordBOT.git
+- **Deploy Path**: `/opt/ai-Dararinu_DiscordBOT/`
+- **Service File**: `/etc/systemd/system/ai-darari-nu-bot.service`
 
 **⚠️ IMPORTANT: Local vs Production**
 - **Local directory**: Development and testing only
@@ -100,6 +104,149 @@ The bot uses a reaction-based architecture where users interact via emoji reacti
 4. **Encoding**: Handle both UTF-8 and Shift-JIS for text file reading
 
 5. **Rate Limiting**: Free users limited to 5 uses/day, tracked in user data JSON
+
+## 🚀 Deployment Guide
+
+### **Prerequisites:**
+- sshpass: `brew install hudochenkov/sshpass/sshpass` (macOS)
+- SSH access to Xserver VPS
+- GitHub repository access
+
+### **Full Deployment Steps:**
+```bash
+# 1. SSH Connection Test
+sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175 "echo 'Connection test'"
+
+# 2. Clone Repository
+sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175 "
+cd /opt && 
+git clone https://github.com/Darari-nu/ai-Dararinu_DiscordBOT.git &&
+cd ai-Dararinu_DiscordBOT
+"
+
+# 3. Setup Python Environment
+sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175 "
+cd /opt/ai-Dararinu_DiscordBOT &&
+python3 -m venv venv &&
+source venv/bin/activate &&
+pip install --upgrade pip &&
+pip install -r requirements.txt
+"
+
+# 4. Install FFmpeg
+sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175 "
+apt-get update &&
+apt-get install -y ffmpeg
+"
+
+# 5. Create Environment File
+sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175 "
+cd /opt/ai-Dararinu_DiscordBOT &&
+cat > .env << 'EOF'
+DISCORD_BOT_TOKEN=YOUR_DISCORD_BOT_TOKEN_HERE
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY_HERE
+EOF
+"
+
+# 6. Create systemd Service
+sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175 "
+cat > /etc/systemd/system/ai-darari-nu-bot.service << 'EOF'
+[Unit]
+Description=AI Darari-nu Discord Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/ai-Dararinu_DiscordBOT
+Environment=PATH=/opt/ai-Dararinu_DiscordBOT/venv/bin
+ExecStart=/opt/ai-Dararinu_DiscordBOT/venv/bin/python /opt/ai-Dararinu_DiscordBOT/main.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+EOF
+"
+
+# 7. Enable and Start Service
+sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175 "
+systemctl daemon-reload &&
+systemctl enable ai-darari-nu-bot &&
+systemctl start ai-darari-nu-bot &&
+systemctl status ai-darari-nu-bot
+"
+```
+
+## 🔧 Troubleshooting Guide
+
+### **Common Issues:**
+
+#### **1. "Community server not found" Warning**
+```
+WARNING:__main__:Community server not found: 1383696841450721442
+```
+**Solution:** Fixed by updating settings.json with correct Dara Museum server ID
+```json
+{
+  "community_server_id": "1073542600033849446",
+  "premium_role_id": "1397188911486210138"
+}
+```
+
+#### **2. Auto-Reaction Spam (6 reactions on every message)**
+**Problem:** Bot adding 👍❓✏️📝🎤🌐 to all user messages
+**Solution:** Removed automatic reaction code from `on_message` function
+**Keep:** Auto-reactions only on bot-generated files (transcriptions, memos, articles)
+
+#### **3. Premium Detection Not Working**
+**Problem:** Owner user still getting 5/day limit
+**Solution:** Fixed premium detection priority order:
+1. settings.json owner_user_id (highest priority)
+2. Discord server owner detection
+3. Premium role check
+4. Fallback to free user
+
+#### **4. SSH Connection Issues**
+**Problem:** Permission denied or connection timeout
+**Requirements:**
+- Install sshpass: `brew install hudochenkov/sshpass/sshpass`
+- Use exact credentials: `root@210.131.217.175` with password `j-33008744444-`
+- Add connection flags: `-o StrictHostKeyChecking=no`
+
+#### **5. FFmpeg Not Found Warning**
+```
+RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
+```
+**Solution:** Install FFmpeg on VPS: `apt-get install -y ffmpeg`
+
+#### **6. Bot Not Responding in Discord**
+**Check List:**
+1. Channel activation: Run `/activate` command first
+2. Service status: `systemctl status ai-darari-nu-bot`
+3. Check logs: `journalctl -u ai-darari-nu-bot -f`
+4. Verify .env file exists with correct tokens
+5. Ensure Discord privileged intents are enabled in Developer Portal
+
+### **Management Commands:**
+```bash
+# Check bot status
+ssh root@210.131.217.175 'systemctl status ai-darari-nu-bot'
+
+# View real-time logs  
+ssh root@210.131.217.175 'journalctl -u ai-darari-nu-bot -f'
+
+# Restart bot
+ssh root@210.131.217.175 'systemctl restart ai-darari-nu-bot'
+
+# Stop bot
+ssh root@210.131.217.175 'systemctl stop ai-darari-nu-bot'
+
+# Update from GitHub
+ssh root@210.131.217.175 'cd /opt/ai-Dararinu_DiscordBOT && git pull && systemctl restart ai-darari-nu-bot'
+```
 
 ## Session Logging
 

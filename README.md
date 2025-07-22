@@ -196,17 +196,30 @@ ai-darari-nu/
 - **同居Bot**: Discord RSS Bot (AIニュース配信Bot)
 - **管理**: SSH経由でのリモート管理
 
+**VPS接続情報:**
+- **サーバー**: 210.131.217.175
+- **ユーザー**: root
+- **認証**: パスワード認証
+- **SSH要件**: sshpass (`brew install hudochenkov/sshpass/sshpass`)
+
 **VPS管理コマンド:**
 ```bash
 # ステータス確認
 ssh root@210.131.217.175 'systemctl status ai-darari-nu-bot'
 
-# ログ確認  
+# リアルタイムログ確認  
 ssh root@210.131.217.175 'journalctl -u ai-darari-nu-bot -f'
 
 # 再起動
 ssh root@210.131.217.175 'systemctl restart ai-darari-nu-bot'
+
+# GitHubから更新
+ssh root@210.131.217.175 'cd /opt/ai-Dararinu_DiscordBOT && git pull && systemctl restart ai-darari-nu-bot'
 ```
+
+**リポジトリ情報:**
+- **GitHub**: https://github.com/Darari-nu/ai-Dararinu_DiscordBOT.git
+- **VPSパス**: `/opt/ai-Dararinu_DiscordBOT/`
 
 ## 🚀 ローカル開発用起動方法
 
