@@ -477,21 +477,22 @@ def save_user_data(user_id, data):
 async def is_premium_user(user_id):
     """ユーザーがプレミアムかどうかを判定"""
     try:
+        # オーナーチェック（設定ファイルベース）- 最優先
+        owner_user_id = settings.get("owner_user_id")
+        if owner_user_id and str(user_id) == str(owner_user_id):
+            logger.info(f"User {user_id} is configured owner - granting premium access")
+            return True
+        
         # サーバーオーナーの特別判定
         community_guild = bot.get_guild(int(settings.get("community_server_id")))
         if not community_guild:
             logger.warning(f"Community server not found: {settings.get('community_server_id')}")
+            # コミュニティサーバーが見つからなくても、設定ファイルベースのオーナー判定は上で実行済み
             return False
         
         # オーナーチェック（Discord APIベース）
         if int(user_id) == community_guild.owner_id:
             logger.info(f"User {user_id} is server owner - granting premium access")
-            return True
-        
-        # オーナーチェック（設定ファイルベース）
-        owner_user_id = settings.get("owner_user_id")
-        if owner_user_id and str(user_id) == str(owner_user_id):
-            logger.info(f"User {user_id} is configured owner - granting premium access")
             return True
         
         logger.info(f"Debug: Checking user {user_id} in guild {community_guild.name}")
@@ -2119,72 +2120,10 @@ async def on_raw_reaction_add(payload):
 
 @bot.event
 async def on_message(message):
-    """メッセージ受信時の処理 - 自動リアクション追加"""
+    """メッセージ受信時の処理"""
     # Botのメッセージは無視
     if message.author.bot:
         return
-    
-    # チャンネルが有効かチェック
-    server_id = str(message.guild.id) if message.guild else None
-    channel_id = str(message.channel.id)
-    
-    if server_id and is_channel_active(server_id, channel_id):
-        try:
-            # 音声・動画ファイルがあるかチェック
-            has_audio = False
-            has_non_audio = False
-            
-            if message.attachments:
-                AUDIO_EXTS = ('.mp3', '.m4a', '.ogg', '.webm', '.wav')
-                VIDEO_EXTS = ('.mp4',)
-                for attachment in message.attachments:
-                    filename_lower = attachment.filename.lower()
-                    if filename_lower.endswith(AUDIO_EXTS) or filename_lower.endswith(VIDEO_EXTS):
-                        has_audio = True
-                    else:
-                        has_non_audio = True
-            
-            # メッセージ内容があるかチェック
-            has_content = bool(message.content.strip())
-            
-            # URL検出
-            has_url = contains_url(message.content) if message.content else False
-            is_url_only = is_url_only_message(message.content) if message.content else False
-            
-            # 最初のリアクション前に1秒待機（エラー回避のため）
-            await asyncio.sleep(1.0)
-            
-            # 音声ファイルのみの場合はマイクだけ
-            if has_audio and not has_non_audio and not has_content:
-                await message.add_reaction('🎤')
-                await asyncio.sleep(0.3)
-            # URLのみの投稿の場合は🌐だけ
-            elif has_url and is_url_only and not has_audio and not has_non_audio:
-                await message.add_reaction('🌐')
-                await asyncio.sleep(0.3)
-            else:
-                # その他の場合は基本リアクション
-                basic_reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
-                
-                # リアクションを追加
-                for emoji in basic_reactions:
-                    await message.add_reaction(emoji)
-                    await asyncio.sleep(0.3)  # リアクション追加の間隔
-                
-                # 音声ファイルがある場合はマイクも追加
-                if has_audio:
-                    await message.add_reaction('🎤')
-                    await asyncio.sleep(0.3)
-                
-                # URLが含まれている場合は🌐も追加
-                if has_url:
-                    await message.add_reaction('🌐')
-                    await asyncio.sleep(0.3)
-            
-            logger.info(f"自動リアクション追加完了: {message.channel.name} - {message.author.name}")
-            
-        except Exception as e:
-            logger.error(f"自動リアクション追加エラー: {e}")
     
     # コマンドの処理を継続
     await bot.process_commands(message)
