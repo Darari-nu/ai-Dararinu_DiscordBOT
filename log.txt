@@ -1,0 +1,166 @@
+2025-07-22 08:18:35,618 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 08:18:35,618 - INFO - 統計管理システムを初期化しました
+2025-07-22 08:18:35,619 - INFO - Botを起動しています...
+2025-07-22 08:18:35,619 - INFO - logging in using static token
+2025-07-22 08:18:38,036 - ERROR - Bot起動エラー: Shard ID None is requesting privileged intents that have not been explicitly enabled in the developer portal. It is recommended to go to https://discord.com/developers/applications/ and explicitly enable the privileged intents within your application's page. If this is not possible, then consider disabling the privileged intents instead.
+2025-07-22 08:18:38,045 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 2172, in <module>
+    bot.run(TOKEN)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/client.py", line 906, in run
+    asyncio.run(runner())
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/client.py", line 895, in runner
+    await self.start(token, reconnect=reconnect)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/client.py", line 824, in start
+    await self.connect(reconnect=reconnect)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/client.py", line 748, in connect
+    raise PrivilegedIntentsRequired(exc.shard_id) from None
+discord.errors.PrivilegedIntentsRequired: Shard ID None is requesting privileged intents that have not been explicitly enabled in the developer portal. It is recommended to go to https://discord.com/developers/applications/ and explicitly enable the privileged intents within your application's page. If this is not possible, then consider disabling the privileged intents instead.
+
+2025-07-22 08:24:18,549 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 08:24:18,549 - INFO - 統計管理システムを初期化しました
+2025-07-22 08:24:18,550 - INFO - Botを起動しています...
+2025-07-22 08:24:18,550 - INFO - logging in using static token
+2025-07-22 08:24:19,960 - INFO - Shard ID None has connected to Gateway (Session ID: 9a1e4e008f954fcbd6aa581e7af02d8c).
+2025-07-22 08:24:22,456 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 403 Forbidden (error code: 50001): Missing Access
+2025-07-22 08:24:22,464 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 899, in on_ready
+    empty_sync = await bot.tree.sync(guild=test_guild)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 756, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50001): Missing Access
+
+2025-07-22 14:25:17,991 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 14:25:17,991 - INFO - 統計管理システムを初期化しました
+2025-07-22 14:25:17,991 - INFO - Botを起動しています...
+2025-07-22 14:25:17,992 - INFO - logging in using static token
+2025-07-22 14:25:19,518 - INFO - Shard ID None has connected to Gateway (Session ID: 16df2ec48907f03a4f451adceedcde86).
+2025-07-22 14:25:21,834 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 403 Forbidden (error code: 50001): Missing Access
+2025-07-22 14:25:21,839 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 899, in on_ready
+    empty_sync = await bot.tree.sync(guild=test_guild)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 756, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50001): Missing Access
+
+2025-07-22 14:40:38,277 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 14:40:38,277 - INFO - 統計管理システムを初期化しました
+2025-07-22 14:40:38,278 - INFO - Botを起動しています...
+2025-07-22 14:40:38,278 - INFO - logging in using static token
+2025-07-22 14:40:39,560 - INFO - Shard ID None has connected to Gateway (Session ID: 1dfccc85c0e858fa7364f9cdb15b5747).
+2025-07-22 14:50:54,735 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 14:50:54,735 - INFO - 統計管理システムを初期化しました
+2025-07-22 14:50:54,735 - INFO - Botを起動しています...
+2025-07-22 14:50:54,736 - INFO - logging in using static token
+2025-07-22 14:50:55,952 - INFO - Shard ID None has connected to Gateway (Session ID: 7e4295cdb0438bfd43beb344671d3adc).
+2025-07-22 14:50:58,017 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:03:54,573 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:03:54,573 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:03:54,574 - INFO - Botを起動しています...
+2025-07-22 15:03:54,574 - INFO - logging in using static token
+2025-07-22 15:03:55,864 - INFO - Shard ID None has connected to Gateway (Session ID: d67b06918dcb286d1126947eaaa92898).
+2025-07-22 15:03:57,899 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:05:24,788 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:05:24,788 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:05:24,789 - INFO - Botを起動しています...
+2025-07-22 15:05:24,789 - INFO - logging in using static token
+2025-07-22 15:05:26,489 - INFO - Shard ID None has connected to Gateway (Session ID: 87e96814d41f91aa719c0ccd0ec9bdd2).
+2025-07-22 15:05:28,498 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:07:47,711 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:07:47,711 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:07:47,712 - INFO - Botを起動しています...
+2025-07-22 15:07:47,712 - INFO - logging in using static token
+2025-07-22 15:07:49,144 - INFO - Shard ID None has connected to Gateway (Session ID: d209284254e1bbe827f0bf1c9495b869).
+2025-07-22 15:07:51,304 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:12:02,655 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:12:02,655 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:12:02,656 - INFO - Botを起動しています...
+2025-07-22 15:12:02,656 - INFO - logging in using static token
+2025-07-22 15:12:03,959 - INFO - Shard ID None has connected to Gateway (Session ID: 7842198870f1dd698fdf96b33bff9497).
+2025-07-22 15:12:06,020 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:14:27,252 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:14:27,252 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:14:27,253 - INFO - Botを起動しています...
+2025-07-22 15:14:27,253 - INFO - logging in using static token
+2025-07-22 15:14:28,658 - INFO - Shard ID None has connected to Gateway (Session ID: d60856c95f311b674e22e1769740bad9).
+2025-07-22 15:14:30,704 - ERROR - Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 892, in on_ready
+    print(f'DEBUG: on_ready開始 - {bot.user}', flush=True)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 15:17:06,380 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:17:06,380 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:17:06,380 - INFO - Botを起動しています...
+2025-07-22 15:17:06,381 - INFO - logging in using static token
+2025-07-22 15:17:07,797 - INFO - Shard ID None has connected to Gateway (Session ID: e233e9cf618160752b6ffea49deaef5d).
+2025-07-22 15:17:09,911 - ERROR - Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 893, in on_ready
+    print(f'DEBUG: on_ready開始 - {bot.user}', flush=True)
+BrokenPipeError: [Errno 32] Broken pipe
+2025-07-22 15:19:21,104 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:19:21,104 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:19:21,105 - INFO - Botを起動しています...
+2025-07-22 15:19:21,105 - INFO - logging in using static token
+2025-07-22 15:19:22,397 - INFO - Shard ID None has connected to Gateway (Session ID: 524e7883c0d948fa033b1ece93050be3).
+2025-07-22 15:19:24,567 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:21:28,490 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:21:28,491 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:21:28,491 - INFO - Botを起動しています...
+2025-07-22 15:21:28,491 - INFO - logging in using static token
+2025-07-22 15:21:29,930 - INFO - Shard ID None has connected to Gateway (Session ID: 2875d43a40a169ce5775bf971e654c2d).
+2025-07-22 15:21:31,962 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:25:41,064 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:25:41,065 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:25:41,067 - INFO - Botを起動しています...
+2025-07-22 15:25:41,070 - INFO - logging in using static token
+2025-07-22 15:25:42,383 - INFO - Shard ID None has connected to Gateway (Session ID: 785aae83c95063225e351d93eb86738f).
+2025-07-22 15:25:44,420 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:26:41,583 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:26:41,583 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:26:41,583 - INFO - Botを起動しています...
+2025-07-22 15:26:41,584 - INFO - logging in using static token
+2025-07-22 15:26:42,956 - INFO - Shard ID None has connected to Gateway (Session ID: be558e99b50e5a350e6d5f6b36276207).
+2025-07-22 15:26:44,987 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:30:05,036 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:30:05,037 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:30:05,037 - INFO - Botを起動しています...
+2025-07-22 15:30:05,037 - INFO - logging in using static token
+2025-07-22 15:30:06,365 - INFO - Shard ID None has connected to Gateway (Session ID: a99cf77cf38abae774ba2bcbe6a95bcb).
+2025-07-22 15:30:08,422 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:33:13,099 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:33:13,099 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:33:13,099 - INFO - Botを起動しています...
+2025-07-22 15:33:13,100 - INFO - logging in using static token
+2025-07-22 15:33:15,719 - INFO - Shard ID None has connected to Gateway (Session ID: 6baddd94aee4c5584858d6aeed2e3d35).
+2025-07-22 15:33:17,750 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:34:18,039 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: [Errno 32] Broken pipe
+2025-07-22 15:34:18,042 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 926, in on_ready
+    print(f'テストサーバー ({TEST_GUILD_ID}) に {len(synced_guild)} 個のスラッシュコマンドを強制同期しました')
+BrokenPipeError: [Errno 32] Broken pipe
+
+2025-07-22 15:39:29,246 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 15:39:29,246 - INFO - 統計管理システムを初期化しました
+2025-07-22 15:39:29,246 - INFO - Botを起動しています...
+2025-07-22 15:39:29,247 - INFO - logging in using static token
+2025-07-22 15:39:30,512 - INFO - Shard ID None has connected to Gateway (Session ID: 6fa19653cfb9b2520d379e24e7dd7e9b).
+2025-07-22 15:39:32,558 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 15:39:32,790 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: [Errno 32] Broken pipe
+2025-07-22 15:39:32,792 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 926, in on_ready
+    print("DEBUG: sync実行完了")
+BrokenPipeError: [Errno 32] Broken pipe
+
+2025-07-22 15:48:02,156 - INFO - Shard ID None has successfully RESUMED session 87e96814d41f91aa719c0ccd0ec9bdd2.

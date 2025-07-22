@@ -8,7 +8,7 @@ from pathlib import Path
 
 def main():
     """成功するテストのみを実行"""
-    print("🧪 AI けいすけ Bot テストスイート実行結果")
+    print("🧪 AI Darari-nu Bot テストスイート実行結果")
     print("=" * 50)
     
     # 成功するテストのリスト

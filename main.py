@@ -1,3 +1,4 @@
+print("DEBUG: main.py開始", flush=True)
 import discord
 from discord.ext import commands
 import json
@@ -165,13 +166,19 @@ load_dotenv(env_path, override=True)
 TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
+# デバッグ情報
+print(f"DEBUG: .env path = {env_path}")
+print(f"DEBUG: .env exists = {env_path.exists()}")
+print(f"DEBUG: TOKEN length = {len(TOKEN) if TOKEN else 'None'}")
+print(f"DEBUG: OPENAI_API_KEY length = {len(OPENAI_API_KEY) if OPENAI_API_KEY else 'None'}")
+
 # OpenAIモデル設定
 FREE_USER_MODEL = "gpt-4.1-mini"
 PREMIUM_USER_MODEL = "gpt-4.1"
 
 # テストサーバーID（スラッシュコマンドの即座反映用）
 # Botが参加しているサーバーのIDに変更してください
-TEST_GUILD_ID = 1383696841450721442  # Botがこのサーバーに招待されている必要があります
+TEST_GUILD_ID = 1073542600033849446  # Botがこのサーバーに招待されている必要があります
 
 # settings.jsonから設定を読み込む
 settings_path = script_dir / "settings.json"
@@ -362,17 +369,19 @@ if OPENAI_API_KEY:
     )
 
 
-# Intentsの設定
+# Intentsの設定（Discord Developer Portalで有効化が必要）
 intents = discord.Intents.default()
-intents.message_content = True
+# 以下のIntentsはDiscord Developer Portal -> Bot -> Privileged Gateway Intentsで有効化が必要
+intents.message_content = True  # MESSAGE CONTENT INTENT
 intents.reactions = True
-intents.members = True
+intents.members = True  # SERVER MEMBERS INTENT
 
 # Botの初期化
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 # 統計管理インスタンスを作成
 stats_manager = StatsManager()
+print("DEBUG: StatsManager作成完了", flush=True)
 
 
 def load_server_data(server_id):
@@ -561,128 +570,11 @@ def can_use_feature(user_data, is_premium):
     user_data["daily_usage_count"] = daily_usage_count + 1
     return True, None
 
-def make_praise_image(praise_text):
-    """褒めメッセージ画像を生成する"""
-    try:
-        logger.info(f"画像生成開始: テキスト='{praise_text}'")
-        
-        # 画像のサイズを指定
-        width = 1080
-        height = 1520
-        
-        # 画像の背景色を指定
-        background_color = (255, 255, 255)
-        
-        # 画像を生成
-        image = Image.new("RGB", (width, height), background_color)
-        logger.info("ベース画像作成完了")
-        
-        # images_homehomeフォルダの中のjpgファイル一覧を取得
-        images_dir = script_dir / "images_homehome"
-        logger.info(f"画像フォルダパス: {images_dir}")
-        
-        if images_dir.exists():
-            files = [f for f in os.listdir(images_dir) if f.endswith('.jpg')]
-            logger.info(f"見つかった画像ファイル数: {len(files)}")
-            
-            if files:
-                # ランダムに1つ選ぶ
-                file = random.choice(files)
-                logger.info(f"選択された画像: {file}")
-                
-                # 画像を開く
-                img_path = images_dir / file
-                logger.info(f"画像パス: {img_path}")
-                img = Image.open(img_path)
-                
-                # imageに貼り付ける
-                image.paste(img, (0, 0))
-                logger.info("背景画像貼り付け完了")
-            else:
-                logger.warning("jpg画像が見つかりませんでした")
-        else:
-            logger.error(f"画像フォルダが存在しません: {images_dir}")
-        
-        # フォントを設定（システムフォントを使用）
-        try:
-            # Macの場合 - より安全なフォントを使用
-            font = ImageFont.truetype("/System/Library/Fonts/ヒラギノ角ゴシック W3.ttc", 30)
-            logger.info("ヒラギノフォント読み込み成功")
-        except Exception as e:
-            logger.warning(f"ヒラギノフォント読み込み失敗: {e}")
-            try:
-                # Macの別のフォント
-                font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", 30)
-                logger.info("Helveticaフォント読み込み成功")
-            except Exception as e:
-                logger.warning(f"Helveticaフォント読み込み失敗: {e}")
-                try:
-                    # Windowsの場合
-                    font = ImageFont.truetype("C:/Windows/Fonts/msgothic.ttc", 30)
-                    logger.info("MSゴシックフォント読み込み成功")
-                except Exception as e:
-                    logger.warning(f"MSゴシックフォント読み込み失敗: {e}")
-                    # デフォルトフォント
-                    font = ImageFont.load_default()
-                    logger.info("デフォルトフォント使用")
-        
-        # テキストを処理（絵文字や特殊文字を除去）
-        # 絵文字と特殊文字を除去し、ひらがな、カタカナ、漢字、英数字、基本記号のみ残す
-        original_text = praise_text
-        text = re.sub(r'[^\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\u0021-\u007E]', '', praise_text)
-        text = text.replace("。", "").replace("、", "").replace(" ", "").replace("ー", "┃").replace("\n", "")
-        logger.info(f"テキスト処理: '{original_text}' → '{text}'")
-        
-        # 36文字以内に調整
-        if len(text) > 36:
-            text = text[:36]
-            logger.info(f"36文字に短縮: '{text}'")
-        
-        # 9文字ずつ4行に分割
-        lines = []
-        for i in range(0, min(len(text), 36), 9):
-            lines.append(text[i:i+9])
-        
-        # 4行に満たない場合は空行を追加
-        while len(lines) < 4:
-            lines.append("")
-        
-        logger.info(f"分割された行: {lines}")
-        
-        # 各行を縦書きに変換
-        vertical_lines = []
-        for line in lines:
-            vertical_lines.append("\n".join(list(line)))
-        
-        # テキストを画像に描画
-        draw = ImageDraw.Draw(image)
-        
-        start_x = 855
-        start_y = 415
-        font_size = 30
-        font_offset = 4
-        
-        # 行数が少ない場合のオフセット調整
-        start_x -= (font_size + font_offset) * (4 - len([line for line in lines if line])) // 2
-        
-        # 各行を縦書きで描画
-        for i, vertical_line in enumerate(vertical_lines):
-            x_pos = start_x - (font_size + font_offset) * i
-            draw.text((x_pos, start_y), vertical_line, font=font, fill=(0, 0, 0))
-            logger.info(f"行{i+1}描画完了: x={x_pos}, テキスト='{vertical_line.replace(chr(10), '')}'")
-        
-        # 一時ファイルとして保存
-        temp_path = script_dir / "temp_praise_image.jpg"
-        image.save(temp_path)
-        logger.info(f"画像保存完了: {temp_path}")
-        
-        return str(temp_path)
-        
-    except Exception as e:
-        logger.error(f"画像生成エラー: {e}")
-        import traceback
-        logger.error(traceback.format_exc())
-        return None
+# 褒めメッセージ画像生成機能は archived_features/heart_praise_feature/ に移動しました
+# def make_praise_image(praise_text):
+#     """褒めメッセージ画像を生成する""" 
+#     機能停止: 2025-07-21
+#     アーカイブ場所: archived_features/heart_praise_feature/praise_image_function.py
 
 def extract_embed_content(message):
     """メッセージのEmbedから内容を抽出する"""
@@ -981,7 +873,7 @@ async def transcribe_audio(message, channel, reaction_user):
             file_message = await channel.send("📄 文字起こし結果のテキストファイルです！", file=discord.File(transcript_path))
             
             # 文字起こし結果ファイルに自動でリアクションを追加
-            reactions = ['👍', '❓', '❤️', '✏️', '📝']
+            reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
             for reaction in reactions:
                 try:
                     await file_message.add_reaction(reaction)
@@ -998,21 +890,40 @@ async def transcribe_audio(message, channel, reaction_user):
 @bot.event
 async def on_ready():
     """Bot起動時の処理"""
-    print(f'{bot.user} にログインしました')
+    print(f'DEBUG: on_ready開始 - {bot.user}', flush=True)
+    logger.info(f'Bot起動完了: {bot.user}')
+    print(f'DEBUG: logger.info完了', flush=True)
     
     # 登録されているコマンドを確認
-    print(f"登録されているコマンド数: {len(bot.tree.get_commands())}")
-    for cmd in bot.tree.get_commands():
-        print(f"- {cmd.name}: {cmd.description}")
+    print(f'DEBUG: bot.tree.get_commands()実行前', flush=True)
+    try:
+        commands = bot.tree.get_commands()
+        print(f'DEBUG: get_commands()成功 - コマンド数: {len(commands)}', flush=True)
+        print(f"登録されているコマンド数: {len(commands)}")
+    except Exception as e:
+        print(f'DEBUG: get_commands()でエラー: {e}', flush=True)
+    
+    print(f'DEBUG: コマンド詳細表示開始', flush=True)
+    try:
+        for i, cmd in enumerate(bot.tree.get_commands()):
+            print(f'DEBUG: コマンド{i+1}: {cmd.name}', flush=True)
+            print(f"- {cmd.name}: {cmd.description}")
+    except Exception as e:
+        print(f'DEBUG: コマンド詳細表示でエラー: {e}', flush=True)
     
     # スラッシュコマンドを強制的に書き換え
     try:
+        print("DEBUG: スラッシュコマンド同期処理開始")
         test_guild = discord.Object(id=TEST_GUILD_ID)
+        print(f"DEBUG: test_guild作成完了 ID={TEST_GUILD_ID}")
         
         # Step 1: 既存のギルドコマンドを完全にクリア
         print("=== 既存コマンドのクリア処理開始 ===")
+        print("DEBUG: clear_commands実行前")
         bot.tree.clear_commands(guild=test_guild)
+        print("DEBUG: clear_commands実行完了、sync実行開始")
         empty_sync = await bot.tree.sync(guild=test_guild)
+        print("DEBUG: sync実行完了")
         print(f"テストサーバーのコマンドをクリア完了: {len(empty_sync)} 個")
         
         # Step 2: 新しいコマンドを追加
@@ -1320,7 +1231,7 @@ async def activate_command(interaction: discord.Interaction):
             "👍 **X投稿生成** - メッセージをX（旧Twitter）投稿用に最適化\n"
             "🎤 **音声文字起こし** - 音声ファイルをテキストに変換\n"
             "❓ **AI解説** - メッセージ内容を詳しく解説\n"
-            "❤️ **褒めメッセージ** - 熱烈な応援メッセージと画像を生成\n"
+# "❤️ **褒めメッセージ** - 熱烈な応援メッセージと画像を生成\n"  # 機能停止
             "✏️ **メモ作成** - Obsidian用のMarkdownメモを自動生成\n"
             "📝 **記事作成** - 記事を作成（カスタムプロンプト対応）\n\n"
             "👇試しに下のリアクションを押してみて👇"
@@ -1330,7 +1241,7 @@ async def activate_command(interaction: discord.Interaction):
         
         # 送信したメッセージを取得してリアクションを追加
         message = await interaction.original_response()
-        reactions = ['👍', '❓', '❤️', '✏️', '📝']
+        reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
         for emoji in reactions:
             await message.add_reaction(emoji)
             await asyncio.sleep(0.5)  # リアクション追加の間隔を空ける
@@ -1499,7 +1410,7 @@ async def on_raw_reaction_add(payload):
         return
     
     # リアクションの種類をチェック
-    if payload.emoji.name in ['👍', '🎤', '❤️', '❓', '✏️', '📝', '🌐']:
+    if payload.emoji.name in ['👍', '🎤', '❓', '✏️', '📝', '🌐']:  # ❤️褒めメッセージ機能は停止
         server_id = str(payload.guild_id)
         channel_id = str(payload.channel_id)
         
@@ -1693,129 +1604,9 @@ async def on_raw_reaction_add(payload):
                                      f"テキストのみのメッセージには🎤ではなく、以下のリアクションをお使いください：\n"
                                      f"• 👍 X投稿作成\n"
                                      f"• ❓ AI解説\n"
-                                     f"• ❤️ 絶賛モード\n"
                                      f"• ✏️ 記事作成")
             
-            # ❤️ ハート：絶賛モード
-            elif payload.emoji.name == '❤️':
-                # メッセージ内容または添付ファイル、Embedからテキストを取得
-                input_text = message.content
-                
-                # Embedがある場合は内容を抽出
-                embed_content = extract_embed_content(message)
-                if embed_content:
-                    if input_text:
-                        input_text += f"\n\n【Embed内容】\n{embed_content}"
-                    else:
-                        input_text = embed_content
-                    logger.info("Embed内容を追加")
-                
-                # 添付ファイルがある場合、テキストファイルの内容を読み取り
-                if message.attachments:
-                    for attachment in message.attachments:
-                        file_content = await read_text_attachment(attachment)
-                        if file_content:
-                            if input_text:
-                                input_text += f"\n\n【ファイル: {attachment.filename}】\n{file_content}"
-                            else:
-                                input_text = f"【ファイル: {attachment.filename}】\n{file_content}"
-                            logger.info(f"添付ファイルの内容を追加: {attachment.filename}")
-                
-                if input_text:
-                    # URL検出・警告
-                    await check_content_for_urls(input_text, user, channel)
-                    
-                    # 処理開始メッセージを送信
-                    message_link = f"https://discord.com/channels/{message.guild.id}/{message.channel.id}/{message.id}"
-                    await channel.send(f"{user.mention} わー！褒めさせて〜！ちょっと待っててね✨\n📎 元メッセージ: {message_link}")
-                    
-                    # モデルを選択
-                    model = PREMIUM_USER_MODEL if is_premium else FREE_USER_MODEL
-                    
-                    # 褒めプロンプトを読み込み
-                    praise_prompt = None
-                    prompt_path = script_dir / "prompt" / "heart_praise.txt"
-                    if prompt_path.exists():
-                        with open(prompt_path, 'r', encoding='utf-8') as f:
-                            praise_prompt = f.read()
-                        logger.info("褒めプロンプトファイルを使用")
-                    else:
-                        praise_prompt = "あなたはDiscordメッセージの内容について極めて熱烈に褒めまくるアシスタントです。どんな内容でも強烈に・熱烈に・感動的に褒めてください。ユーザーのモチベーション向上に特化した内容で、800文字以内で褒めてください。"
-                        logger.info("フォールバック褒めプロンプトを使用")
-                    
-                    # OpenAI APIで褒めメッセージを生成（JSONモード）
-                    if client_openai:
-                        try:
-                            response = client_openai.chat.completions.create(
-                                model=model,
-                                messages=[
-                                    {"role": "system", "content": praise_prompt},
-                                    {"role": "user", "content": input_text}
-                                ],
-                                max_tokens=1500,
-                                temperature=0.9,
-                                response_format={"type": "json_object"}
-                            )
-                            
-                            # JSONレスポンスをパース
-                            response_content = response.choices[0].message.content
-                            try:
-                                praise_json = json.loads(response_content)
-                                long_praise = praise_json.get("long_praise", "")
-                                short_praise = praise_json.get("short_praise", "")
-                            except json.JSONDecodeError:
-                                logger.warning(f"JSON解析エラー、フォールバックを使用: {response_content}")
-                                long_praise = response_content[:400]
-                                short_praise = response_content[:20]
-                            
-                            # 1. まず400字の激烈褒めをDiscordに投稿
-                            if len(long_praise) > 400:
-                                long_praise = long_praise[:400] + "..."
-                            
-                            await channel.send(long_praise)
-                            
-                            # 2. 25字の短文褒めで画像を生成
-                            if len(short_praise) > 25:
-                                short_praise = short_praise[:25]
-                            
-                            # 画像生成用テキスト処理（絵文字除去）
-                            image_text = re.sub(r'[^\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\u0021-\u007E]', '', short_praise)
-                            image_text = image_text.replace("。", "").replace("、", "").replace(" ", "").replace("\n", "")
-                            
-                            # 褒め画像を生成
-                            image_path = make_praise_image(image_text)
-                            
-                            # 3. 画像を送信
-                            if image_path and os.path.exists(image_path):
-                                try:
-                                    await channel.send("🎉 褒め画像をお作りしました！", file=discord.File(image_path))
-                                    logger.info("褒め画像送信成功")
-                                    # 一時ファイルを削除
-                                    try:
-                                        os.remove(image_path)
-                                        logger.info("一時ファイル削除完了")
-                                    except Exception as e:
-                                        logger.warning(f"一時ファイル削除失敗: {e}")
-                                except Exception as e:
-                                    logger.error(f"画像送信エラー: {e}")
-                                    await channel.send("※ 画像の生成に失敗しましたが、褒めメッセージは送れました！")
-                            else:
-                                logger.warning("画像パスが無効か、ファイルが存在しません")
-                                await channel.send("※ 画像の生成に失敗しましたが、褒めメッセージは送れました！")
-                            
-                        except Exception as e:
-                            logger.error(f"OpenAI API エラー (褒め機能): {e}")
-                            await channel.send(f"{user.mention} ❌ 褒めメッセージの生成中にエラーが発生しました。")
-                    else:
-                        logger.error("エラー: OpenAI APIキーが設定されていません")
-                        await channel.send(f"{user.mention} ❌ エラーが発生しました。管理者にお問い合わせください。")
-                else:
-                    await channel.send(f"{user.mention} ⚠️ **❤️褒めメッセージを作成するためにはテキストが必要です**\n\n"
-                                     f"以下のいずれかを行ってから❤️リアクションしてください：\n"
-                                     f"• テキストメッセージを投稿する\n"
-                                     f"• テキストファイル（.txt）を添付する\n"
-                                     f"• 音声ファイルの場合は🎤で文字起こしをしてからそのファイルに❤️する\n\n"
-                                     f"あなたの投稿内容を元に素敵な褒めメッセージと画像を生成します！")
+            # ❤️ ハート機能：削除済み（archived_features/heart_praise_feature/ に移行済み）
             
             # ❓ 疑問符：AI説明
             elif payload.emoji.name == '❓':
@@ -2043,7 +1834,7 @@ async def on_raw_reaction_add(payload):
                                 file_message = await channel.send("📝 メモファイルを作成しました！", file=discord.File(file_obj, filename=filename))
                                 
                                 # メモファイルに自動でリアクションを追加
-                                reactions = ['👍', '❓', '❤️', '✏️', '📝']
+                                reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
                                 for reaction in reactions:
                                     try:
                                         await file_message.add_reaction(reaction)
@@ -2210,7 +2001,7 @@ async def on_raw_reaction_add(payload):
                                 file_message = await channel.send("📝 記事ファイルです！", file=discord.File(file_obj, filename=filename))
                                 
                                 # 記事ファイルに自動でリアクションを追加
-                                reactions = ['👍', '❓', '❤️', '✏️', '📝']
+                                reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
                                 for reaction in reactions:
                                     try:
                                         await file_message.add_reaction(reaction)
@@ -2301,7 +2092,7 @@ async def on_raw_reaction_add(payload):
                             file_message = await channel.send("🌐 URLの内容をテキストファイルにしました！\n⚠️ ページによっては内容を正しく取得できない場合があります。元のURLも合わせてご確認ください。", file=discord.File(file_obj, filename=filename))
                             
                             # URLコンテンツファイルに自動でリアクションを追加
-                            reactions = ['👍', '❓', '❤️', '✏️', '📝']
+                            reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
                             for reaction in reactions:
                                 try:
                                     await file_message.add_reaction(reaction)
@@ -2373,7 +2164,7 @@ async def on_message(message):
                 await asyncio.sleep(0.3)
             else:
                 # その他の場合は基本リアクション
-                basic_reactions = ['👍', '❓', '❤️', '✏️', '📝']
+                basic_reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
                 
                 # リアクションを追加
                 for emoji in basic_reactions:

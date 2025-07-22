@@ -9,7 +9,7 @@ from pathlib import Path
 
 def main():
     """重要なテストのみを実行"""
-    print("🧪 AI けいすけ Bot 簡単テスト")
+    print("🧪 AI Darari-nu Bot 簡単テスト")
     print("=" * 40)
     
     # 重要なテストのみ実行

@@ -1,0 +1,50 @@
+# 環境変数ファイル（API Key等の機密情報）
+.env
+*.env
+.env.*
+
+# 一時ファイル・ログファイル
+*.log
+*.tmp
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# OS生成ファイル
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEファイル
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 音声・画像の一時ファイル
+attachments/
+temp_*
+*.wav
+*.mp3
+*.mp4
+*.mov
+
+# テストデータ
+test_data/
+*.test
+
+# Node.js関連（もしある場合）
+node_modules/
+npm-debug.log*
+
+# Python仮想環境
+venv/
+env/
+ENV/
