@@ -2,19 +2,29 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## CRITICAL: PRODUCTION ENVIRONMENT WARNING
+## 🌐 PRODUCTION DEPLOYMENT STATUS
 
-**⚠️ DO NOT EDIT FILES IN THIS DIRECTORY ⚠️**
+**✅ LIVE ON XSERVER VPS ✅**
 
-This `/ai-Darari-nu/` directory is the PRODUCTION environment running the live Discord bot on the main branch. 
+This bot is now deployed and running 24/7 on Xserver VPS:
 
-**Important rules:**
-- This directory should NEVER be manually edited or modified
-- The bot runs continuously from this directory
-- Updates only happen through GitHub main branch merges
-- All development work should be done in `/ai-Darari-nu-dev/` directory instead
+**Production Environment:**
+- **Server**: Xserver VPS (Ubuntu 24.04)  
+- **Location**: `/opt/ai-Dararinu_DiscordBOT/`
+- **Service**: `ai-darari-nu-bot.service` (systemd)
+- **Status**: Active and monitored
+- **Co-located**: Discord RSS Bot (AI News Bot)
 
-**Only exception:** Updates are automatically applied when the main branch is updated through GitHub.
+**Deployment Information:**
+- **IP**: 210.131.217.175
+- **Deploy Date**: 2025-07-22
+- **Auto-start**: Yes (systemd enabled)
+- **Log Location**: `journalctl -u ai-darari-nu-bot`
+
+**⚠️ IMPORTANT: Local vs Production**
+- **Local directory**: Development and testing only
+- **VPS directory**: Production environment 
+- Changes pushed to GitHub main branch are automatically available for VPS updates
 
 ### Website Updates
 - Website source: `/Users/dararinu/Dropbox/xPersonal/project/mp0059_program/20250613_ai_darari_nu/webpage/`
@@ -53,16 +63,39 @@ The bot uses a reaction-based architecture where users interact via emoji reacti
 - Temporary files: `attachments/` (auto-cleaned after use)
 
 
+## 🔧 Recent Major Updates (2025-07-22)
+
+### **Fixed Issues:**
+1. **Automatic Reaction Spam** - Removed unwanted auto-reactions on user messages
+2. **Premium Detection Bug** - Fixed owner detection priority in community server checks  
+3. **Heart Feature Archive** - Moved ❤️ praise feature to `archived_features/` with restoration docs
+
+### **New Features:**
+1. **Xserver VPS Deployment** - Full production deployment with systemd service
+2. **Premium Role Management** - Local server premium role system (Premium role ID: 1397188911486210138)
+3. **Improved Error Handling** - Better debugging and systematic troubleshooting
+
+## 🎯 Premium Management System
+
+**Current Configuration:**
+- **Community Server**: Dara Museum (1073542600033849446) 
+- **Premium Role**: Premium (1397188911486210138)
+- **Owner User**: 982891457000136715 (unlimited access)
+- **Free User Limit**: 5 uses/day
+
+**Premium Authentication Priority:**
+1. **Owner User ID** (highest priority) - from settings.json
+2. **Discord Server Owner** - automatic detection  
+3. **Premium Role** - in community server
+4. **Fallback**: Free user (5/day limit)
+
 ## Critical Implementation Notes
 
 1. **File Upload Messages**: Always include descriptive text with file uploads for mobile Discord compatibility
 
 2. **Japanese Filename Handling**: Discord strips Japanese characters from filenames. Solution: use English filenames with Japanese content inside files
 
-3. **Premium Authentication**: Check premium status in this order:
-   - Is user the configured owner? (owner_user_id)
-   - Does user have premium role in community server?
-   - Is user the server owner? (fallback)
+3. **Automatic Reactions**: Only add reactions to bot-generated files (transcriptions, memos, articles), NOT to user messages
 
 4. **Encoding**: Handle both UTF-8 and Shift-JIS for text file reading
 
