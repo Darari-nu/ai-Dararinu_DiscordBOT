@@ -57,7 +57,40 @@ class ArticleExtractor:
                     if 'text/html' not in content_type:
                         return None, None, "HTMLコンテンツではありません"
                     
-                    html = await response.text()
+                    # 文字エンコーディングを自動検出して読み込み
+                    try:
+                        html = await response.text()
+                    except UnicodeDecodeError:
+                        # UTF-8で読めない場合は、バイト読み込み→文字エンコーディング検出
+                        html_bytes = await response.read()
+                        try:
+                            # chardetがインストールされている場合は使用
+                            import chardet
+                            detected = chardet.detect(html_bytes)
+                            encoding = detected.get('encoding', 'utf-8')
+                            logger.info(f"文字エンコーディング検出: {encoding}")
+                            html = html_bytes.decode(encoding, errors='ignore')
+                        except ImportError:
+                            # chardetがない場合は一般的なエンコーディングを試行
+                            logger.warning("chardetがインストールされていません。フォールバック処理を実行")
+                            encodings = ['shift-jis', 'euc-jp', 'iso-2022-jp', 'utf-8']
+                            html = None
+                            for enc in encodings:
+                                try:
+                                    html = html_bytes.decode(enc, errors='ignore')
+                                    logger.info(f"エンコーディング {enc} で読み込み成功")
+                                    break
+                                except Exception:
+                                    continue
+                            if html is None:
+                                html = html_bytes.decode('utf-8', errors='ignore')
+                        except Exception as e:
+                            logger.warning(f"文字エンコーディング検出エラー: {e}")
+                            # 最終的にはShift-JISを試行
+                            try:
+                                html = html_bytes.decode('shift-jis', errors='ignore')
+                            except Exception:
+                                html = html_bytes.decode('utf-8', errors='ignore')
                     
             # 記事本文を抽出
             title, content = self._extract_article_from_html(html)
