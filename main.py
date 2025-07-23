@@ -19,6 +19,7 @@ import re
 import io
 import aiohttp
 import subprocess
+from utils.article_extractor import article_extractor
 
 # URL検出関数
 def contains_url(text):
@@ -990,6 +991,26 @@ async def help_command(interaction: discord.Interaction):
         value="メモ作成用のカスタムプロンプトを設定（空白入力で無効化）", 
         inline=False
     )
+    embed.add_field(
+        name="/set_custom_prompt_summary", 
+        value="記事要約用のカスタムプロンプトを設定（空白入力で無効化）", 
+        inline=False
+    )
+    
+    # リアクション機能の説明を追加
+    embed.add_field(
+        name="📢 リアクション機能", 
+        value=(
+            "👍 **X投稿生成** - メッセージ・ファイルをX用に要約\n"
+            "🎤 **音声文字起こし** - 音声・動画ファイルをテキストに変換\n"
+            "❓ **AI解説** - 内容について詳しく解説\n"
+            "✏️ **メモ作成** - Obsidian用Markdownメモ生成\n"
+            "📝 **記事作成** - PREP法に基づく構造化記事生成\n"
+            "🌐 **URL取得** - URLからコンテンツを取得してテキストファイル化\n"
+            "🙌 **記事要約** - URLの記事を3行で要約（キーフレーズ付き）"
+        ), 
+        inline=False
+    )
     
     await interaction.response.send_message(embed=embed)
 
@@ -1086,6 +1107,7 @@ class CustomArticlePromptModal(discord.ui.Modal, title='記事作成用カスタ
                     "custom_prompt_x_post": "",
                     "custom_prompt_article": "",
                     "custom_prompt_memo": "",
+                    "custom_prompt_summary": "",
                     "status": "free",
                     "last_used_date": "",
                     "daily_usage_count": 0
@@ -1155,6 +1177,7 @@ class CustomMemoPromptModal(discord.ui.Modal, title='メモ作成用カスタム
                     "custom_prompt_x_post": "",
                     "custom_prompt_article": "",
                     "custom_prompt_memo": "",
+                    "custom_prompt_summary": "",
                     "status": "free",
                     "last_used_date": "",
                     "daily_usage_count": 0
@@ -1183,6 +1206,57 @@ class CustomMemoPromptModal(discord.ui.Modal, title='メモ作成用カスタム
         logger.error(f"Modal エラー: {error}")
         await interaction.response.send_message("❌ エラーが発生しました。管理者にお問い合わせください。", ephemeral=True)
 
+class CustomSummaryPromptModal(discord.ui.Modal, title='要約用カスタムプロンプト設定'):
+    def __init__(self, current_prompt=None):
+        super().__init__()
+        
+        # テキスト入力エリア（複数行対応）
+        self.prompt_input = discord.ui.TextInput(
+            label='カスタムプロンプト',
+            placeholder='記事要約用のプロンプトを入力してください...\n改行も使用できます。\n\n※ 空のまま送信するとカスタムプロンプトが無効になり、デフォルトプロンプトが使用されます。',
+            style=discord.TextStyle.paragraph,  # 複数行入力
+            max_length=2000,
+            required=False,
+            default=current_prompt if current_prompt else ''
+        )
+        self.add_item(self.prompt_input)
+    
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            prompt = self.prompt_input.value.strip()  # 前後の空白を削除
+            
+            # ユーザーデータを読み込み（存在しない場合は新規作成）
+            user_id = interaction.user.id
+            user_data = load_user_data(user_id)
+            if user_data is None:
+                user_data = {
+                    "custom_prompt_x_post": "",
+                    "custom_prompt_article": "",
+                    "custom_prompt_memo": "",
+                    "custom_prompt_summary": "",
+                    "status": "free",
+                    "last_used_date": "",
+                    "daily_usage_count": 0
+                }
+            
+            user_data["custom_prompt_summary"] = prompt
+            save_user_data(user_id, user_data)
+            
+            if prompt:
+                await interaction.response.send_message(f"✅ 要約用カスタムプロンプトを設定しました！\n\n```\n{prompt[:500]}{'...' if len(prompt) > 500 else ''}\n```", ephemeral=True)
+                logger.info(f"ユーザー {interaction.user.name} ({user_id}) が要約用カスタムプロンプトを設定しました")
+            else:
+                await interaction.response.send_message("✅ 要約用カスタムプロンプトを無効にしました。デフォルトプロンプトが使用されます。", ephemeral=True)
+                logger.info(f"ユーザー {interaction.user.name} ({user_id}) が要約用カスタムプロンプトを無効にしました")
+            
+        except Exception as e:
+            logger.error(f"要約用カスタムプロンプト設定エラー: {e}")
+            await interaction.response.send_message("❌ プロンプトの設定中にエラーが発生しました。", ephemeral=True)
+    
+    async def on_error(self, interaction: discord.Interaction, error: Exception):
+        logger.error(f"Modal エラー: {error}")
+        await interaction.response.send_message("❌ エラーが発生しました。管理者にお問い合わせください。", ephemeral=True)
+
 @bot.tree.command(name="set_custom_prompt_memo", description="メモ作成用のカスタムプロンプトを設定します")
 async def set_custom_prompt_memo_command(interaction: discord.Interaction):
     """メモ用カスタムプロンプト設定コマンド"""
@@ -1194,6 +1268,19 @@ async def set_custom_prompt_memo_command(interaction: discord.Interaction):
         current_prompt = user_data["custom_prompt_memo"]
     
     modal = CustomMemoPromptModal(current_prompt)
+    await interaction.response.send_modal(modal)
+
+@bot.tree.command(name="set_custom_prompt_summary", description="要約機能用のカスタムプロンプトを設定します")
+async def set_custom_prompt_summary_command(interaction: discord.Interaction):
+    """要約用カスタムプロンプト設定コマンド"""
+    # 既存のユーザーデータを読み込み
+    user_id = interaction.user.id
+    user_data = load_user_data(user_id)
+    current_prompt = ""
+    if user_data and "custom_prompt_summary" in user_data:
+        current_prompt = user_data["custom_prompt_summary"]
+    
+    modal = CustomSummaryPromptModal(current_prompt)
     await interaction.response.send_modal(modal)
 
 @bot.tree.command(name="activate", description="このチャンネルでBotを有効化します")
@@ -1411,7 +1498,7 @@ async def on_raw_reaction_add(payload):
         return
     
     # リアクションの種類をチェック
-    if payload.emoji.name in ['👍', '🎤', '❓', '✏️', '📝', '🌐']:  # ❤️褒めメッセージ機能は停止
+    if payload.emoji.name in ['👍', '🎤', '❓', '✏️', '📝', '🌐', '🙌']:  # ❤️褒めメッセージ機能は停止、🙌要約機能追加
         server_id = str(payload.guild_id)
         channel_id = str(payload.channel_id)
         
@@ -1442,6 +1529,7 @@ async def on_raw_reaction_add(payload):
                     "custom_prompt_x_post": "",
                     "custom_prompt_article": "",
                     "custom_prompt_memo": "",
+                    "custom_prompt_summary": "",
                     "status": "free",
                     "last_used_date": "",
                     "daily_usage_count": 0
@@ -2117,6 +2205,127 @@ async def on_raw_reaction_add(payload):
                         await channel.send(f"{user.mention} ❌ URLからコンテンツを取得できませんでした。\n💡 タイムアウト（30秒）やアクセス制限が原因の可能性があります。")
                 else:
                     await channel.send(f"{user.mention} ⚠️ メッセージにURLが見つかりません。")
+            
+            # 🙌 要約：URLから記事を取得して要約
+            elif payload.emoji.name == '🙌':
+                # メッセージからURLを抽出
+                urls = []
+                if message.content:
+                    urls = article_extractor.extract_urls_from_text(message.content)
+                
+                # EmbedからもURLを抽出
+                if message.embeds:
+                    for embed in message.embeds:
+                        if embed.url:
+                            urls.append(embed.url)
+                        if embed.description:
+                            embed_urls = article_extractor.extract_urls_from_text(embed.description)
+                            urls.extend(embed_urls)
+                
+                if urls:
+                    # 処理開始メッセージ
+                    message_link = f"https://discord.com/channels/{message.guild.id}/{message.channel.id}/{message.id}"
+                    await channel.send(f"{user.mention} 🙌 記事を要約するよ〜！ちょっと待っててね\n📎 元メッセージ: {message_link}")
+                    
+                    # 最初のURLのみ処理
+                    target_url = urls[0]
+                    
+                    try:
+                        # 記事コンテンツを取得
+                        title, content, error = await article_extractor.fetch_article_content(target_url)
+                        
+                        if error:
+                            await channel.send(f"{user.mention} ❌ 記事の取得に失敗しました: {error}")
+                            return
+                        
+                        if not content:
+                            await channel.send(f"{user.mention} ❌ 記事の本文を取得できませんでした。")
+                            return
+                        
+                        # 要約プロンプトを読み込み
+                        summary_prompt = None
+                        
+                        # 1. ユーザーのカスタムプロンプトをチェック
+                        if user_data and user_data.get('custom_prompt_summary'):
+                            summary_prompt = user_data['custom_prompt_summary']
+                            logger.info(f"ユーザー {user.name} のカスタム要約プロンプトを使用")
+                        
+                        # 2. カスタムプロンプトがない場合はデフォルトプロンプトファイルを使用
+                        if not summary_prompt:
+                            prompt_path = script_dir / "prompt" / "summary.txt"
+                            if prompt_path.exists():
+                                with open(prompt_path, 'r', encoding='utf-8') as f:
+                                    summary_prompt = f.read()
+                                logger.info("デフォルト要約プロンプトファイルを使用")
+                            else:
+                                summary_prompt = "以下の記事を3行で要約し、キーフレーズを5個抽出してください。"
+                                logger.info("フォールバック要約プロンプトを使用")
+                        
+                        # モデルを選択
+                        model = PREMIUM_USER_MODEL if is_premium else FREE_USER_MODEL
+                        
+                        # OpenAI APIで要約を生成
+                        if client_openai:
+                            try:
+                                # 記事データを構築
+                                article_data = f"タイトル: {title}\n\n記事内容:\n{content}"
+                                
+                                response = client_openai.chat.completions.create(
+                                    model=model,
+                                    messages=[
+                                        {"role": "system", "content": summary_prompt},
+                                        {"role": "user", "content": article_data}
+                                    ],
+                                    max_tokens=1500,
+                                    temperature=0.7
+                                )
+                                
+                                summary_result = response.choices[0].message.content.strip()
+                                
+                                # 結果をEmbedで送信
+                                embed = discord.Embed(
+                                    title="🙌 記事要約完了",
+                                    color=0xffd700
+                                )
+                                
+                                embed.add_field(
+                                    name="📄 記事タイトル",
+                                    value=title[:200] + "..." if title and len(title) > 200 else title or "（タイトル取得失敗）",
+                                    inline=False
+                                )
+                                
+                                embed.add_field(
+                                    name="🔗 記事URL",
+                                    value=target_url,
+                                    inline=False
+                                )
+                                
+                                embed.add_field(
+                                    name="📝 要約結果",
+                                    value=summary_result[:1000] + "..." if len(summary_result) > 1000 else summary_result,
+                                    inline=False
+                                )
+                                
+                                embed.set_footer(text=f"記事文字数: {len(content):,}文字 | モデル: {model}")
+                                
+                                await channel.send(embed=embed)
+                                
+                                logger.info(f"記事要約完了: {target_url}")
+                                
+                            except Exception as e:
+                                logger.error(f"OpenAI API エラー (要約機能): {e}")
+                                await channel.send(f"{user.mention} ❌ 要約の生成中にエラーが発生しました。")
+                        
+                        else:
+                            logger.error("エラー: OpenAI APIキーが設定されていません")
+                            await channel.send(f"{user.mention} ❌ エラーが発生しました。管理者にお問い合わせください。")
+                        
+                    except Exception as e:
+                        logger.error(f"記事要約処理エラー: {e}")
+                        await channel.send(f"{user.mention} ❌ 記事の要約中にエラーが発生しました。")
+                
+                else:
+                    await channel.send(f"{user.mention} ⚠️ メッセージにURLが見つかりません。記事のURLを含むメッセージに🙌リアクションしてください。")
 
 @bot.event
 async def on_message(message):

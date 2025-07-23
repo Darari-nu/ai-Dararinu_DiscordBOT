@@ -164,3 +164,1593 @@ BrokenPipeError: [Errno 32] Broken pipe
 BrokenPipeError: [Errno 32] Broken pipe
 
 2025-07-22 15:48:02,156 - INFO - Shard ID None has successfully RESUMED session 87e96814d41f91aa719c0ccd0ec9bdd2.
+2025-07-22 16:19:06,204 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1182, in activate_command
+    logger.error(f"Modal エラー: {error}")
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:06,211 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1191, in activate_command
+    current_prompt = ""
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:06,216 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1191, in activate_command
+    current_prompt = ""
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:06,218 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1176, in activate_command
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:06,233 - WARNING - Webhook ID 1397115723666685973 is rate limited. Retrying in 0.30 seconds.
+2025-07-22 16:19:06,748 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1197, in activate_command
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+2025-07-22 16:19:28,797 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1228, in activate_command
+    f"✅ このチャンネル（{interaction.channel.name}）でBotを有効化しました！\n\n"
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:28,802 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1238, in activate_command
+    )
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:28,807 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1219, in activate_command
+    server_data['server_name'] = interaction.guild.name
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:28,818 - WARNING - Webhook ID 1397115818642505728 is rate limited. Retrying in 0.30 seconds.
+2025-07-22 16:19:28,816 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1238, in activate_command
+    )
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:29,351 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1253, in activate_command
+    audio_message = await interaction.followup.send(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+2025-07-22 16:19:31,143 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1240, in activate_command
+    await interaction.response.send_message(guide_message)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/message.py", line 1563, in add_reaction
+    await self._state.http.add_reaction(self.channel.id, self.id, emoji)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 756, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50001): Missing Access
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: Forbidden: 403 Forbidden (error code: 50001): Missing Access
+2025-07-22 16:19:47,617 - WARNING - Webhook ID 1397115897671319632 is rate limited. Retrying in 0.30 seconds.
+2025-07-22 16:19:47,617 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1238, in activate_command
+    )
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:47,617 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1238, in activate_command
+    )
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:47,617 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1228, in activate_command
+    f"✅ このチャンネル（{interaction.channel.name}）でBotを有効化しました！\n\n"
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:47,638 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1259, in activate_command
+    logger.info("サンプル音声ファイル送信完了")
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:19:48,140 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1228, in activate_command
+    f"✅ このチャンネル（{interaction.channel.name}）でBotを有効化しました！\n\n"
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+2025-07-22 16:20:00,390 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1238, in activate_command
+    )
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:20:00,394 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1259, in activate_command
+    logger.info("サンプル音声ファイル送信完了")
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:20:00,397 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1244, in activate_command
+    reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:20:00,401 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1253, in activate_command
+    audio_message = await interaction.followup.send(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:20:00,493 - WARNING - Webhook ID 1397115951798816799 is rate limited. Retrying in 0.30 seconds.
+2025-07-22 16:20:01,015 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1253, in activate_command
+    audio_message = await interaction.followup.send(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+2025-07-22 16:20:49,876 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1219, in activate_command
+    server_data['server_name'] = interaction.guild.name
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:20:49,878 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1238, in activate_command
+    )
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:20:49,882 - WARNING - Webhook ID 1397116159081578587 is rate limited. Retrying in 0.30 seconds.
+2025-07-22 16:20:49,887 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1253, in activate_command
+    audio_message = await interaction.followup.send(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:20:49,927 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1228, in activate_command
+    f"✅ このチャンネル（{interaction.channel.name}）でBotを有効化しました！\n\n"
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 224, in request
+    raise NotFound(response, data)
+discord.errors.NotFound: 404 Not Found (error code: 10062): Unknown interaction
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: NotFound: 404 Not Found (error code: 10062): Unknown interaction
+2025-07-22 16:20:50,409 - ERROR - Ignoring exception in command 'activate'
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 858, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1259, in activate_command
+    logger.info("サンプル音声ファイル送信完了")
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/interactions.py", line 1004, in send_message
+    response = await adapter.create_interaction_response(
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/webhook/async_.py", line 226, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1310, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 883, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/commands.py", line 876, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command 'activate' raised an exception: HTTPException: 400 Bad Request (error code: 40060): Interaction has already been acknowledged.
+2025-07-22 16:20:55,081 - INFO - 新しい日の統計開始: サーバー数 1
+2025-07-22 16:20:55,082 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:20:55,083 - INFO - サーバー: Dara Museum
+2025-07-22 16:20:55,084 - INFO - チャンネル: 🔰｜こんにちは
+2025-07-22 16:20:55,084 - INFO - ユーザー: darari_nu
+2025-07-22 16:20:55,084 - INFO - メッセージ: ℹ️ このチャンネル（🔰｜こんにちは）は既に有効です。
+2025-07-22 16:20:55,084 - INFO - --------------------------------------------------
+2025-07-22 16:20:55,085 - INFO - 新規ユーザー darari_nu (982891457000136715) のデータを作成しました
+2025-07-22 16:20:55,085 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:20:55,355 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:20:55,355 - INFO - サーバー: Dara Museum
+2025-07-22 16:20:55,356 - INFO - チャンネル: 🔰｜こんにちは
+2025-07-22 16:20:55,356 - INFO - ユーザー: darari_nu
+2025-07-22 16:20:55,356 - INFO - メッセージ: ℹ️ このチャンネル（🔰｜こんにちは）は既に有効です。
+2025-07-22 16:20:55,356 - INFO - --------------------------------------------------
+2025-07-22 16:20:55,357 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:20:55,581 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:20:55,581 - INFO - サーバー: Dara Museum
+2025-07-22 16:20:55,582 - INFO - チャンネル: 🔰｜こんにちは
+2025-07-22 16:20:55,582 - INFO - ユーザー: darari_nu
+2025-07-22 16:20:55,582 - INFO - メッセージ: ℹ️ このチャンネル（🔰｜こんにちは）は既に有効です。
+2025-07-22 16:20:55,582 - INFO - --------------------------------------------------
+2025-07-22 16:20:55,582 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:20:55,619 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 16:20:55,856 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:20:55,856 - INFO - サーバー: Dara Museum
+2025-07-22 16:20:55,856 - INFO - チャンネル: 🔰｜こんにちは
+2025-07-22 16:20:55,856 - INFO - ユーザー: darari_nu
+2025-07-22 16:20:55,856 - INFO - メッセージ: ℹ️ このチャンネル（🔰｜こんにちは）は既に有効です。
+2025-07-22 16:20:55,856 - INFO - --------------------------------------------------
+2025-07-22 16:20:55,857 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:20:55,953 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 16:20:56,067 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 16:20:56,156 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 16:20:56,240 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:20:56,241 - INFO - サーバー: Dara Museum
+2025-07-22 16:20:56,241 - INFO - チャンネル: 🔰｜こんにちは
+2025-07-22 16:20:56,241 - INFO - ユーザー: darari_nu
+2025-07-22 16:20:56,241 - INFO - メッセージ: ℹ️ このチャンネル（🔰｜こんにちは）は既に有効です。
+2025-07-22 16:20:56,241 - INFO - --------------------------------------------------
+2025-07-22 16:20:56,241 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:20:56,691 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 16:20:57,924 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 16:20:57,937 - INFO - URL短縮開始 - 元のURL長: 671文字
+2025-07-22 16:20:58,308 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 16:20:58,314 - INFO - URL短縮開始 - 元のURL長: 965文字
+2025-07-22 16:20:58,320 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 16:20:58,329 - INFO - URL短縮開始 - 元のURL長: 887文字
+2025-07-22 16:20:58,440 - INFO - is.gd応答ステータス: 200
+2025-07-22 16:20:58,441 - INFO - 短縮成功: https://is.gd/1mC3bB
+2025-07-22 16:20:58,688 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 16:20:58,694 - INFO - URL短縮開始 - 元のURL長: 1091文字
+2025-07-22 16:20:58,740 - INFO - is.gd応答ステータス: 200
+2025-07-22 16:20:58,741 - INFO - 短縮成功: https://is.gd/fI0429
+2025-07-22 16:20:58,771 - INFO - is.gd応答ステータス: 200
+2025-07-22 16:20:58,772 - INFO - 短縮成功: https://is.gd/0THmR7
+2025-07-22 16:20:59,212 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1073542600654602292/messages responded with 429. Retrying in 0.30 seconds.
+2025-07-22 16:20:59,214 - INFO - is.gd応答ステータス: 200
+2025-07-22 16:20:59,214 - INFO - 短縮成功: https://is.gd/8LT0Ki
+2025-07-22 16:20:59,457 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1073542600654602292/messages responded with 429. Retrying in 0.89 seconds.
+2025-07-22 16:20:59,747 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1073542600654602292/messages responded with 429. Retrying in 0.59 seconds.
+2025-07-22 16:21:00,608 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1073542600654602292/messages responded with 429. Retrying in 0.73 seconds.
+2025-07-22 16:21:00,698 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 16:21:00,791 - INFO - URL短縮開始 - 元のURL長: 992文字
+2025-07-22 16:21:01,312 - INFO - is.gd応答ステータス: 200
+2025-07-22 16:21:01,312 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:21:01,312 - INFO - 短縮成功: https://is.gd/DVZs2R
+2025-07-22 16:21:01,313 - INFO - サーバー: Dara Museum
+2025-07-22 16:21:01,313 - INFO - チャンネル: 🔰｜こんにちは
+2025-07-22 16:21:01,313 - INFO - ユーザー: darari_nu
+2025-07-22 16:21:01,313 - INFO - メッセージ: ℹ️ このチャンネル（🔰｜こんにちは）は既に有効です。
+2025-07-22 16:21:01,313 - INFO - --------------------------------------------------
+2025-07-22 16:21:01,314 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:21:01,603 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1073542600654602292/messages responded with 429. Retrying in 0.74 seconds.
+2025-07-22 16:21:01,603 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1073542600654602292/messages responded with 429. Retrying in 0.74 seconds.
+2025-07-22 16:21:02,620 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1073542600654602292/messages responded with 429. Retrying in 0.72 seconds.
+2025-07-22 16:21:03,345 - ERROR - OpenAI API エラー: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 16:21:03,814 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1073542600654602292/messages responded with 429. Retrying in 0.56 seconds.
+2025-07-22 16:22:54,307 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:22:54,308 - INFO - サーバー: Dara Museum
+2025-07-22 16:22:54,309 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 16:22:54,309 - INFO - ユーザー: darari_nu
+2025-07-22 16:22:54,309 - INFO - メッセージ: **🇬🇧 The Register – AI/ML** 【AI技術】
+📰 レプリットは、AIエージェントが雰囲気のコーディング災害を作るのを止めることを約束します
+🔗 https://go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AReplit%20makes%20vibe-y%20promise%20to%20stop%20its%20AI%20agents%20making%20vibe%20coding%20disasters%20https%3A//go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/)
+2025-07-22 16:22:54,309 - INFO - --------------------------------------------------
+2025-07-22 16:22:54,310 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:22:54,450 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:22:54,451 - INFO - サーバー: Dara Museum
+2025-07-22 16:22:54,451 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 16:22:54,451 - INFO - ユーザー: darari_nu
+2025-07-22 16:22:54,451 - INFO - メッセージ: **🇬🇧 The Register – AI/ML** 【AI技術】
+📰 レプリットは、AIエージェントが雰囲気のコーディング災害を作るのを止めることを約束します
+🔗 https://go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AReplit%20makes%20vibe-y%20promise%20to%20stop%20its%20AI%20agents%20making%20vibe%20coding%20disasters%20https%3A//go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/)
+2025-07-22 16:22:54,452 - INFO - --------------------------------------------------
+2025-07-22 16:22:54,452 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:22:54,863 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:22:54,863 - INFO - サーバー: Dara Museum
+2025-07-22 16:22:54,864 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 16:22:54,864 - INFO - ユーザー: darari_nu
+2025-07-22 16:22:54,864 - INFO - メッセージ: **🇬🇧 The Register – AI/ML** 【AI技術】
+📰 レプリットは、AIエージェントが雰囲気のコーディング災害を作るのを止めることを約束します
+🔗 https://go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AReplit%20makes%20vibe-y%20promise%20to%20stop%20its%20AI%20agents%20making%20vibe%20coding%20disasters%20https%3A//go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/)
+2025-07-22 16:22:54,864 - INFO - --------------------------------------------------
+2025-07-22 16:22:54,865 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:22:55,082 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:22:55,083 - INFO - サーバー: Dara Museum
+2025-07-22 16:22:55,083 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 16:22:55,083 - INFO - ユーザー: darari_nu
+2025-07-22 16:22:55,083 - INFO - メッセージ: **🇬🇧 The Register – AI/ML** 【AI技術】
+📰 レプリットは、AIエージェントが雰囲気のコーディング災害を作るのを止めることを約束します
+🔗 https://go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AReplit%20makes%20vibe-y%20promise%20to%20stop%20its%20AI%20agents%20making%20vibe%20coding%20disasters%20https%3A//go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/)
+2025-07-22 16:22:55,083 - INFO - --------------------------------------------------
+2025-07-22 16:22:55,084 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:22:55,510 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:22:55,511 - INFO - サーバー: Dara Museum
+2025-07-22 16:22:55,511 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 16:22:55,511 - INFO - ユーザー: darari_nu
+2025-07-22 16:22:55,511 - INFO - メッセージ: **🇬🇧 The Register – AI/ML** 【AI技術】
+📰 レプリットは、AIエージェントが雰囲気のコーディング災害を作るのを止めることを約束します
+🔗 https://go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AReplit%20makes%20vibe-y%20promise%20to%20stop%20its%20AI%20agents%20making%20vibe%20coding%20disasters%20https%3A//go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/)
+2025-07-22 16:22:55,512 - INFO - --------------------------------------------------
+2025-07-22 16:22:55,512 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:23:00,092 - INFO - 👍 リアクションを検知しました！
+2025-07-22 16:23:00,093 - INFO - サーバー: Dara Museum
+2025-07-22 16:23:00,093 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 16:23:00,093 - INFO - ユーザー: darari_nu
+2025-07-22 16:23:00,094 - INFO - メッセージ: **🇬🇧 The Register – AI/ML** 【AI技術】
+📰 レプリットは、AIエージェントが雰囲気のコーディング災害を作るのを止めることを約束します
+🔗 https://go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AReplit%20makes%20vibe-y%20promise%20to%20stop%20its%20AI%20agents%20making%20vibe%20coding%20disasters%20https%3A//go.theregister.com/feed/www.theregister.com/2025/07/22/replit_saastr_response/)
+2025-07-22 16:23:00,094 - INFO - --------------------------------------------------
+2025-07-22 16:23:00,094 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:25:01,220 - INFO - ✏️ リアクションを検知しました！
+2025-07-22 16:25:01,220 - INFO - サーバー: Dara Museum
+2025-07-22 16:25:01,220 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 16:25:01,221 - INFO - ユーザー: darari_nu
+2025-07-22 16:25:01,221 - INFO - メッセージ: おはよう
+2025-07-22 16:25:01,221 - INFO - --------------------------------------------------
+2025-07-22 16:25:01,221 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:25:01,673 - INFO - ✏️ リアクションを検知しました！
+2025-07-22 16:25:01,674 - INFO - サーバー: Dara Museum
+2025-07-22 16:25:01,674 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 16:25:01,674 - INFO - ユーザー: darari_nu
+2025-07-22 16:25:01,674 - INFO - メッセージ: おはよう
+2025-07-22 16:25:01,674 - INFO - --------------------------------------------------
+2025-07-22 16:25:01,674 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:25:01,995 - INFO - ✏️ リアクションを検知しました！
+2025-07-22 16:25:01,995 - INFO - サーバー: Dara Museum
+2025-07-22 16:25:01,996 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 16:25:01,996 - INFO - ユーザー: darari_nu
+2025-07-22 16:25:01,996 - INFO - メッセージ: おはよう
+2025-07-22 16:25:01,996 - INFO - --------------------------------------------------
+2025-07-22 16:25:01,997 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:25:02,525 - INFO - ✏️ リアクションを検知しました！
+2025-07-22 16:25:02,525 - INFO - サーバー: Dara Museum
+2025-07-22 16:25:02,526 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 16:25:02,526 - INFO - ユーザー: darari_nu
+2025-07-22 16:25:02,526 - INFO - メッセージ: おはよう
+2025-07-22 16:25:02,527 - INFO - --------------------------------------------------
+2025-07-22 16:25:02,527 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:25:02,849 - INFO - ✏️ リアクションを検知しました！
+2025-07-22 16:25:02,849 - INFO - サーバー: Dara Museum
+2025-07-22 16:25:02,849 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 16:25:02,849 - INFO - ユーザー: darari_nu
+2025-07-22 16:25:02,850 - INFO - メッセージ: おはよう
+2025-07-22 16:25:02,850 - INFO - --------------------------------------------------
+2025-07-22 16:25:02,850 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:25:07,203 - INFO - ✏️ リアクションを検知しました！
+2025-07-22 16:25:07,204 - INFO - サーバー: Dara Museum
+2025-07-22 16:25:07,205 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 16:25:07,205 - INFO - ユーザー: darari_nu
+2025-07-22 16:25:07,205 - INFO - メッセージ: おはよう
+2025-07-22 16:25:07,205 - INFO - --------------------------------------------------
+2025-07-22 16:25:07,206 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 16:33:09,549 - INFO - Shard ID None has successfully RESUMED session 1dfccc85c0e858fa7364f9cdb15b5747.
+2025-07-22 16:55:32,540 - WARNING - Can't keep up, shard ID None websocket is 38.9s behind.
+2025-07-22 16:55:33,412 - WARNING - Can't keep up, shard ID None websocket is 38.9s behind.
+2025-07-22 17:13:43,229 - INFO - Shard ID None session has been invalidated.
+2025-07-22 17:13:48,109 - INFO - Shard ID None session has been invalidated.
+2025-07-22 17:13:48,953 - INFO - Shard ID None has connected to Gateway (Session ID: 17aa00db44d81241dde768865d1adebb).
+2025-07-22 17:13:51,010 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 17:13:52,817 - INFO - Shard ID None session has been invalidated.
+2025-07-22 17:13:53,891 - INFO - Shard ID None has connected to Gateway (Session ID: 524131a78947e0e07ebd72919163200d).
+2025-07-22 17:13:55,862 - INFO - Shard ID None session has been invalidated.
+2025-07-22 17:13:55,909 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 17:13:56,542 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 25.16 seconds.
+2025-07-22 17:13:58,710 - INFO - Shard ID None has connected to Gateway (Session ID: 3b3ac460255e1874d93374f9fe8a9786).
+2025-07-22 17:14:01,224 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 20.39 seconds.
+2025-07-22 17:14:01,813 - INFO - Shard ID None has connected to Gateway (Session ID: 7f031d0b41b714eab7a9c2628cc71928).
+2025-07-22 17:30:21,181 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 403 Forbidden (error code: 50001): Missing Access
+2025-07-22 17:30:21,183 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 899, in on_ready
+    try:
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 756, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50001): Missing Access
+
+2025-07-22 17:30:24,010 - INFO - Shard ID None session has been invalidated.
+2025-07-22 17:47:12,079 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:00:28,007 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:00:33,734 - INFO - Shard ID None has connected to Gateway (Session ID: 8ab0b316df179cb354bb5f427eecc9f0).
+2025-07-22 18:00:35,807 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:00:36,172 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.56 seconds.
+2025-07-22 18:00:36,287 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.45 seconds.
+2025-07-22 18:00:39,172 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:00:44,020 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:00:45,003 - INFO - Shard ID None has connected to Gateway (Session ID: 06d0963377a60a754814eb486cd50b43).
+2025-07-22 18:00:47,027 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:00:49,166 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:00:50,441 - INFO - Shard ID None has connected to Gateway (Session ID: bcad4f029d66a7e7ebf6cb36cfc24181).
+2025-07-22 18:00:52,358 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:00:52,454 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:00:53,068 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 12.76 seconds.
+2025-07-22 18:00:55,142 - INFO - Shard ID None has connected to Gateway (Session ID: 3f6e89db0d3686e95123fd33209cf6c1).
+2025-07-22 18:00:56,680 - INFO - Shard ID None has connected to Gateway (Session ID: a20d3a0a1e701d97d0b67ef67455b743).
+2025-07-22 18:00:58,762 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:00:59,056 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 6.66 seconds.
+2025-07-22 18:01:00,368 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:18:10,951 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.99 seconds.
+2025-07-22 18:18:10,963 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.98 seconds.
+2025-07-22 18:18:11,134 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:18:14,460 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:18:16,890 - INFO - Shard ID None has connected to Gateway (Session ID: 9628e5d2ecaf9c235951b7f6f4c47404).
+2025-07-22 18:18:19,237 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 403 Forbidden (error code: 50001): Missing Access
+2025-07-22 18:18:19,239 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 899, in on_ready
+    try:
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 756, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50001): Missing Access
+
+2025-07-22 18:18:20,172 - INFO - Shard ID None has connected to Gateway (Session ID: b165c3361a087d76da11f09c066c6bb3).
+2025-07-22 18:18:22,207 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:18:22,478 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 18.47 seconds.
+2025-07-22 18:18:25,619 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:18:30,429 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:18:31,293 - INFO - Shard ID None has connected to Gateway (Session ID: 28309f5f108f02924bb2ffb60ea72a09).
+2025-07-22 18:18:33,347 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:18:33,796 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 7.20 seconds.
+2025-07-22 18:18:35,920 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:18:36,266 - INFO - Shard ID None has connected to Gateway (Session ID: a9cbcd5f5a80ed92cc60f30ed3850db7).
+2025-07-22 18:18:37,371 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:18:38,278 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:18:40,343 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 0.60 seconds.
+2025-07-22 18:18:41,215 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.72 seconds.
+2025-07-22 18:18:41,222 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.71 seconds.
+2025-07-22 18:18:41,245 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:18:41,250 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.68 seconds.
+2025-07-22 18:18:41,250 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:18:41,271 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.67 seconds.
+2025-07-22 18:18:41,924 - INFO - Shard ID None has connected to Gateway (Session ID: 2dfb21251e9e75fab41eceddd676a364).
+2025-07-22 18:33:58,253 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:46:29,443 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:46:33,467 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:46:35,136 - INFO - Shard ID None has connected to Gateway (Session ID: 70b99235ff81ac74fa81fb54f30528bd).
+2025-07-22 18:46:36,777 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:46:37,200 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:46:39,170 - INFO - Shard ID None has connected to Gateway (Session ID: f9d098907baf14a1bb34734d49579b34).
+2025-07-22 18:46:41,867 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 403 Forbidden (error code: 50001): Missing Access
+2025-07-22 18:46:41,868 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 899, in on_ready
+    try:
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 756, in request
+    raise Forbidden(response, data)
+discord.errors.Forbidden: 403 Forbidden (error code: 50001): Missing Access
+
+2025-07-22 18:46:42,516 - INFO - Shard ID None has connected to Gateway (Session ID: 8fef88d294d963b483ccc7c6aae984d9).
+2025-07-22 18:46:44,551 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:46:48,269 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:46:51,524 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 16.00 seconds.
+2025-07-22 18:46:51,535 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 15.99 seconds.
+2025-07-22 18:46:51,594 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 15.95 seconds.
+2025-07-22 18:46:51,601 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 15.93 seconds.
+2025-07-22 18:46:53,136 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 14.52 seconds.
+2025-07-22 18:46:53,164 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:46:54,658 - INFO - Shard ID None has connected to Gateway (Session ID: 3c1d90702d1fd0ad075dd1d857e6f76d).
+2025-07-22 18:46:56,697 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:46:58,407 - INFO - Shard ID None session has been invalidated.
+2025-07-22 18:46:59,100 - INFO - Shard ID None has connected to Gateway (Session ID: 97e1141388fa084f79e7a26b3b620b1e).
+2025-07-22 18:47:01,141 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 18:47:04,222 - INFO - Shard ID None has connected to Gateway (Session ID: 82a4022b6efabd571872885721c6662e).
+2025-07-22 18:47:07,838 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:47:07,858 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.67 seconds.
+2025-07-22 18:47:07,877 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.65 seconds.
+2025-07-22 18:47:07,888 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.65 seconds.
+2025-07-22 18:47:07,959 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.57 seconds.
+2025-07-22 18:47:07,968 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.57 seconds.
+2025-07-22 18:47:21,452 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 16.08 seconds.
+2025-07-22 18:47:21,539 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 16.00 seconds.
+2025-07-22 18:47:37,532 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:47:37,539 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 904, in on_ready
+    print(f'DEBUG: get_commands()でエラー: {e}', flush=True)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 18:47:37,831 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:47:37,831 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:47:37,835 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:47:37,850 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:47:37,855 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.67 seconds.
+2025-07-22 18:47:37,855 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:48:07,517 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:48:07,526 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 913, in on_ready
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 18:48:07,842 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.67 seconds.
+2025-07-22 18:48:07,847 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.67 seconds.
+2025-07-22 18:48:07,853 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.66 seconds.
+2025-07-22 18:48:07,858 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.66 seconds.
+2025-07-22 18:48:07,883 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.63 seconds.
+2025-07-22 18:48:07,893 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.62 seconds.
+2025-07-22 18:48:07,910 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.61 seconds.
+2025-07-22 18:48:37,513 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:48:37,520 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 919, in on_ready
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 18:48:37,521 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:48:37,522 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 919, in on_ready
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 18:48:37,799 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.71 seconds.
+2025-07-22 18:48:37,813 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:48:37,815 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:48:37,817 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:48:37,820 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:48:37,824 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.68 seconds.
+2025-07-22 18:48:37,827 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:49:07,807 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:49:07,818 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:49:07,820 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:49:07,829 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.68 seconds.
+2025-07-22 18:49:07,836 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.68 seconds.
+2025-07-22 18:49:07,839 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:49:07,846 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.67 seconds.
+2025-07-22 18:49:37,516 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:49:37,517 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 925, in on_ready
+    empty_sync = await bot.tree.sync(guild=test_guild)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 18:49:37,911 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.67 seconds.
+2025-07-22 18:49:37,912 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.68 seconds.
+2025-07-22 18:49:37,912 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.69 seconds.
+2025-07-22 18:49:37,912 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.70 seconds.
+2025-07-22 18:49:37,913 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.66 seconds.
+2025-07-22 18:49:37,919 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.61 seconds.
+2025-07-22 18:50:07,874 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.64 seconds.
+2025-07-22 18:50:07,892 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.62 seconds.
+2025-07-22 18:50:07,913 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.60 seconds.
+2025-07-22 18:50:07,915 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.60 seconds.
+2025-07-22 18:50:07,915 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.60 seconds.
+2025-07-22 18:50:37,515 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:50:37,516 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 904, in on_ready
+    print(f'DEBUG: get_commands()でエラー: {e}', flush=True)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 18:50:37,826 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.68 seconds.
+2025-07-22 18:50:37,833 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.68 seconds.
+2025-07-22 18:50:37,842 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.67 seconds.
+2025-07-22 18:50:37,973 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.54 seconds.
+2025-07-22 18:50:50,390 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 
+2025-07-22 18:50:50,399 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 913, in on_ready
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 642, in request
+    async with self.__session.request(method, url, **kwargs) as response:
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 1074, in start
+    self._continue = None
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/helpers.py", line 685, in __exit__
+    raise asyncio.TimeoutError from exc_val
+asyncio.exceptions.TimeoutError
+
+2025-07-22 18:50:50,399 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 
+2025-07-22 18:50:50,400 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 1059, in start
+    message, payload = await protocol.read()  # type: ignore[union-attr]
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/streams.py", line 672, in read
+    await self._waiter
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 926, in on_ready
+    print("DEBUG: sync実行完了")
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1129, in sync
+    data = await self._http.bulk_upsert_global_commands(self.client.application_id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 642, in request
+    async with self.__session.request(method, url, **kwargs) as response:
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/client.py", line 730, in _request
+    await resp.start(conn)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/client_reqrep.py", line 1074, in start
+    self._continue = None
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/aiohttp/helpers.py", line 685, in __exit__
+    raise asyncio.TimeoutError from exc_val
+asyncio.exceptions.TimeoutError
+
+2025-07-22 18:51:07,512 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:51:07,513 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 913, in on_ready
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 18:51:07,919 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.68 seconds.
+2025-07-22 18:51:07,920 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.63 seconds.
+2025-07-22 18:51:37,554 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:51:37,555 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 919, in on_ready
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 18:51:37,928 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/applications/1396989684630163617/guilds/1073542600033849446/commands responded with 429. Retrying in 29.58 seconds.
+2025-07-22 18:52:07,513 - ERROR - ❌ スラッシュコマンドの同期に失敗しました: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 18:52:07,519 - ERROR - Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 904, in on_ready
+    print(f'DEBUG: get_commands()でエラー: {e}', flush=True)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/app_commands/tree.py", line 1131, in sync
+    data = await self._http.bulk_upsert_guild_commands(self.client.application_id, guild.id, payload=payload)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+
+2025-07-22 19:04:56,763 - INFO - Shard ID None has successfully RESUMED session 70b99235ff81ac74fa81fb54f30528bd.
+2025-07-22 19:09:01,535 - INFO - Shard ID None has successfully RESUMED session 82a4022b6efabd571872885721c6662e.
+2025-07-22 19:56:30,404 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 19:56:30,404 - INFO - 統計管理システムを初期化しました
+2025-07-22 19:56:30,404 - INFO - Botを起動しています...
+2025-07-22 19:56:30,405 - INFO - logging in using static token
+2025-07-22 19:56:31,802 - INFO - Shard ID None has connected to Gateway (Session ID: 168b64268cc76b2ae5f281c692429bb3).
+2025-07-22 19:56:33,850 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 19:59:34,302 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:34,313 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:34,328 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:34,380 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:34,421 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:34,841 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:34,906 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:34,921 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:35,023 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:35,387 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:35,458 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:35,574 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:35,692 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:36,021 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:36,029 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9C%8F%EF%B8%8F/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:36,098 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:36,296 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:36,577 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9C%8F%EF%B8%8F/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:36,639 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:36,783 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:36,941 - ERROR - 自動リアクション追加エラー: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 19:59:37,130 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9C%8F%EF%B8%8F/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:37,336 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:37,654 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9C%8F%EF%B8%8F/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:37,878 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:38,338 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9C%8F%EF%B8%8F/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:38,438 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:38,504 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%93%9D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:38,574 - INFO - 自動リアクション追加完了: 🗞️｜メモ - kanatan9
+2025-07-22 19:59:38,995 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:39,023 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%93%9D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:39,297 - ERROR - 自動リアクション追加エラー: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 19:59:39,758 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646/reactions/%F0%9F%93%9D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:39,778 - INFO - 自動リアクション追加完了: 🗞️｜メモ - kanatan9
+2025-07-22 19:59:40,196 - INFO - 自動リアクション追加完了: 🗞️｜メモ - kanatan9
+2025-07-22 19:59:40,889 - INFO - 自動リアクション追加完了: 🗞️｜メモ - kanatan9
+2025-07-22 19:59:51,162 - INFO - 👍 リアクションを検知しました！
+2025-07-22 19:59:51,162 - INFO - サーバー: Dara Museum
+2025-07-22 19:59:51,163 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 19:59:51,163 - INFO - ユーザー: kanatan9
+2025-07-22 19:59:51,163 - INFO - メッセージ: おはよう
+2025-07-22 19:59:51,163 - INFO - --------------------------------------------------
+2025-07-22 19:59:51,164 - INFO - 新規ユーザー kanatan9 (1117052073897369600) のデータを作成しました
+2025-07-22 19:59:51,164 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 19:59:51,482 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 19:59:51,638 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:51,653 - INFO - 👍 リアクションを検知しました！
+2025-07-22 19:59:51,654 - INFO - サーバー: Dara Museum
+2025-07-22 19:59:51,654 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 19:59:51,654 - INFO - ユーザー: kanatan9
+2025-07-22 19:59:51,655 - INFO - メッセージ: おはよう
+2025-07-22 19:59:51,655 - INFO - --------------------------------------------------
+2025-07-22 19:59:51,655 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 19:59:51,661 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:51,664 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:51,674 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:51,840 - INFO - 👍 リアクションを検知しました！
+2025-07-22 19:59:51,840 - INFO - サーバー: Dara Museum
+2025-07-22 19:59:51,840 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 19:59:51,841 - INFO - ユーザー: kanatan9
+2025-07-22 19:59:51,841 - INFO - メッセージ: おはよう
+2025-07-22 19:59:51,841 - INFO - --------------------------------------------------
+2025-07-22 19:59:51,841 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 19:59:52,000 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 19:59:52,124 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.74 seconds.
+2025-07-22 19:59:52,164 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 19:59:52,202 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.66 seconds.
+2025-07-22 19:59:52,213 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.65 seconds.
+2025-07-22 19:59:52,219 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.65 seconds.
+2025-07-22 19:59:52,341 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.52 seconds.
+2025-07-22 19:59:53,087 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.77 seconds.
+2025-07-22 19:59:53,110 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.75 seconds.
+2025-07-22 19:59:53,121 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.74 seconds.
+2025-07-22 19:59:53,121 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.75 seconds.
+2025-07-22 19:59:54,032 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 19:59:54,037 - INFO - URL短縮開始 - 元のURL長: 884文字
+2025-07-22 19:59:54,107 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.75 seconds.
+2025-07-22 19:59:54,107 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.76 seconds.
+2025-07-22 19:59:54,111 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.75 seconds.
+2025-07-22 19:59:54,156 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 19:59:54,158 - INFO - URL短縮開始 - 元のURL長: 1037文字
+2025-07-22 19:59:54,790 - INFO - is.gd応答ステータス: 200
+2025-07-22 19:59:54,791 - INFO - 短縮成功: https://is.gd/ykETuY
+2025-07-22 19:59:54,795 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.69 seconds.
+2025-07-22 19:59:54,807 - INFO - is.gd応答ステータス: 200
+2025-07-22 19:59:54,808 - INFO - 短縮成功: https://is.gd/DNQQwg
+2025-07-22 19:59:55,009 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 19:59:55,013 - INFO - URL短縮開始 - 元のURL長: 939文字
+2025-07-22 19:59:55,109 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.75 seconds.
+2025-07-22 19:59:55,132 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.74 seconds.
+2025-07-22 19:59:55,191 - INFO - 👍 リアクションを検知しました！
+2025-07-22 19:59:55,191 - INFO - サーバー: Dara Museum
+2025-07-22 19:59:55,191 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 19:59:55,191 - INFO - ユーザー: kanatan9
+2025-07-22 19:59:55,191 - INFO - メッセージ: おはよう
+2025-07-22 19:59:55,192 - INFO - --------------------------------------------------
+2025-07-22 19:59:55,192 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 19:59:55,306 - INFO - is.gd応答ステータス: 200
+2025-07-22 19:59:55,307 - INFO - 短縮成功: https://is.gd/Un7g1s
+2025-07-22 19:59:55,310 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:55,658 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 19:59:55,743 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:55,865 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.30 seconds.
+2025-07-22 19:59:55,864 - ERROR - Ignoring exception in on_raw_reaction_add
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1409, in on_raw_reaction_add
+    if payload.user_id == bot.user.id:
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/abc.py", line 1710, in fetch_message
+    data = await self._state.http.get_message(channel.id, id)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 19:59:55,872 - ERROR - Ignoring exception in on_raw_reaction_add
+Traceback (most recent call last):
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/main.py", line 1409, in on_raw_reaction_add
+    if payload.user_id == bot.user.id:
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/abc.py", line 1710, in fetch_message
+    data = await self._state.http.get_message(channel.id, id)
+  File "/Users/watanabehidetaka/Library/Python/3.9/lib/python/site-packages/discord/http.py", line 777, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 19:59:56,160 - INFO - ❓ リアクションを検知しました！
+2025-07-22 19:59:56,160 - INFO - サーバー: Dara Museum
+2025-07-22 19:59:56,160 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 19:59:56,160 - INFO - ユーザー: kanatan9
+2025-07-22 19:59:56,161 - INFO - メッセージ: おはよう
+2025-07-22 19:59:56,161 - INFO - --------------------------------------------------
+2025-07-22 19:59:56,161 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 19:59:56,418 - WARNING - We are being rate limited. GET https://discord.com/api/v10/channels/1393923905445691505/messages/1397171202480410646 responded with 429. Retrying in 0.45 seconds.
+2025-07-22 19:59:56,750 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.34 seconds.
+2025-07-22 19:59:57,130 - INFO - 👍 リアクションを検知しました！
+2025-07-22 19:59:57,131 - INFO - サーバー: Dara Museum
+2025-07-22 19:59:57,131 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 19:59:57,131 - INFO - ユーザー: kanatan9
+2025-07-22 19:59:57,131 - INFO - メッセージ: おはよう
+2025-07-22 19:59:57,132 - INFO - --------------------------------------------------
+2025-07-22 19:59:57,132 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 19:59:57,360 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.66 seconds.
+2025-07-22 19:59:57,378 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 19:59:57,381 - INFO - URL短縮開始 - 元のURL長: 875文字
+2025-07-22 19:59:57,881 - INFO - is.gd応答ステータス: 200
+2025-07-22 19:59:57,881 - INFO - 短縮成功: https://is.gd/ZE6UTJ
+2025-07-22 19:59:58,129 - INFO - 👍 リアクションを検知しました！
+2025-07-22 19:59:58,130 - INFO - サーバー: Dara Museum
+2025-07-22 19:59:58,130 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 19:59:58,130 - INFO - ユーザー: kanatan9
+2025-07-22 19:59:58,130 - INFO - メッセージ: おはよう
+2025-07-22 19:59:58,130 - INFO - --------------------------------------------------
+2025-07-22 19:59:58,130 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 19:59:58,231 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.79 seconds.
+2025-07-22 19:59:58,383 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.64 seconds.
+2025-07-22 19:59:59,135 - INFO - 👍 リアクションを検知しました！
+2025-07-22 19:59:59,136 - INFO - サーバー: Dara Museum
+2025-07-22 19:59:59,136 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 19:59:59,136 - INFO - ユーザー: kanatan9
+2025-07-22 19:59:59,136 - INFO - メッセージ: おはよう
+2025-07-22 19:59:59,136 - INFO - --------------------------------------------------
+2025-07-22 19:59:59,137 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 19:59:59,304 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.72 seconds.
+2025-07-22 19:59:59,421 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.60 seconds.
+2025-07-22 20:00:00,231 - INFO - ❓ リアクションを検知しました！
+2025-07-22 20:00:00,231 - INFO - サーバー: Dara Museum
+2025-07-22 20:00:00,231 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:00:00,231 - INFO - ユーザー: kanatan9
+2025-07-22 20:00:00,232 - INFO - メッセージ: おはよう
+2025-07-22 20:00:00,232 - INFO - --------------------------------------------------
+2025-07-22 20:00:00,232 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:00:00,283 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.74 seconds.
+2025-07-22 20:00:00,340 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.68 seconds.
+2025-07-22 20:00:01,095 - INFO - 解説プロンプトファイルを使用
+2025-07-22 20:00:01,202 - INFO - ❓ リアクションを検知しました！
+2025-07-22 20:00:01,203 - INFO - サーバー: Dara Museum
+2025-07-22 20:00:01,203 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:00:01,203 - INFO - ユーザー: kanatan9
+2025-07-22 20:00:01,203 - INFO - メッセージ: おはよう
+2025-07-22 20:00:01,203 - INFO - --------------------------------------------------
+2025-07-22 20:00:01,203 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:00:01,374 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.72 seconds.
+2025-07-22 20:00:01,453 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.57 seconds.
+2025-07-22 20:00:02,157 - INFO - ❓ リアクションを検知しました！
+2025-07-22 20:00:02,158 - INFO - サーバー: Dara Museum
+2025-07-22 20:00:02,158 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:00:02,158 - INFO - ユーザー: kanatan9
+2025-07-22 20:00:02,158 - INFO - メッセージ: おはよう
+2025-07-22 20:00:02,158 - INFO - --------------------------------------------------
+2025-07-22 20:00:02,159 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:00:02,318 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.70 seconds.
+2025-07-22 20:00:03,409 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.65 seconds.
+2025-07-22 20:00:03,409 - INFO - ❓ リアクションを検知しました！
+2025-07-22 20:00:03,410 - INFO - サーバー: Dara Museum
+2025-07-22 20:00:03,410 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:00:03,410 - INFO - ユーザー: kanatan9
+2025-07-22 20:00:03,410 - INFO - メッセージ: おはよう
+2025-07-22 20:00:03,411 - INFO - --------------------------------------------------
+2025-07-22 20:00:03,411 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:00:03,482 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.55 seconds.
+2025-07-22 20:00:03,670 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.35 seconds.
+2025-07-22 20:00:04,321 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.71 seconds.
+2025-07-22 20:00:04,328 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.70 seconds.
+2025-07-22 20:00:05,298 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.73 seconds.
+2025-07-22 20:00:06,479 - WARNING - We are being rate limited. POST https://discord.com/api/v10/channels/1393923905445691505/messages responded with 429. Retrying in 0.62 seconds.
+2025-07-22 20:00:13,018 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 20:00:28,280 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:28,284 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:28,297 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:28,314 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:28,329 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:28,847 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:28,875 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:28,887 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:28,917 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:29,472 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:29,478 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:29,580 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:30,051 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:30,145 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:30,370 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:30,607 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:30,723 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%91%8D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:30,908 - ERROR - 自動リアクション追加エラー: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 20:00:30,912 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:31,024 - ERROR - 自動リアクション追加エラー: 429 Too Many Requests (error code: 0): You are being rate limited.
+2025-07-22 20:00:31,395 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%F0%9F%93%9D/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:31,443 - INFO - 自動リアクション追加完了: 🗞️｜メモ - kanatan9
+2025-07-22 20:00:31,471 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:32,030 - WARNING - We are being rate limited. PUT https://discord.com/api/v10/channels/1393923905445691505/messages/1397171428796923954/reactions/%E2%9D%93/@me responded with 429. Retrying in 0.30 seconds.
+2025-07-22 20:00:32,570 - INFO - 自動リアクション追加完了: 🗞️｜メモ - kanatan9
+2025-07-22 20:00:33,758 - INFO - 自動リアクション追加完了: 🗞️｜メモ - kanatan9
+2025-07-22 20:00:35,134 - INFO - 自動リアクション追加完了: 🗞️｜メモ - kanatan9
+2025-07-22 20:02:09,766 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 20:02:09,766 - INFO - 統計管理システムを初期化しました
+2025-07-22 20:02:09,767 - INFO - Botを起動しています...
+2025-07-22 20:02:09,767 - INFO - logging in using static token
+2025-07-22 20:02:11,104 - INFO - Shard ID None has connected to Gateway (Session ID: 086048c03ecb641cd99ed82ccd788d80).
+2025-07-22 20:02:13,146 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 20:02:49,814 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:02:49,814 - INFO - サーバー: Dara Museum
+2025-07-22 20:02:49,814 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:02:49,814 - INFO - ユーザー: kanatan9
+2025-07-22 20:02:49,814 - INFO - メッセージ: テスト
+2025-07-22 20:02:49,814 - INFO - --------------------------------------------------
+2025-07-22 20:02:49,815 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:03:16,697 - INFO - ✏️ リアクションを検知しました！
+2025-07-22 20:03:16,698 - INFO - サーバー: Dara Museum
+2025-07-22 20:03:16,698 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:03:16,698 - INFO - ユーザー: darari_nu
+2025-07-22 20:03:16,698 - INFO - メッセージ: <@1117052073897369600> 😅 今日の分の利用回数を使い切っちゃいました！
+無料プランでは1日5回まで利用できます。明日また遊びに来てくださいね！✨
+
+💎 **もっと使いたい場合は有料プランがおすすめです！**
+🤖 このBotのプロフィールを見ると、プレミアム会員の詳細と登録方法が載ってるよ〜
+2025-07-22 20:03:16,699 - INFO - --------------------------------------------------
+2025-07-22 20:03:16,699 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:03:56,760 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:03:56,760 - INFO - サーバー: Dara Museum
+2025-07-22 20:03:56,761 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 20:03:56,761 - INFO - ユーザー: darari_nu
+2025-07-22 20:03:56,761 - INFO - メッセージ: **🇯🇵 ITmedia AI+** 【AI技術・政府発表】
+📰 海外からの“選挙干渉”、背景に「ネットと生成AIの発達」と平デジタル相　対策必要との見解示す
+🔗 https://www.itmedia.co.jp/aiplus/articles/2507/22/news099.html
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0A%E6%B5%B7%E5%A4%96%E3%81%8B%E3%82%89%E3%81%AE%E2%80%9C%E9%81%B8%E6%8C%99%E5%B9%B2%E6%B8%89%E2%80%9D%E3%80%81%E8%83%8C%E6%99%AF%E3%81%AB%E3%80%8C%E3%83%8D%E3%83%83%E3%83%88%E3%81%A8%E7%94%9F%E6%88%90AI%E3%81%AE%E7%99%BA%E9%81%94%E3%80%8D%E3%81%A8%E5%B9%B3%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%9B%B8%E3%80%80%E5%AF%BE%E7%AD%96%E5%BF%85%E8%A6%81%E3%81%A8%E3%81%AE%E8%A6%8B%E8%A7%A3%E7%A4%BA%E3%81%99%20https%3A//www.itmedia.co.jp/aiplus/articles/2507/22/news099.html)
+2025-07-22 20:03:56,761 - INFO - --------------------------------------------------
+2025-07-22 20:03:56,761 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:06:11,275 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 20:06:11,275 - INFO - 統計管理システムを初期化しました
+2025-07-22 20:06:11,275 - INFO - Botを起動しています...
+2025-07-22 20:06:11,275 - INFO - logging in using static token
+2025-07-22 20:06:12,607 - INFO - Shard ID None has connected to Gateway (Session ID: f66c181eb5839c30bbb015ef51d98b64).
+2025-07-22 20:06:14,634 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 20:09:30,761 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:09:30,762 - INFO - サーバー: Dara Museum
+2025-07-22 20:09:30,762 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:09:30,762 - INFO - ユーザー: kanatan9
+2025-07-22 20:09:30,762 - INFO - メッセージ: こんにちわ
+2025-07-22 20:09:30,762 - INFO - --------------------------------------------------
+2025-07-22 20:09:30,763 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:10:36,151 - INFO - 📝 リアクションを検知しました！
+2025-07-22 20:10:36,151 - INFO - サーバー: Dara Museum
+2025-07-22 20:10:36,151 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:10:36,151 - INFO - ユーザー: kanatan9
+2025-07-22 20:10:36,152 - INFO - メッセージ: こんにちわ
+2025-07-22 20:10:36,152 - INFO - --------------------------------------------------
+2025-07-22 20:10:36,152 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:12:50,951 - INFO - ✏️ リアクションを検知しました！
+2025-07-22 20:12:50,951 - INFO - サーバー: Dara Museum
+2025-07-22 20:12:50,951 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:12:50,951 - INFO - ユーザー: kanatan9
+2025-07-22 20:12:50,952 - INFO - メッセージ: こんにちわ
+2025-07-22 20:12:50,952 - INFO - --------------------------------------------------
+2025-07-22 20:12:50,952 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:13:15,892 - INFO - 🎤 リアクションを検知しました！
+2025-07-22 20:13:15,892 - INFO - サーバー: Dara Museum
+2025-07-22 20:13:15,892 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:13:15,893 - INFO - ユーザー: kanatan9
+2025-07-22 20:13:15,893 - INFO - メッセージ: <@1117052073897369600> 😅 今日の分の利用回数を使い切っちゃいました！
+無料プランでは1日5回まで利用できます。明日また遊びに来てくださいね！✨
+
+💎 **もっと使いたい場合は有料プランがおすすめです！**
+🤖 このBotのプロフィールを見ると、プレミアム会員の詳細と登録方法が載ってるよ〜
+2025-07-22 20:13:15,893 - INFO - --------------------------------------------------
+2025-07-22 20:13:15,893 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:13:26,348 - INFO - 🎤 リアクションを検知しました！
+2025-07-22 20:13:26,349 - INFO - サーバー: Dara Museum
+2025-07-22 20:13:26,349 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:13:26,349 - INFO - ユーザー: kanatan9
+2025-07-22 20:13:26,350 - INFO - メッセージ: こんにちわ
+2025-07-22 20:13:26,350 - INFO - --------------------------------------------------
+2025-07-22 20:13:26,350 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:14:57,826 - INFO - ❓ リアクションを検知しました！
+2025-07-22 20:14:57,826 - INFO - サーバー: Dara Museum
+2025-07-22 20:14:57,826 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:14:57,826 - INFO - ユーザー: kanatan9
+2025-07-22 20:14:57,827 - INFO - メッセージ: こんにちわ
+2025-07-22 20:14:57,827 - INFO - --------------------------------------------------
+2025-07-22 20:14:57,827 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:15:45,043 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:15:45,044 - INFO - サーバー: Dara Museum
+2025-07-22 20:15:45,045 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:15:45,046 - INFO - ユーザー: darari_nu
+2025-07-22 20:15:45,046 - INFO - メッセージ: ぐわし
+2025-07-22 20:15:45,046 - INFO - --------------------------------------------------
+2025-07-22 20:15:45,047 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:15:54,813 - INFO - ❓ リアクションを検知しました！
+2025-07-22 20:15:54,814 - INFO - サーバー: Dara Museum
+2025-07-22 20:15:54,814 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:15:54,814 - INFO - ユーザー: darari_nu
+2025-07-22 20:15:54,814 - INFO - メッセージ: ぐわし
+2025-07-22 20:15:54,814 - INFO - --------------------------------------------------
+2025-07-22 20:15:54,815 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:21:00,422 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:21:00,422 - INFO - サーバー: Dara Museum
+2025-07-22 20:21:00,422 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:21:00,422 - INFO - ユーザー: kanatan9
+2025-07-22 20:21:00,422 - INFO - メッセージ: いやー眠い
+2025-07-22 20:21:00,423 - INFO - --------------------------------------------------
+2025-07-22 20:21:00,423 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:21:05,938 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:21:05,938 - INFO - サーバー: Dara Museum
+2025-07-22 20:21:05,938 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:21:05,938 - INFO - ユーザー: darari_nu
+2025-07-22 20:21:05,938 - INFO - メッセージ: いやー眠い
+2025-07-22 20:21:05,939 - INFO - --------------------------------------------------
+2025-07-22 20:21:05,939 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:21:18,414 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:21:18,415 - INFO - サーバー: Dara Museum
+2025-07-22 20:21:18,415 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:21:18,415 - INFO - ユーザー: darari_nu
+2025-07-22 20:21:18,415 - INFO - メッセージ: ねむい
+2025-07-22 20:21:18,415 - INFO - --------------------------------------------------
+2025-07-22 20:21:18,416 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:21:57,411 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 20:21:57,411 - INFO - 統計管理システムを初期化しました
+2025-07-22 20:21:57,411 - INFO - Botを起動しています...
+2025-07-22 20:21:57,412 - INFO - logging in using static token
+2025-07-22 20:21:58,846 - INFO - Shard ID None has connected to Gateway (Session ID: 180d847cd7877f7f99c245634b189809).
+2025-07-22 20:22:00,901 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 20:23:46,485 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:23:46,486 - INFO - サーバー: Dara Museum
+2025-07-22 20:23:46,486 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:23:46,486 - INFO - ユーザー: darari_nu
+2025-07-22 20:23:46,486 - INFO - メッセージ: ねむい
+2025-07-22 20:23:46,487 - INFO - --------------------------------------------------
+2025-07-22 20:23:46,487 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:24:23,158 - INFO - ❓ リアクションを検知しました！
+2025-07-22 20:24:23,158 - INFO - サーバー: Dara Museum
+2025-07-22 20:24:23,159 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:24:23,159 - INFO - ユーザー: darari_nu
+2025-07-22 20:24:23,159 - INFO - メッセージ: ねむい
+2025-07-22 20:24:23,159 - INFO - --------------------------------------------------
+2025-07-22 20:24:23,159 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 20:26:06,874 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 20:26:06,875 - INFO - 統計管理システムを初期化しました
+2025-07-22 20:26:06,875 - INFO - Botを起動しています...
+2025-07-22 20:26:06,875 - INFO - logging in using static token
+2025-07-22 20:26:08,107 - INFO - Shard ID None has connected to Gateway (Session ID: b3e3102edf863b5470b87f03d912a854).
+2025-07-22 20:26:10,181 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 20:28:47,388 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:28:47,388 - INFO - サーバー: Dara Museum
+2025-07-22 20:28:47,388 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:28:47,389 - INFO - ユーザー: darari_nu
+2025-07-22 20:28:47,389 - INFO - メッセージ: ねむい
+2025-07-22 20:28:47,389 - INFO - --------------------------------------------------
+2025-07-22 20:28:47,389 - INFO - User 982891457000136715 is configured owner - granting premium access
+2025-07-22 20:28:47,753 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 20:28:49,490 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 20:28:49,497 - INFO - URL短縮開始 - 元のURL長: 974文字
+2025-07-22 20:28:49,809 - INFO - is.gd応答ステータス: 200
+2025-07-22 20:28:49,810 - INFO - 短縮成功: https://is.gd/74lPsm
+2025-07-22 20:29:01,278 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:29:01,278 - INFO - サーバー: Dara Museum
+2025-07-22 20:29:01,279 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 20:29:01,279 - INFO - ユーザー: darari_nu
+2025-07-22 20:29:01,279 - INFO - メッセージ: **🇯🇵 ITmedia AI+** 【AI技術・政府発表】
+📰 海外からの“選挙干渉”、背景に「ネットと生成AIの発達」と平デジタル相　対策必要との見解示す
+🔗 https://www.itmedia.co.jp/aiplus/articles/2507/22/news099.html
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0A%E6%B5%B7%E5%A4%96%E3%81%8B%E3%82%89%E3%81%AE%E2%80%9C%E9%81%B8%E6%8C%99%E5%B9%B2%E6%B8%89%E2%80%9D%E3%80%81%E8%83%8C%E6%99%AF%E3%81%AB%E3%80%8C%E3%83%8D%E3%83%83%E3%83%88%E3%81%A8%E7%94%9F%E6%88%90AI%E3%81%AE%E7%99%BA%E9%81%94%E3%80%8D%E3%81%A8%E5%B9%B3%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E7%9B%B8%E3%80%80%E5%AF%BE%E7%AD%96%E5%BF%85%E8%A6%81%E3%81%A8%E3%81%AE%E8%A6%8B%E8%A7%A3%E7%A4%BA%E3%81%99%20https%3A//www.itmedia.co.jp/aiplus/articles/2507/22/news099.html)
+2025-07-22 20:29:01,279 - INFO - --------------------------------------------------
+2025-07-22 20:29:01,279 - INFO - User 982891457000136715 is configured owner - granting premium access
+2025-07-22 20:29:01,280 - INFO - Embed内容を抽出: 94文字
+2025-07-22 20:29:01,280 - INFO - Embed内容を追加
+2025-07-22 20:29:02,984 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 20:29:05,579 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 20:29:05,585 - INFO - URL短縮開始 - 元のURL長: 1056文字
+2025-07-22 20:29:06,079 - INFO - is.gd応答ステータス: 200
+2025-07-22 20:29:06,080 - INFO - 短縮成功: https://is.gd/OGRp5C
+2025-07-22 20:29:37,285 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:29:37,285 - INFO - サーバー: Dara Museum
+2025-07-22 20:29:37,285 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 20:29:37,285 - INFO - ユーザー: darari_nu
+2025-07-22 20:29:37,285 - INFO - メッセージ: **🇺🇸 WIRED – AI (Latest)** 【AI技術】
+📰 OpenaiのChatGptエージェントは私のブラウザに出没しています
+🔗 https://www.wired.com/story/browser-haunted-by-ai-agents/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AOpenAI%E2%80%99s%20ChatGPT%20Agent%20Is%20Haunting%20My%20Browser%20https%3A//www.wired.com/story/browser-haunted-by-ai-agents/)
+2025-07-22 20:29:37,286 - INFO - --------------------------------------------------
+2025-07-22 20:29:37,286 - INFO - User 982891457000136715 is configured owner - granting premium access
+2025-07-22 20:29:37,286 - INFO - Embed内容を抽出: 229文字
+2025-07-22 20:29:37,286 - INFO - Embed内容を追加
+2025-07-22 20:29:38,053 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 20:29:41,609 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 20:29:41,611 - INFO - URL短縮開始 - 元のURL長: 1155文字
+2025-07-22 20:29:42,067 - INFO - is.gd応答ステータス: 200
+2025-07-22 20:29:42,067 - INFO - 短縮成功: https://is.gd/mcZSZa
+2025-07-22 20:30:28,612 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:30:28,613 - INFO - サーバー: Dara Museum
+2025-07-22 20:30:28,613 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 20:30:28,613 - INFO - ユーザー: darari_nu
+2025-07-22 20:30:28,613 - INFO - メッセージ: **🇯🇵 ITmedia AI+** 【AI技術】
+📰 「生成AIは期待外れ」と言ってしまう日本企業が生まれるワケ　5カ国調査で分かった、効果を実感する企業との違い
+🔗 https://www.itmedia.co.jp/aiplus/articles/2507/18/news023.html
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0A%E3%80%8C%E7%94%9F%E6%88%90AI%E3%81%AF%E6%9C%9F%E5%BE%85%E5%A4%96%E3%82%8C%E3%80%8D%E3%81%A8%E8%A8%80%E3%81%A3%E3%81%A6%E3%81%97%E3%81%BE%E3%81%86%E6%97%A5%E6%9C%AC%E4%BC%81%E6%A5%AD%E3%81%8C%E7%94%9F%E3%81%BE%E3%82%8C%E3%82%8B%E3%83%AF%E3%82%B1%E3%80%805%E3%82%AB%E5%9B%BD%E8%AA%BF%E6%9F%BB%E3%81%A7%E5%88%86%E3%81%8B%E3%81%A3%E3%81%9F%E3%80%81%E5%8A%B9%E6%9E%9C%E3%82%92%E5%AE%9F%E6%84%9F%E3%81%99%E3%82%8B%E4%BC%81%E6%A5%AD%E3%81%A8%E3%81%AE%E9%81%95%E3%81%84%20https%3A//www.itmedia.co.jp/aiplus/articles/2507/18/news023.html)
+2025-07-22 20:30:28,613 - INFO - --------------------------------------------------
+2025-07-22 20:30:28,613 - INFO - User 982891457000136715 is configured owner - granting premium access
+2025-07-22 20:30:28,614 - INFO - Embed内容を抽出: 115文字
+2025-07-22 20:30:28,614 - INFO - Embed内容を追加
+2025-07-22 20:30:29,593 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 20:30:31,889 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 20:30:31,891 - INFO - URL短縮開始 - 元のURL長: 1120文字
+2025-07-22 20:30:32,356 - INFO - is.gd応答ステータス: 200
+2025-07-22 20:30:32,357 - INFO - 短縮成功: https://is.gd/YY4BPY
+2025-07-22 20:31:42,575 - INFO - 👍 リアクションを検知しました！
+2025-07-22 20:31:42,575 - INFO - サーバー: Dara Museum
+2025-07-22 20:31:42,576 - INFO - チャンネル: 🗞️｜メモ
+2025-07-22 20:31:42,576 - INFO - ユーザー: kanatan9
+2025-07-22 20:31:42,576 - INFO - メッセージ: ねむい
+2025-07-22 20:31:42,576 - INFO - --------------------------------------------------
+2025-07-22 20:31:42,577 - WARNING - Community server not found: 1383696841450721442
+2025-07-22 21:13:52,965 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-22 21:13:52,965 - INFO - 統計管理システムを初期化しました
+2025-07-22 21:13:52,966 - INFO - Botを起動しています...
+2025-07-22 21:13:52,966 - INFO - logging in using static token
+2025-07-22 21:13:54,298 - INFO - Shard ID None has connected to Gateway (Session ID: f1c6b30a51d24ba1fce750879a2e414b).
+2025-07-22 21:13:56,337 - INFO - Bot起動完了: Ai_Darari-nu#9005
+2025-07-22 21:23:42,996 - INFO - 📝 リアクションを検知しました！
+2025-07-22 21:23:42,997 - INFO - サーバー: Dara Museum
+2025-07-22 21:23:42,997 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 21:23:42,997 - INFO - ユーザー: kanatan9
+2025-07-22 21:23:42,997 - INFO - メッセージ: **🧠 MIT Technology Review** 【AI技術】
+📰 今すぐAIについて知る必要がある5つのこと
+🔗 https://www.technologyreview.com/2025/07/22/1120556/five-things-to-know-ai/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AFive%20things%20you%20need%20to%20know%20about%20AI%20right%20now%20https%3A//www.technologyreview.com/2025/07/22/1120556/five-things-to-know-ai/)
+2025-07-22 21:23:42,997 - INFO - --------------------------------------------------
+2025-07-22 21:23:42,998 - INFO - Debug: Checking user 1117052073897369600 in guild Dara Museum
+2025-07-22 21:23:42,998 - INFO - Debug: Found member kanatan9#0
+2025-07-22 21:23:42,998 - INFO - Debug: Member roles: ['@everyone(1073542600033849446)', 'MOD(1117049134986301440)']
+2025-07-22 21:23:42,998 - INFO - Debug: Looking for premium role ID: 1397188911486210138
+2025-07-22 21:23:42,998 - INFO - Premium check for user 1117052073897369600 (kanatan9): False
+2025-07-22 21:24:31,648 - INFO - 📝 リアクションを検知しました！
+2025-07-22 21:24:31,649 - INFO - サーバー: Dara Museum
+2025-07-22 21:24:31,649 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 21:24:31,650 - INFO - ユーザー: darari_nu
+2025-07-22 21:24:31,650 - INFO - メッセージ: **🧠 MIT Technology Review** 【AI技術】
+📰 今すぐAIについて知る必要がある5つのこと
+🔗 https://www.technologyreview.com/2025/07/22/1120556/five-things-to-know-ai/
+🐦 [Xに投稿](https://x.com/intent/post?text=%0A%0AFive%20things%20you%20need%20to%20know%20about%20AI%20right%20now%20https%3A//www.technologyreview.com/2025/07/22/1120556/five-things-to-know-ai/)
+2025-07-22 21:24:31,651 - INFO - --------------------------------------------------
+2025-07-22 21:24:31,653 - INFO - User 982891457000136715 is configured owner - granting premium access
+2025-07-22 21:24:31,654 - INFO - Embed内容を抽出: 147文字
+2025-07-22 21:24:31,654 - INFO - Embed内容を追加
+2025-07-22 21:24:32,438 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 21:24:58,686 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 21:24:58,693 - INFO - 記事ファイル作成: /Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/attachments/20250722_212458_article.md
+2025-07-22 21:25:03,968 - INFO - 記事ファイルにリアクションを追加しました
+2025-07-22 21:25:03,969 - INFO - 添付ファイル削除: /Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/attachments/20250722_212458_article.md
+2025-07-22 21:26:09,549 - INFO - 👍 リアクションを検知しました！
+2025-07-22 21:26:09,550 - INFO - サーバー: Dara Museum
+2025-07-22 21:26:09,550 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 21:26:09,550 - INFO - ユーザー: kanatan9
+2025-07-22 21:26:09,550 - INFO - メッセージ: 📝 記事ファイルです！
+2025-07-22 21:26:09,550 - INFO - --------------------------------------------------
+2025-07-22 21:26:09,551 - INFO - Debug: Checking user 1117052073897369600 in guild Dara Museum
+2025-07-22 21:26:09,551 - INFO - Debug: Found member kanatan9#0
+2025-07-22 21:26:09,552 - INFO - Debug: Member roles: ['@everyone(1073542600033849446)', 'Premium(1397188911486210138)', 'MOD(1117049134986301440)']
+2025-07-22 21:26:09,552 - INFO - Debug: Looking for premium role ID: 1397188911486210138
+2025-07-22 21:26:09,552 - INFO - Premium check for user 1117052073897369600 (kanatan9): True
+2025-07-22 21:26:09,958 - INFO - テキストファイル読み取り成功: 20250722_212458_article.md (892文字)
+2025-07-22 21:26:09,959 - INFO - 添付ファイルの内容を追加: 20250722_212458_article.md
+2025-07-22 21:26:10,369 - INFO - デフォルトプロンプトファイルを使用
+2025-07-22 21:26:13,235 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-22 21:26:13,237 - INFO - URL短縮開始 - 元のURL長: 1031文字
+2025-07-22 21:26:13,593 - INFO - is.gd応答ステータス: 200
+2025-07-22 21:26:13,594 - INFO - 短縮成功: https://is.gd/mFW9wH
+2025-07-22 21:26:26,808 - INFO - ❓ リアクションを検知しました！
+2025-07-22 21:26:26,809 - INFO - サーバー: Dara Museum
+2025-07-22 21:26:26,809 - INFO - チャンネル: 🤖｜ai-ニュース
+2025-07-22 21:26:26,809 - INFO - ユーザー: kanatan9
+2025-07-22 21:26:26,809 - INFO - メッセージ: 📝 記事ファイルです！
+2025-07-22 21:26:26,809 - INFO - --------------------------------------------------
+2025-07-22 21:26:26,810 - INFO - Debug: Checking user 1117052073897369600 in guild Dara Museum
+2025-07-22 21:26:26,810 - INFO - Debug: Found member kanatan9#0
+2025-07-22 21:26:26,810 - INFO - Debug: Member roles: ['@everyone(1073542600033849446)', 'MOD(1117049134986301440)']
+2025-07-22 21:26:26,810 - INFO - Debug: Looking for premium role ID: 1397188911486210138
+2025-07-22 21:26:26,810 - INFO - Premium check for user 1117052073897369600 (kanatan9): False
+2025-07-22 21:55:22,901 - INFO - Shard ID None has successfully RESUMED session f1c6b30a51d24ba1fce750879a2e414b.
+2025-07-23 19:30:57,102 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-07-23 19:30:57,103 - INFO - 統計管理システムを初期化しました
+2025-07-23 19:30:57,103 - INFO - Botを起動しています...
+2025-07-23 19:30:57,103 - INFO - logging in using static token
+2025-07-23 19:30:58,326 - INFO - Shard ID None has connected to Gateway (Session ID: 9b64798e3f3d96ea7093d77b3422fed7).
+2025-07-23 19:31:00,510 - INFO - Bot起動完了: Ai_Darari-nu#9005
