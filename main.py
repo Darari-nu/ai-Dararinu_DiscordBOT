@@ -2588,7 +2588,7 @@ async def on_raw_reaction_add(payload):
                 
                 # Embedの内容を抽出
                 if message.embeds:
-                    embed_content = extract_embed_content(message.embeds)
+                    embed_content = extract_embed_content(message)
                     if embed_content:
                         content_to_process += f"【Embed情報】\n{embed_content}\n\n"
                 
