@@ -226,32 +226,69 @@ def is_english_content(text):
 async def translate_text_to_japanese(text):
     """テキストを日本語に翻訳（非同期対応）"""
     try:
-        # 長いテキストは分割して翻訳
-        max_length = 4500  # deep-translatorの制限に合わせて調整
+        # 長いテキストは文単位で分割して翻訳
+        max_length = 2000  # より安全な制限値
+        
         if len(text) <= max_length:
-            translated = GoogleTranslator(source='en', target='ja').translate(text)
+            # 短いテキストはそのまま翻訳
+            translator = GoogleTranslator(source='en', target='ja')
+            translated = translator.translate(text)
             return translated
         else:
-            # 長いテキストを段落単位で分割
+            # 長いテキストは文単位で分割
+            sentences = []
+            # 段落単位で分割し、さらに文単位に分割
             paragraphs = text.split('\n\n')
-            translated_paragraphs = []
-            current_chunk = ""
             
             for paragraph in paragraphs:
-                if len(current_chunk + paragraph) <= max_length:
-                    current_chunk += paragraph + '\n\n'
+                # 文単位で分割（.や!、?で区切る）
+                import re
+                paragraph_sentences = re.split(r'(?<=[.!?])\s+', paragraph)
+                sentences.extend(paragraph_sentences)
+            
+            translated_sentences = []
+            current_batch = ""
+            translator = GoogleTranslator(source='en', target='ja')
+            
+            for sentence in sentences:
+                sentence = sentence.strip()
+                if not sentence:
+                    continue
+                
+                # バッチサイズを確認
+                if len(current_batch + ' ' + sentence) <= max_length:
+                    current_batch = (current_batch + ' ' + sentence).strip()
                 else:
-                    if current_chunk:
-                        translated = GoogleTranslator(source='en', target='ja').translate(current_chunk.strip())
-                        translated_paragraphs.append(translated)
-                    current_chunk = paragraph + '\n\n'
+                    # 現在のバッチを翻訳
+                    if current_batch:
+                        try:
+                            translated = translator.translate(current_batch)
+                            translated_sentences.append(translated)
+                        except Exception as batch_error:
+                            logger.warning(f"バッチ翻訳エラー: {batch_error}")
+                            # 個別の文を翻訳試行
+                            batch_sentences = current_batch.split('. ')
+                            for individual_sentence in batch_sentences:
+                                try:
+                                    if individual_sentence.strip():
+                                        individual_translated = translator.translate(individual_sentence.strip())
+                                        translated_sentences.append(individual_translated)
+                                except Exception:
+                                    translated_sentences.append(individual_sentence)  # 翻訳失敗時は原文
+                    
+                    current_batch = sentence
             
-            # 最後のチャンクを処理
-            if current_chunk:
-                translated = GoogleTranslator(source='en', target='ja').translate(current_chunk.strip())
-                translated_paragraphs.append(translated)
+            # 最後のバッチを処理
+            if current_batch:
+                try:
+                    translated = translator.translate(current_batch)
+                    translated_sentences.append(translated)
+                except Exception as final_error:
+                    logger.warning(f"最終バッチ翻訳エラー: {final_error}")
+                    translated_sentences.append(current_batch)  # 翻訳失敗時は原文
             
-            return '\n\n'.join(translated_paragraphs)
+            return ' '.join(translated_sentences)
+            
     except Exception as e:
         logger.error(f"翻訳エラー: {e}")
         return text  # 翻訳失敗時は元のテキストを返す
