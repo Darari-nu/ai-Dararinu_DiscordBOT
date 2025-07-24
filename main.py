@@ -21,6 +21,7 @@ import aiohttp
 import subprocess
 from utils.article_extractor import article_extractor
 from deep_translator import GoogleTranslator
+from typing import Optional
 
 # URL検出関数
 def contains_url(text):
