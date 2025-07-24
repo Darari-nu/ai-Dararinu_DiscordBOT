@@ -20,6 +20,7 @@ import io
 import aiohttp
 import subprocess
 from utils.article_extractor import article_extractor
+from googletrans import Translator
 
 # URL検出関数
 def contains_url(text):
@@ -206,6 +207,69 @@ if settings_path.exists():
         FREE_USER_DAILY_LIMIT = settings.get("free_user_daily_limit", 5)
 else:
     FREE_USER_DAILY_LIMIT = 5  # デフォルト値
+
+# Google翻訳インスタンス
+translator = Translator()
+
+def detect_language(text):
+    """テキストの言語を検出"""
+    try:
+        # 最初の500文字で言語検出
+        sample_text = text[:500] if len(text) > 500 else text
+        detected = translator.detect(sample_text)
+        return detected.lang
+    except Exception as e:
+        logger.warning(f"言語検出エラー: {e}")
+        return 'unknown'
+
+def is_english_content(text):
+    """コンテンツが英語かどうかを判定"""
+    try:
+        detected_lang = detect_language(text)
+        return detected_lang == 'en'
+    except Exception:
+        # フォールバック: 英語文字の比率で判定
+        if not text:
+            return False
+        english_chars = sum(1 for c in text if c.isalpha() and ord(c) < 128)
+        total_chars = sum(1 for c in text if c.isalpha())
+        if total_chars == 0:
+            return False
+        english_ratio = english_chars / total_chars
+        return english_ratio >= 0.7
+
+async def translate_text_to_japanese(text):
+    """テキストを日本語に翻訳（非同期対応）"""
+    try:
+        # 長いテキストは分割して翻訳
+        max_length = 4000  # Google翻訳の制限に合わせて調整
+        if len(text) <= max_length:
+            translated = translator.translate(text, src='en', dest='ja')
+            return translated.text
+        else:
+            # 長いテキストを段落単位で分割
+            paragraphs = text.split('\n\n')
+            translated_paragraphs = []
+            current_chunk = ""
+            
+            for paragraph in paragraphs:
+                if len(current_chunk + paragraph) <= max_length:
+                    current_chunk += paragraph + '\n\n'
+                else:
+                    if current_chunk:
+                        translated = translator.translate(current_chunk.strip(), src='en', dest='ja')
+                        translated_paragraphs.append(translated.text)
+                    current_chunk = paragraph + '\n\n'
+            
+            # 最後のチャンクを処理
+            if current_chunk:
+                translated = translator.translate(current_chunk.strip(), src='en', dest='ja')
+                translated_paragraphs.append(translated.text)
+            
+            return '\n\n'.join(translated_paragraphs)
+    except Exception as e:
+        logger.error(f"翻訳エラー: {e}")
+        return text  # 翻訳失敗時は元のテキストを返す
 
 # カスタムログハンドラー（書き込み時のみファイルを開く）
 class SyncFriendlyFileHandler(logging.Handler):
@@ -2171,9 +2235,21 @@ async def on_raw_reaction_add(payload):
                     
                     if content and content.strip():
                         try:
+                            # 英語コンテンツの判定と翻訳
+                            is_english = is_english_content(content)
+                            translated_content = None
+                            translated_title = None
+                            
+                            if is_english:
+                                logger.info("英語コンテンツを検出、翻訳を開始")
+                                translated_content = await translate_text_to_japanese(content)
+                                if title:
+                                    translated_title = await translate_text_to_japanese(title)
+                            
                             # ファイル名を生成（タイトルがある場合は使用）
                             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                            safe_title = title[:30].replace("/", "_").replace("\\", "_").replace(":", "_") if title else "url_content"
+                            display_title = translated_title if translated_title else title
+                            safe_title = display_title[:30].replace("/", "_").replace("\\", "_").replace(":", "_") if display_title else "url_content"
                             filename = f"{timestamp}_{safe_title}.txt"
                             file_path = script_dir / "attachments" / filename
                             
@@ -2181,32 +2257,59 @@ async def on_raw_reaction_add(payload):
                             with open(file_path, 'w', encoding='utf-8') as f:
                                 f.write(f"取得元URL: {url}\n")
                                 f.write(f"記事タイトル: {title or 'タイトル取得失敗'}\n")
+                                if translated_title:
+                                    f.write(f"翻訳タイトル: {translated_title}\n")
                                 f.write(f"取得日時: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                                if is_english:
+                                    f.write(f"言語: 英語 → 日本語翻訳済み\n")
                                 f.write("=" * 50 + "\n\n")
+                                
+                                if translated_content:
+                                    f.write("【日本語翻訳】\n")
+                                    f.write(translated_content)
+                                    f.write("\n\n" + "=" * 30 + "\n\n")
+                                    f.write("【原文（英語）】\n")
+                                
                                 f.write(content)
                             
                             logger.info(f"URLコンテンツファイル作成: {file_path}")
                             
-                            # 先頭150文字のプレビュー（改行を保持）
-                            preview = content[:150] + "..." if len(content) > 150 else content
+                            # プレビューは翻訳版を優先
+                            preview_content = translated_content if translated_content else content
+                            preview = preview_content[:150] + "..." if len(preview_content) > 150 else preview_content
                             
                             # 結果を送信
+                            embed_title = "🌐 URLの内容を取得しました"
+                            if is_english:
+                                embed_title += " (日本語翻訳済み)"
+                            
+                            display_title_text = translated_title if translated_title else (title or 'タイトル取得失敗')
+                            
                             embed = discord.Embed(
-                                title="🌐 URLの内容を取得しました",
-                                description=f"**URL**: {url}\n**タイトル**: {title or 'タイトル取得失敗'}\n**ファイル名**: `{filename}`",
-                                color=0x4285f4
+                                title=embed_title,
+                                description=f"**URL**: {url}\n**タイトル**: {display_title_text}\n**ファイル名**: `{filename}`",
+                                color=0x4285f4 if not is_english else 0x00ff00
                             )
                             
+                            preview_name = "📄 記事内容プレビュー (最初の150文字)"
+                            if is_english:
+                                preview_name += " - 翻訳版"
+                            
                             embed.add_field(
-                                name="📄 記事内容プレビュー (最初の150文字)",
+                                name=preview_name,
                                 value=f"```\n{preview}\n```",
                                 inline=False
                             )
                             
                             # 文字数情報を追加
+                            info_text = f"記事文字数: {len(content):,}文字"
+                            if is_english:
+                                info_text += f"\n翻訳文字数: {len(translated_content):,}文字" if translated_content else ""
+                                info_text += "\n🌍 言語: 英語 → 日本語"
+                            
                             embed.add_field(
                                 name="📊 情報",
-                                value=f"記事文字数: {len(content):,}文字",
+                                value=info_text,
                                 inline=True
                             )
                             
@@ -2217,7 +2320,11 @@ async def on_raw_reaction_add(payload):
                                 file_data = f.read()
                             
                             file_obj = io.BytesIO(file_data)
-                            file_message = await channel.send("🌐 URLの記事内容をテキストファイルにしました！\n✨ 記事本文のみを抽出しています", file=discord.File(file_obj, filename=filename))
+                            upload_message = "🌐 URLの記事内容をテキストファイルにしました！\n✨ 記事本文のみを抽出しています"
+                            if is_english:
+                                upload_message = "🌐 URLの記事内容をテキストファイルにしました！\n🌍 英語記事を日本語に翻訳しました（原文も含まれています）"
+                            
+                            file_message = await channel.send(upload_message, file=discord.File(file_obj, filename=filename))
                             
                             # URLコンテンツファイルに自動でリアクションを追加
                             reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
