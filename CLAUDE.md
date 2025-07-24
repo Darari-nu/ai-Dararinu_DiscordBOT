@@ -35,6 +35,50 @@ This bot is now deployed and running 24/7 on Xserver VPS:
 - Main file: `index.html` (all styles embedded)
 - Deploy changes by pushing to GitHub (ai-Dararinu_DiscordBOT repository)
 
+## 🐛 Issue History & Fixes (2025-07-25)
+
+### Recent Critical Issues Fixed:
+
+#### **Issue #1: 👀機能 - OpenAI画像生成安全システム拒否エラー**
+- **症状**: `safety system. Image descriptions generated from your prompt may contain text that is not allowed`
+- **原因**: 1ツイート目の内容に「失敗」「問題」等のネガティブ表現が含まれ、OpenAIの安全フィルターに引っかかった
+- **修正**: 
+  - 画像生成プロンプトのネガティブ表現を安全な表現に置換（失敗→経験、問題→課題、危険→注意、リスク→考慮点）
+  - エラーハンドリング強化：画像生成失敗時も処理続行
+  - ログレベル改善：安全システム拒否の詳細ログ追加
+
+#### **Issue #2: 👀機能 - Discord Embed文字数制限エラー** 
+- **症状**: `Invalid Form Body In embeds.0.fields.0.value: Must be 1024 or fewer in length`
+- **原因**: 新しいプロンプトで生成されるツイートが長文化し、Embed description制限(4096文字)を超過
+- **修正**: 
+  - ツイートテキスト制限を1000文字→4000文字に拡張（コードブロック考慮）
+  - 長文ツイートの適切な切り捨て処理追加
+
+#### **Issue #3: 👀機能 - プロンプト置換エラー**
+- **症状**: `対象コンテンツが入力されていません`エラー表示
+- **原因**: thread.txtプロンプト更新時に置換対象文字列が変更されたが、コードの置換処理が古い文字列を参照
+- **修正**: 置換文字列を新プロンプトに合わせて更新：
+  - 旧: `[ここに要約・作成したい文章やキーワード、テーマなどを入力してください]`
+  - 新: `[ここに解説したいニュース記事のURLや文章を入力してください]`
+
+#### **Issue #4: 👀機能 - Embed出力への反応エラー**
+- **症状**: Embed出力に👀リアクションしても「メッセージに内容がありません」エラー
+- **原因**: `extract_embed_content(message.embeds)`と間違った引数を渡していた
+- **修正**: `extract_embed_content(message)`に修正
+
+#### **Issue #5: スマホでのコピー問題**
+- **症状**: 1つのEmbedの複数fieldがスマホで繋がって表示され、個別コピーできない
+- **修正**: 
+  - 各ツイートを個別のEmbedとして送信
+  - コードブロック(```)でコピーボタン追加
+  - ヘッダーEmbed + 個別ツイートEmbedの構成に変更
+
+### Current Status:
+- ✅ 全ての既知の問題は修正済み
+- ✅ 👀機能は安定稼働中
+- ✅ 画像生成エラー時も処理続行
+- ✅ スマホ・デスクトップ両対応のUX実現
+
 ## Architecture Overview
 
 ### Core Bot Structure
