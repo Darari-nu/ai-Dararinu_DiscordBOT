@@ -316,7 +316,7 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
         response = client_openai.images.generate(
             model="dall-e-3",
             prompt=enhanced_prompt,
-            size="1024x1024",
+            size="1792x1024",
             quality="standard",
             n=1
         )
