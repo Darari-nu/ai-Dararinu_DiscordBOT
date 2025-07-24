@@ -38,7 +38,7 @@ This bot is now deployed and running 24/7 on Xserver VPS:
 ## Architecture Overview
 
 ### Core Bot Structure
-The bot uses a reaction-based architecture where users interact via emoji reactions (👍🎤❓❤️✏️) on messages. Key components:
+The bot uses a reaction-based architecture where users interact via emoji reactions (👍🎤❓❤️✏️👀🌐🙌) on messages. Key components:
 
 1. **Premium System**: Triple-layered authentication
    - Discord role check in community server
@@ -92,6 +92,41 @@ The bot uses a reaction-based architecture where users interact via emoji reacti
 2. **Discord Server Owner** - automatic detection  
 3. **Premium Role** - in community server
 4. **Fallback**: Free user (5/day limit)
+
+## 🔥 👀 Xツリー投稿機能（新機能実装予定）
+
+### **機能概要**
+メッセージに👀リアクションで、エンゲージメント重視のXツリー投稿（3-7ツイート）を自動生成する機能
+
+### **仕様詳細**
+- **プロンプト**: `prompt/thread.txt` - 「X心理コピーライター」ペルソナ
+- **出力**: Discord Embed形式で各ツイートを構造化表示
+- **文字数**: 各ツイート140字以内厳守
+- **構成**: フック→予告→詳細展開→対話促進
+
+### **UI/UX設計**
+1. **Discord Embed表示**:
+   ```
+   👀 Xツリー投稿（5ツイート）
+   ┌──────────────────────┐
+   │ 📱 ツイート1/5       │
+   │ [内容] 📋コピー      │
+   ├──────────────────────┤
+   │ 📱 ツイート2/5       │ 
+   │ [内容] 📋コピー      │
+   └──────────────────────┘
+   ```
+
+2. **機能要素**:
+   - **各ツイートにコピーボタン**: 📋 個別コピー可能
+   - **1ツイート目のX投稿リンク**: `https://x.com/intent/post?text=[1ツイート目URLエンコード]`
+   - **全体コピー機能**: 全ツイートをまとめてコピー
+
+### **技術実装ポイント**
+- `thread.txt`から`{content}`部分を実際のメッセージ内容に置換
+- URLエンコード処理で日本語対応
+- Discord Embedの各fieldにコピーボタン風UI
+- X APIは使用せず、intent URLで投稿支援
 
 ## Critical Implementation Notes
 

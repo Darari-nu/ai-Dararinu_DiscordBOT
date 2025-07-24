@@ -293,6 +293,41 @@ async def translate_text_to_japanese(text):
         logger.error(f"翻訳エラー: {e}")
         return text  # 翻訳失敗時は元のテキストを返す
 
+async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
+    """1ツイート目の内容から画像を生成"""
+    try:
+        # 画像生成用プロンプトを作成（英語）
+        # 日本語コンテンツの場合は英語に翻訳
+        if is_english_content(first_tweet_content):
+            image_prompt = first_tweet_content[:200]
+        else:
+            # 日本語の場合は英語に翻訳
+            translator = GoogleTranslator(source='ja', target='en')
+            translated_content = translator.translate(first_tweet_content[:200])
+            image_prompt = translated_content
+        
+        # プロンプトを画像生成用に最適化
+        enhanced_prompt = f"Professional, modern social media illustration representing: {image_prompt}. Clean, engaging visual style suitable for Twitter/X post"
+        
+        logger.info(f"画像生成開始: {enhanced_prompt}")
+        
+        # OpenAI DALL-E API呼び出し
+        response = client_openai.images.generate(
+            model="dall-e-3",
+            prompt=enhanced_prompt,
+            size="1024x1024",
+            quality="standard",
+            n=1
+        )
+        
+        image_url = response.data[0].url
+        logger.info(f"画像生成成功: {image_url}")
+        return image_url
+        
+    except Exception as e:
+        logger.error(f"画像生成エラー: {e}")
+        return None
+
 # カスタムログハンドラー（書き込み時のみファイルを開く）
 class SyncFriendlyFileHandler(logging.Handler):
     def __init__(self, filename, encoding='utf-8', max_bytes=10*1024*1024):
@@ -1110,7 +1145,8 @@ async def help_command(interaction: discord.Interaction):
             "✏️ **メモ作成** - Obsidian用Markdownメモ生成\n"
             "📝 **記事作成** - PREP法に基づく構造化記事生成\n"
             "🌐 **URL取得** - URLからコンテンツを取得してテキストファイル化\n"
-            "🙌 **記事要約** - URLの記事を3行で要約（キーフレーズ付き）"
+            "🙌 **記事要約** - URLの記事を3行で要約（キーフレーズ付き）\n"
+            "👀 **Xツリー投稿** - メッセージからエンゲージメント重視のXツリー投稿生成（AI画像付き）"
         ), 
         inline=False
     )
@@ -1601,7 +1637,7 @@ async def on_raw_reaction_add(payload):
         return
     
     # リアクションの種類をチェック
-    if payload.emoji.name in ['👍', '🎤', '❓', '✏️', '📝', '🌐', '🙌']:  # ❤️褒めメッセージ機能は停止、🙌要約機能追加
+    if payload.emoji.name in ['👍', '🎤', '❓', '✏️', '📝', '🌐', '🙌', '👀']:  # 👀ツリー投稿機能追加
         server_id = str(payload.guild_id)
         channel_id = str(payload.channel_id)
         
@@ -2518,6 +2554,178 @@ async def on_raw_reaction_add(payload):
                 
                 else:
                     await channel.send(f"{user.mention} ⚠️ メッセージにURLが見つかりません。記事のURLを含むメッセージに🙌リアクションしてください。")
+            
+            # 👀 Xツリー投稿生成：メッセージ内容からエンゲージメント重視のツリー投稿を生成
+            elif payload.emoji.name == '👀':
+                # プレミアムユーザーチェック
+                if not is_premium_user(str(user.id), str(payload.guild_id)):
+                    user_data = load_user_data(str(user.id))
+                    if user_data["daily_usage"] >= FREE_USER_DAILY_LIMIT:
+                        await channel.send(f"{user.mention} ⚠️ 1日の利用制限（{FREE_USER_DAILY_LIMIT}回）に達しました。")
+                        return
+                    else:
+                        user_data["daily_usage"] += 1
+                        save_user_data(str(user.id), user_data)
+                
+                # メッセージ内容を取得
+                content_to_process = ""
+                
+                # メッセージ本文
+                if message.content:
+                    content_to_process += message.content + "\n\n"
+                
+                # 添付ファイルの内容を読み込み
+                if message.attachments:
+                    for attachment in message.attachments:
+                        if attachment.filename.endswith(('.txt', '.md')):
+                            try:
+                                attachment_content = await read_text_attachment(attachment)
+                                if attachment_content:
+                                    content_to_process += f"【ファイル: {attachment.filename}】\n{attachment_content}\n\n"
+                            except Exception as e:
+                                logger.warning(f"添付ファイル読み込みエラー: {e}")
+                
+                # Embedの内容を抽出
+                if message.embeds:
+                    embed_content = extract_embed_content(message.embeds)
+                    if embed_content:
+                        content_to_process += f"【Embed情報】\n{embed_content}\n\n"
+                
+                if content_to_process.strip():
+                    # 処理開始メッセージ
+                    message_link = f"https://discord.com/channels/{message.guild.id}/{message.channel.id}/{message.id}"
+                    await channel.send(f"{user.mention} 👀 注目を集めるツリー投稿を作成します！少々お待ちください\n📎 元メッセージ: {message_link}")
+                    
+                    try:
+                        # プロンプトファイルを読み込み
+                        thread_prompt_path = script_dir / "prompt" / "thread.txt"
+                        if thread_prompt_path.exists():
+                            with open(thread_prompt_path, 'r', encoding='utf-8') as f:
+                                thread_prompt = f.read()
+                            
+                            # {content}を実際の内容に置換
+                            thread_prompt = thread_prompt.replace("[ここに要約・作成したい文章やキーワード、テーマなどを入力してください]", content_to_process.strip())
+                        else:
+                            # フォールバック用のシンプルなプロンプト
+                            thread_prompt = f"""
+以下の内容を、読者が最後まで読みたくなるXツリー投稿（3-7ツイート）に変換してください。
+各ツイートは140字以内で、エンゲージメントを重視した構成にしてください。
+
+【ツイート 1/n】
+【ツイート 2/n】
+【ツイート 3/n】
+
+対象コンテンツ:
+{content_to_process.strip()}
+"""
+                        
+                        if OPENAI_API_KEY:
+                            # OpenAI APIを使用してツリー投稿生成
+                            model = PREMIUM_USER_MODEL if is_premium_user(str(user.id), str(payload.guild_id)) else FREE_USER_MODEL
+                            
+                            response = client_openai.chat.completions.create(
+                                model=model,
+                                messages=[
+                                    {"role": "system", "content": "あなたは読者の心を掴むXツリー投稿の専門家です。"},
+                                    {"role": "user", "content": thread_prompt}
+                                ],
+                                max_tokens=1500,
+                                temperature=0.7
+                            )
+                            
+                            thread_result = response.choices[0].message.content.strip()
+                            
+                            # ツイートを解析して分割
+                            import re
+                            tweet_pattern = r'【ツイート\s*(\d+)/(\d+)】([^【]*?)(?=【ツイート|\Z)'
+                            tweets = re.findall(tweet_pattern, thread_result, re.DOTALL)
+                            
+                            if not tweets:
+                                # パターンマッチしない場合は改行で分割
+                                lines = thread_result.split('\n')
+                                tweets = []
+                                current_tweet = ""
+                                tweet_num = 1
+                                
+                                for line in lines:
+                                    line = line.strip()
+                                    if line and not line.startswith('【'):
+                                        if len(current_tweet + line) <= 140:
+                                            current_tweet += line + " "
+                                        else:
+                                            if current_tweet:
+                                                tweets.append((str(tweet_num), str(len(tweets)+1), current_tweet.strip()))
+                                                tweet_num += 1
+                                            current_tweet = line + " "
+                                
+                                if current_tweet:
+                                    tweets.append((str(tweet_num), str(len(tweets)+1), current_tweet.strip()))
+                            
+                            if tweets:
+                                # 1ツイート目から画像生成
+                                first_tweet_content = tweets[0][2] if tweets else ""
+                                image_url = await generate_thread_image(first_tweet_content)
+                                
+                                # Discord Embedを作成
+                                embed = discord.Embed(
+                                    title=f"👀 Xツリー投稿（{len(tweets)}ツイート）",
+                                    description="エンゲージメント重視のツリー投稿を生成しました",
+                                    color=0xff6b6b
+                                )
+                                
+                                # 画像を設定
+                                if image_url:
+                                    embed.set_image(url=image_url)
+                                    embed.add_field(name="🎨", value="AI生成画像付き", inline=True)
+                                
+                                # 各ツイートをfieldとして追加
+                                for i, (tweet_num, total, content) in enumerate(tweets):
+                                    # ツイート内容（コピーボタン風）
+                                    tweet_text = content.strip()
+                                    if len(tweet_text) > 1000:
+                                        tweet_text = tweet_text[:1000] + "..."
+                                    
+                                    embed.add_field(
+                                        name=f"📱 ツイート{tweet_num}/{len(tweets)}",
+                                        value=f"```\n{tweet_text}\n```\n📋 コピー用: `{tweet_text[:100]}{'...' if len(tweet_text) > 100 else ''}`",
+                                        inline=False
+                                    )
+                                
+                                # 1ツイート目のX投稿リンク
+                                if tweets:
+                                    first_tweet = tweets[0][2].strip()
+                                    import urllib.parse
+                                    encoded_tweet = urllib.parse.quote(first_tweet[:280])  # X投稿の文字制限
+                                    x_post_url = f"https://x.com/intent/post?text={encoded_tweet}"
+                                    
+                                    embed.add_field(
+                                        name="🔗 X投稿リンク",
+                                        value=f"[1ツイート目をXで投稿]({x_post_url})",
+                                        inline=False
+                                    )
+                                
+                                embed.add_field(
+                                    name="💡 使い方",
+                                    value="各ツイートをコピーして順番にX(旧Twitter)に投稿してください",
+                                    inline=False
+                                )
+                                
+                                await channel.send(embed=embed)
+                                logger.info(f"👀ツリー投稿生成完了: {len(tweets)}ツイート")
+                            
+                            else:
+                                await channel.send(f"{user.mention} ❌ ツリー投稿の生成に失敗しました。")
+                        
+                        else:
+                            logger.error("エラー: OpenAI APIキーが設定されていません")
+                            await channel.send(f"{user.mention} ❌ エラーが発生しました。管理者にお問い合わせください。")
+                    
+                    except Exception as e:
+                        logger.error(f"👀ツリー投稿生成エラー: {e}")
+                        await channel.send(f"{user.mention} ❌ ツリー投稿の生成中にエラーが発生しました。")
+                
+                else:
+                    await channel.send(f"{user.mention} ⚠️ メッセージに内容がありません。テキストや添付ファイルがあるメッセージに👀リアクションしてください。")
 
 @bot.event
 async def on_message(message):
