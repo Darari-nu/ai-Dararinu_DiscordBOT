@@ -2605,7 +2605,7 @@ async def on_raw_reaction_add(payload):
                                 thread_prompt = f.read()
                             
                             # {content}を実際の内容に置換
-                            thread_prompt = thread_prompt.replace("[ここに要約・作成したい文章やキーワード、テーマなどを入力してください]", content_to_process.strip())
+                            thread_prompt = thread_prompt.replace("[ここに解説したいニュース記事のURLや文章を入力してください]", content_to_process.strip())
                         else:
                             # フォールバック用のシンプルなプロンプト
                             thread_prompt = f"""
