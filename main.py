@@ -42,6 +42,23 @@ def extract_urls_from_text(text):
     url_pattern = r'https?://[^\s]+'
     return re.findall(url_pattern, text)
 
+def is_english_title(title):
+    """タイトルが英語かどうかを判定"""
+    if not title:
+        return False
+    
+    # 英語文字（アルファベット）の割合を計算
+    english_chars = sum(1 for c in title if c.isalpha() and ord(c) < 128)
+    total_chars = sum(1 for c in title if c.isalpha())
+    
+    if total_chars == 0:
+        return False
+    
+    english_ratio = english_chars / total_chars
+    
+    # 70%以上が英語文字なら英語タイトルと判定
+    return english_ratio >= 0.7
+
 def extract_text_from_html(html_content):
     """HTMLから本文テキストを抽出"""
     if not html_content:
@@ -2282,6 +2299,26 @@ async def on_raw_reaction_add(payload):
                                 
                                 summary_result = response.choices[0].message.content.strip()
                                 
+                                # タイトルが英語の場合は日本語に翻訳
+                                display_title = title
+                                if title and is_english_title(title):
+                                    try:
+                                        translate_response = client_openai.chat.completions.create(
+                                            model="gpt-4.1-mini",  # 翻訳は軽量モデルで十分
+                                            messages=[
+                                                {"role": "system", "content": "以下の英語タイトルを自然な日本語に翻訳してください。技術記事のタイトルとして適切な日本語に翻訳し、元のニュアンスを保ってください。"},
+                                                {"role": "user", "content": title}
+                                            ],
+                                            max_tokens=200,
+                                            temperature=0.3
+                                        )
+                                        translated_title = translate_response.choices[0].message.content.strip()
+                                        display_title = f"{translated_title}\n*原題: {title}*"
+                                        logger.info(f"タイトル翻訳完了: {title} → {translated_title}")
+                                    except Exception as e:
+                                        logger.warning(f"タイトル翻訳エラー: {e}")
+                                        display_title = title  # 翻訳失敗時は元のタイトルを使用
+                                
                                 # 結果をEmbedで送信
                                 embed = discord.Embed(
                                     title="🙌 記事要約完了",
@@ -2290,7 +2327,7 @@ async def on_raw_reaction_add(payload):
                                 
                                 embed.add_field(
                                     name="📄 記事タイトル",
-                                    value=title[:200] + "..." if title and len(title) > 200 else title or "（タイトル取得失敗）",
+                                    value=display_title[:400] + "..." if display_title and len(display_title) > 400 else display_title or "（タイトル取得失敗）",
                                     inline=False
                                 )
                                 
