@@ -2667,8 +2667,8 @@ async def on_raw_reaction_add(payload):
                                 first_tweet_content = tweets[0][2] if tweets else ""
                                 image_url = await generate_thread_image(first_tweet_content)
                                 
-                                # Discord Embedを作成
-                                embed = discord.Embed(
+                                # ヘッダーEmbedを作成
+                                header_embed = discord.Embed(
                                     title=f"👀 Xツリー投稿（{len(tweets)}ツイート）",
                                     description="エンゲージメント重視のツリー投稿を生成しました",
                                     color=0xff6b6b
@@ -2676,21 +2676,8 @@ async def on_raw_reaction_add(payload):
                                 
                                 # 画像を設定
                                 if image_url:
-                                    embed.set_image(url=image_url)
-                                    embed.add_field(name="🎨", value="AI生成画像付き", inline=True)
-                                
-                                # 各ツイートをfieldとして追加
-                                for i, (tweet_num, total, content) in enumerate(tweets):
-                                    # ツイート内容（コピーボタン風）
-                                    tweet_text = content.strip()
-                                    if len(tweet_text) > 1000:
-                                        tweet_text = tweet_text[:1000] + "..."
-                                    
-                                    embed.add_field(
-                                        name=f"📱 ツイート{tweet_num}/{len(tweets)}",
-                                        value=f"{tweet_text}\n\n─────────────────",
-                                        inline=False
-                                    )
+                                    header_embed.set_image(url=image_url)
+                                    header_embed.add_field(name="🎨", value="AI生成画像付き", inline=True)
                                 
                                 # 1ツイート目のX投稿リンク
                                 if tweets:
@@ -2699,19 +2686,34 @@ async def on_raw_reaction_add(payload):
                                     encoded_tweet = urllib.parse.quote(first_tweet[:280])  # X投稿の文字制限
                                     x_post_url = f"https://x.com/intent/post?text={encoded_tweet}"
                                     
-                                    embed.add_field(
+                                    header_embed.add_field(
                                         name="🔗 X投稿リンク",
                                         value=f"[1ツイート目をXで投稿]({x_post_url})",
                                         inline=False
                                     )
                                 
-                                embed.add_field(
+                                header_embed.add_field(
                                     name="💡 使い方",
                                     value="各ツイートをコピーして順番にX(旧Twitter)に投稿してください",
                                     inline=False
                                 )
                                 
-                                await channel.send(embed=embed)
+                                # ヘッダーEmbedを送信
+                                await channel.send(embed=header_embed)
+                                
+                                # 各ツイートを個別のEmbedとして送信
+                                for i, (tweet_num, total, content) in enumerate(tweets):
+                                    tweet_text = content.strip()
+                                    if len(tweet_text) > 1000:
+                                        tweet_text = tweet_text[:1000] + "..."
+                                    
+                                    tweet_embed = discord.Embed(
+                                        title=f"📱 ツイート {tweet_num}/{len(tweets)}",
+                                        description=tweet_text,
+                                        color=0x1da1f2  # Twitter blue
+                                    )
+                                    
+                                    await channel.send(embed=tweet_embed)
                                 logger.info(f"👀ツリー投稿生成完了: {len(tweets)}ツイート")
                             
                             else:
