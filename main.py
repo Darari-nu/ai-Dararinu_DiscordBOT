@@ -2709,7 +2709,7 @@ async def on_raw_reaction_add(payload):
                                     
                                     tweet_embed = discord.Embed(
                                         title=f"📱 ツイート {tweet_num}/{len(tweets)}",
-                                        description=tweet_text,
+                                        description=f"```\n{tweet_text}\n```",
                                         color=0x1da1f2  # Twitter blue
                                     )
                                     
