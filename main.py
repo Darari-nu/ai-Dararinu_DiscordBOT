@@ -20,7 +20,7 @@ import io
 import aiohttp
 import subprocess
 from utils.article_extractor import article_extractor
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 # URL検出関数
 def contains_url(text):
@@ -208,26 +208,9 @@ if settings_path.exists():
 else:
     FREE_USER_DAILY_LIMIT = 5  # デフォルト値
 
-# Google翻訳インスタンス
-translator = Translator()
-
-def detect_language(text):
-    """テキストの言語を検出"""
-    try:
-        # 最初の500文字で言語検出
-        sample_text = text[:500] if len(text) > 500 else text
-        detected = translator.detect(sample_text)
-        return detected.lang
-    except Exception as e:
-        logger.warning(f"言語検出エラー: {e}")
-        return 'unknown'
-
 def is_english_content(text):
     """コンテンツが英語かどうかを判定"""
     try:
-        detected_lang = detect_language(text)
-        return detected_lang == 'en'
-    except Exception:
         # フォールバック: 英語文字の比率で判定
         if not text:
             return False
@@ -237,15 +220,17 @@ def is_english_content(text):
             return False
         english_ratio = english_chars / total_chars
         return english_ratio >= 0.7
+    except Exception:
+        return False
 
 async def translate_text_to_japanese(text):
     """テキストを日本語に翻訳（非同期対応）"""
     try:
         # 長いテキストは分割して翻訳
-        max_length = 4000  # Google翻訳の制限に合わせて調整
+        max_length = 4500  # deep-translatorの制限に合わせて調整
         if len(text) <= max_length:
-            translated = translator.translate(text, src='en', dest='ja')
-            return translated.text
+            translated = GoogleTranslator(source='en', target='ja').translate(text)
+            return translated
         else:
             # 長いテキストを段落単位で分割
             paragraphs = text.split('\n\n')
@@ -257,14 +242,14 @@ async def translate_text_to_japanese(text):
                     current_chunk += paragraph + '\n\n'
                 else:
                     if current_chunk:
-                        translated = translator.translate(current_chunk.strip(), src='en', dest='ja')
-                        translated_paragraphs.append(translated.text)
+                        translated = GoogleTranslator(source='en', target='ja').translate(current_chunk.strip())
+                        translated_paragraphs.append(translated)
                     current_chunk = paragraph + '\n\n'
             
             # 最後のチャンクを処理
             if current_chunk:
-                translated = translator.translate(current_chunk.strip(), src='en', dest='ja')
-                translated_paragraphs.append(translated.text)
+                translated = GoogleTranslator(source='en', target='ja').translate(current_chunk.strip())
+                translated_paragraphs.append(translated)
             
             return '\n\n'.join(translated_paragraphs)
     except Exception as e:
