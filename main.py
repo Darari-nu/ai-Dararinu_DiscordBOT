@@ -2559,7 +2559,7 @@ async def on_raw_reaction_add(payload):
             # 👀 Xツリー投稿生成：メッセージ内容からエンゲージメント重視のツリー投稿を生成
             elif payload.emoji.name == '👀':
                 # プレミアムユーザーチェック
-                if not is_premium_user(str(user.id), str(payload.guild_id)):
+                if not await is_premium_user(str(user.id)):
                     user_data = load_user_data(str(user.id))
                     if user_data["daily_usage"] >= FREE_USER_DAILY_LIMIT:
                         await channel.send(f"{user.mention} ⚠️ 1日の利用制限（{FREE_USER_DAILY_LIMIT}回）に達しました。")
@@ -2622,7 +2622,7 @@ async def on_raw_reaction_add(payload):
                         
                         if OPENAI_API_KEY:
                             # OpenAI APIを使用してツリー投稿生成
-                            model = PREMIUM_USER_MODEL if is_premium_user(str(user.id), str(payload.guild_id)) else FREE_USER_MODEL
+                            model = PREMIUM_USER_MODEL if await is_premium_user(str(user.id)) else FREE_USER_MODEL
                             
                             response = client_openai.chat.completions.create(
                                 model=model,
