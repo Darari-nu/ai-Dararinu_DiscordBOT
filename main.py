@@ -307,8 +307,10 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
             translated_content = translator.translate(first_tweet_content[:200])
             image_prompt = translated_content
         
-        # プロンプトを画像生成用に最適化
-        enhanced_prompt = f"Professional, modern social media illustration representing: {image_prompt}. Clean, engaging visual style suitable for Twitter/X post"
+        # プロンプトを画像生成用に最適化（安全性を考慮）
+        # ネガティブな表現を除去し、安全なプロンプトに変換
+        safe_prompt = image_prompt.replace("失敗", "経験").replace("問題", "課題").replace("危険", "注意").replace("リスク", "考慮点")
+        enhanced_prompt = f"Professional, modern social media illustration about: {safe_prompt}. Clean, engaging, positive visual style suitable for business presentation"
         
         logger.info(f"画像生成開始: {enhanced_prompt}")
         
@@ -327,6 +329,9 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
         
     except Exception as e:
         logger.error(f"画像生成エラー: {e}")
+        # OpenAIの安全システムエラーの場合は詳細をログに記録
+        if "safety system" in str(e) or "content_policy_violation" in str(e):
+            logger.warning(f"OpenAI安全システムによる画像生成拒否: {enhanced_prompt}")
         return None
 
 # カスタムログハンドラー（書き込み時のみファイルを開く）
@@ -2704,8 +2709,9 @@ async def on_raw_reaction_add(payload):
                                 # 各ツイートを個別のEmbedとして送信
                                 for i, (tweet_num, total, content) in enumerate(tweets):
                                     tweet_text = content.strip()
-                                    if len(tweet_text) > 1000:
-                                        tweet_text = tweet_text[:1000] + "..."
+                                    # Discord Embedのdescription制限は4096文字だが、コードブロック考慮で安全に制限
+                                    if len(tweet_text) > 4000:
+                                        tweet_text = tweet_text[:4000] + "..."
                                     
                                     tweet_embed = discord.Embed(
                                         title=f"📱 ツイート {tweet_num}/{len(tweets)}",
