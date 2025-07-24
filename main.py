@@ -2688,7 +2688,7 @@ async def on_raw_reaction_add(payload):
                                     
                                     embed.add_field(
                                         name=f"📱 ツイート{tweet_num}/{len(tweets)}",
-                                        value=f"```\n{tweet_text}\n```\n📋 コピー用: `{tweet_text[:100]}{'...' if len(tweet_text) > 100 else ''}`",
+                                        value=f"{tweet_text}\n\n─────────────────",
                                         inline=False
                                     )
                                 
