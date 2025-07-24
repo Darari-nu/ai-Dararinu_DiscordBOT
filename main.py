@@ -2145,7 +2145,18 @@ async def on_raw_reaction_add(payload):
             # 🌐 URL取得：URLからコンテンツを取得してテキストファイルとして保存
             elif payload.emoji.name == '🌐':
                 # メッセージからURLを抽出
-                urls = extract_urls_from_text(message.content) if message.content else []
+                urls = []
+                if message.content:
+                    urls = article_extractor.extract_urls_from_text(message.content)
+                
+                # EmbedからもURLを抽出
+                if message.embeds:
+                    for embed in message.embeds:
+                        if embed.url:
+                            urls.append(embed.url)
+                        if embed.description:
+                            embed_urls = article_extractor.extract_urls_from_text(embed.description)
+                            urls.extend(embed_urls)
                 
                 if urls:
                     # 処理開始メッセージ
@@ -2154,38 +2165,49 @@ async def on_raw_reaction_add(payload):
                     
                     # 最初のURLのみ処理
                     url = urls[0]
-                    content = await fetch_url_content(url)
+                    
+                    # ArticleExtractorを使用してコンテンツを取得
+                    title, content, error = await article_extractor.fetch_article_content(url)
                     
                     if content and content.strip():
                         try:
-                            # ファイル名を生成
+                            # ファイル名を生成（タイトルがある場合は使用）
                             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                            filename = f"{timestamp}_url_content.txt"
+                            safe_title = title[:30].replace("/", "_").replace("\\", "_").replace(":", "_") if title else "url_content"
+                            filename = f"{timestamp}_{safe_title}.txt"
                             file_path = script_dir / "attachments" / filename
                             
                             # ファイルに保存
                             with open(file_path, 'w', encoding='utf-8') as f:
                                 f.write(f"取得元URL: {url}\n")
+                                f.write(f"記事タイトル: {title or 'タイトル取得失敗'}\n")
                                 f.write(f"取得日時: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
                                 f.write("=" * 50 + "\n\n")
                                 f.write(content)
                             
                             logger.info(f"URLコンテンツファイル作成: {file_path}")
                             
-                            # 先頭100文字のプレビュー
-                            preview = content[:100] + "..." if len(content) > 100 else content
+                            # 先頭150文字のプレビュー（改行を保持）
+                            preview = content[:150] + "..." if len(content) > 150 else content
                             
                             # 結果を送信
                             embed = discord.Embed(
                                 title="🌐 URLの内容を取得しました",
-                                description=f"**URL**: {url}\n**ファイル名**: `{filename}`",
+                                description=f"**URL**: {url}\n**タイトル**: {title or 'タイトル取得失敗'}\n**ファイル名**: `{filename}`",
                                 color=0x4285f4
                             )
                             
                             embed.add_field(
-                                name="📄 内容プレビュー (最初の100文字)",
+                                name="📄 記事内容プレビュー (最初の150文字)",
                                 value=f"```\n{preview}\n```",
                                 inline=False
+                            )
+                            
+                            # 文字数情報を追加
+                            embed.add_field(
+                                name="📊 情報",
+                                value=f"記事文字数: {len(content):,}文字",
+                                inline=True
                             )
                             
                             await channel.send(embed=embed)
@@ -2195,7 +2217,7 @@ async def on_raw_reaction_add(payload):
                                 file_data = f.read()
                             
                             file_obj = io.BytesIO(file_data)
-                            file_message = await channel.send("🌐 URLの内容をテキストファイルにしました！\n⚠️ ページによっては内容を正しく取得できない場合があります。元のURLも合わせてご確認ください。", file=discord.File(file_obj, filename=filename))
+                            file_message = await channel.send("🌐 URLの記事内容をテキストファイルにしました！\n✨ 記事本文のみを抽出しています", file=discord.File(file_obj, filename=filename))
                             
                             # URLコンテンツファイルに自動でリアクションを追加
                             reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
@@ -2219,7 +2241,11 @@ async def on_raw_reaction_add(payload):
                             logger.error(f"URLコンテンツ処理エラー: {e}")
                             await channel.send(f"{user.mention} ❌ ファイルの作成中にエラーが発生しました。")
                     else:
-                        await channel.send(f"{user.mention} ❌ URLからコンテンツを取得できませんでした。\n💡 タイムアウト（30秒）やアクセス制限が原因の可能性があります。")
+                        # エラーメッセージを詳細化
+                        if error:
+                            await channel.send(f"{user.mention} ❌ URLから記事を取得できませんでした。\n💡 **原因**: {error}")
+                        else:
+                            await channel.send(f"{user.mention} ❌ URLから記事を取得できませんでした。\n💡 記事が短すぎるか、アクセス制限が原因の可能性があります。")
                 else:
                     await channel.send(f"{user.mention} ⚠️ メッセージにURLが見つかりません。")
             
