@@ -308,9 +308,32 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
             image_prompt = translated_content
         
         # プロンプトを画像生成用に最適化（安全性を考慮）
-        # ネガティブな表現を除去し、安全なプロンプトに変換
-        safe_prompt = image_prompt.replace("失敗", "経験").replace("問題", "課題").replace("危険", "注意").replace("リスク", "考慮点")
-        enhanced_prompt = f"Professional, modern social media illustration about: {safe_prompt}. Clean, engaging, positive visual style suitable for business presentation"
+        # 日本語と英語両方の危険表現を除去
+        safe_prompt = image_prompt
+        
+        # 日本語の危険表現を置換
+        jp_replacements = {
+            "失敗": "経験", "問題": "課題", "危険": "注意", "リスク": "考慮点",
+            "殴られた": "驚いた", "頭を殴られた": "驚きを感じた", "衝撃": "印象",
+            "攻撃": "批評", "破壊": "変化", "暴力": "力強さ", "戦争": "競争"
+        }
+        
+        # 英語の危険表現を置換
+        en_replacements = {
+            "hit in the head": "surprised", "being hit": "being surprised", 
+            "shocked": "impressed", "attack": "approach", "violence": "energy",
+            "destroy": "change", "kill": "stop", "death": "end", "war": "competition",
+            "fight": "compete", "battle": "challenge", "hurt": "affect", "pain": "difficulty"
+        }
+        
+        # 置換実行
+        for old, new in jp_replacements.items():
+            safe_prompt = safe_prompt.replace(old, new)
+        for old, new in en_replacements.items():
+            safe_prompt = safe_prompt.replace(old, new)
+        
+        # 最終的に安全なプロンプトに変換
+        enhanced_prompt = f"Professional modern business infographic about: {safe_prompt[:100]}. Clean minimalist design, positive corporate style, suitable for professional presentation"
         
         logger.info(f"画像生成開始: {enhanced_prompt}")
         
