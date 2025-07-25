@@ -345,32 +345,32 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
                     prompt_configs = {
                         'ai_tech': {
                             'keywords': ['ai', 'artificial intelligence', 'tech', '技術', 'アルゴリズム', '機械学習', 'データ'],
-                            'style': "Futuristic digital illustration with glowing neural networks, holographic data streams, and sleek technological elements",
-                            'elements': "floating data points, circuit patterns, blue and cyan color palette"
+                            'style': "Futuristic tech scene with neural networks and data streams",
+                            'elements': "floating data points, circuit patterns, blue and cyan holographic elements"
                         },
                         'business': {
                             'keywords': ['投資', 'ビジネス', '経済', '株価', '市場', 'investment', 'business', 'market'],
-                            'style': "Modern financial visualization with upward trending graphs, golden accents",
-                            'elements': "stock charts, currency symbols, growth arrows, professional corporate aesthetic"
+                            'style': "Modern financial workspace with trending graphs and golden accents",
+                            'elements': "stock charts, currency symbols, growth arrows, professional documents"
                         },
                         'news': {
                             'keywords': ['ニュース', '社会', '政治', '問題', 'news', 'society', 'social'],
-                            'style': "Clean editorial illustration with newspaper-style layout",
-                            'elements': "typography elements, bold headlines, serious color tone, journalistic design"
+                            'style': "Editorial newsroom scene with newspaper layouts",
+                            'elements': "news headlines, serious atmosphere, journalistic materials"
                         },
                         'entertainment': {
                             'keywords': ['映画', 'ゲーム', '音楽', '文化', 'エンタメ', 'entertainment', 'culture'],
-                            'style': "Vibrant creative illustration with dynamic shapes and colorful elements",
-                            'elements': "artistic brushstrokes, entertainment icons, playful color palette"
+                            'style': "Vibrant creative studio with dynamic shapes and colorful elements",
+                            'elements': "artistic tools, entertainment props, playful colorful materials"
                         },
                         'lifestyle': {
                             'keywords': ['健康', 'ライフスタイル', '生活', 'health', 'lifestyle', 'wellness'],
-                            'style': "Fresh lifestyle illustration with organic shapes and natural colors",
-                            'elements': "wellness icons, green and blue tones, clean minimal design"
+                            'style': "Fresh wellness space with organic shapes and natural elements",
+                            'elements': "wellness items, plants, green and blue natural tones"
                         },
                         'default': {
-                            'style': "Modern informational graphic with clean design and engaging visual elements",
-                            'elements': "balanced composition, professional typography, appealing color scheme"
+                            'style': "Modern informational display with clean design elements",
+                            'elements': "balanced composition, appealing arrangement"
                         }
                     }
                 else:
