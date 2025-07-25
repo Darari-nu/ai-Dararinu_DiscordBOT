@@ -172,8 +172,8 @@ The bot uses a reaction-based architecture where users interact via emoji reacti
 
 ### OpenAI Integration
 - **Text Generation**: 
-  - Free users: `gpt-4o-mini`
-  - Premium users: `gpt-4o`
+  - Free users: `gpt-4.1-mini`
+  - Premium users: `gpt-4.1`
 - **Audio Transcription**: Whisper API (`whisper-1` model)
 - **Image Generation**: `gpt-image-1` model (Imagen, organization verified)
   - Size: 1536x1024 (landscape)
