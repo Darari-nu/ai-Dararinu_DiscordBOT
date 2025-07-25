@@ -337,12 +337,12 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
         
         logger.info(f"画像生成開始: {enhanced_prompt}")
         
-        # OpenAI DALL-E API呼び出し
+        # OpenAI Imagen API呼び出し（低品質・低コスト設定）
         response = client_openai.images.generate(
-            model="dall-e-3",
+            model="gpt-image-1",
             prompt=enhanced_prompt,
-            size="1792x1024",
-            quality="standard",
+            size="1024x1024",
+            quality="low",
             n=1
         )
         
