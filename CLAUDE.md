@@ -446,8 +446,8 @@ sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175
 #### **7. OpenAI API Issues**
 **Rate Limiting:**
 - Monitor API usage in OpenAI dashboard
-- Free users: gpt-4o-mini for cost efficiency
-- Premium users: gpt-4o for quality
+- Free users: gpt-4.1-mini for cost efficiency
+- Premium users: gpt-4.1 for quality
 
 **Safety System Errors:**
 - Comprehensive safety filters implemented for image generation

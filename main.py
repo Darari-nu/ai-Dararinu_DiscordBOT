@@ -296,7 +296,7 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
     try:
         # 1ツイート目から視覚的要素を抽出
         response = client_openai.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4.1-mini",
             messages=[
                 {
                     "role": "system",
