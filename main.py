@@ -338,70 +338,69 @@ Visual elements:"""
         # フォールバック
         enhanced_prompt = "creative workspace scene with focused person and professional tools rendered as handmade clay figures with ultra-detailed textures, natural window lighting (5500K), high quality digital art, 16:10 aspect ratio"
     
-        # OpenAI Imagen API呼び出し
-        logger.info(f"画像生成開始: {enhanced_prompt}")
+    # OpenAI Imagen API呼び出し
+    logger.info(f"画像生成開始: {enhanced_prompt}")
+    
+    # OpenAI Imagen API呼び出し（低品質・低コスト設定・横長）
+    response = client_openai.images.generate(
+        model="gpt-image-2", 
+        prompt=enhanced_prompt,
+        size="1536x1024",
+        quality="low",
+        n=1
+    )
         
-        # OpenAI Imagen API呼び出し（低品質・低コスト設定・横長）
-        response = client_openai.images.generate(
-            model="gpt-image-2", 
-            prompt=enhanced_prompt,
-            size="1536x1024",
-            quality="low",
-            n=1
-        )
-            
-        # Imagenのレスポンス処理（デバッグ情報付き）
-        logger.info(f"画像生成レスポンス構造: {type(response.data)}, 長さ: {len(response.data) if response.data else 'None'}")
+    # Imagenのレスポンス処理（デバッグ情報付き）
+    logger.info(f"画像生成レスポンス構造: {type(response.data)}, 長さ: {len(response.data) if response.data else 'None'}")
+    
+    if response.data and len(response.data) > 0:
+        image_data = response.data[0]
+        logger.info(f"画像データ構造: {type(image_data)}, 属性: {dir(image_data)}")
         
-        if response.data and len(response.data) > 0:
-            image_data = response.data[0]
-            logger.info(f"画像データ構造: {type(image_data)}, 属性: {dir(image_data)}")
-            
-            # URL形式の場合（DALL-E 3パターン）
-            if hasattr(image_data, 'url') and image_data.url:
-                image_url = image_data.url
-                logger.info(f"画像生成成功 (URL): {image_url}")
-                return image_url
-            
-            # base64形式の場合（Imagenパターン）
-            elif hasattr(image_data, 'b64_json') and image_data.b64_json:
-                try:
-                    import base64
-                    
-                    # base64データをデコード
-                    image_bytes = base64.b64decode(image_data.b64_json)
-                    
-                    # 一時ファイルとして保存
-                    temp_filename = f"temp_image_{int(time.time())}.png"
-                    temp_path = script_dir / "attachments" / temp_filename
-                    
-                    # attachmentsディレクトリを作成（存在しない場合）
-                    temp_path.parent.mkdir(exist_ok=True)
-                    
-                    with open(temp_path, 'wb') as f:
-                        f.write(image_bytes)
-                    
-                    logger.info(f"画像生成成功 (base64): 一時ファイル {temp_path} に保存")
-                    return str(temp_path)
-                    
-                except Exception as e:
-                    logger.error(f"base64画像処理エラー: {e}")
-                    return None
-            
-            else:
-                logger.error(f"画像生成: 不明なレスポンス形式")
-                logger.error(f"image_data内容: {image_data}")
+        # URL形式の場合（DALL-E 3パターン）
+        if hasattr(image_data, 'url') and image_data.url:
+            image_url = image_data.url
+            logger.info(f"画像生成成功 (URL): {image_url}")
+            return image_url
+        
+        # base64形式の場合（Imagenパターン）
+        elif hasattr(image_data, 'b64_json') and image_data.b64_json:
+            try:
+                import base64
+                
+                # base64データをデコード
+                image_bytes = base64.b64decode(image_data.b64_json)
+                
+                # 一時ファイルとして保存
+                temp_filename = f"temp_image_{int(time.time())}.png"
+                temp_path = script_dir / "attachments" / temp_filename
+                
+                # attachmentsディレクトリを作成（存在しない場合）
+                temp_path.parent.mkdir(exist_ok=True)
+                
+                with open(temp_path, 'wb') as f:
+                    f.write(image_bytes)
+                
+                logger.info(f"画像生成成功 (base64): 一時ファイル {temp_path} に保存")
+                return str(temp_path)
+                
+            except Exception as e:
+                logger.error(f"base64画像処理エラー: {e}")
                 return None
-        else:
-            logger.error(f"画像生成: 空のレスポンス - response.data: {response.data}")
-            return None
         
-    except Exception as e:
-        logger.error(f"画像生成エラー: {e}")
-        # OpenAIの安全システムエラーの場合は詳細をログに記録
-        if "safety system" in str(e) or "content_policy_violation" in str(e):
-            logger.warning(f"OpenAI安全システムによる画像生成拒否: {enhanced_prompt}")
+        else:
+            logger.error(f"画像生成: 不明なレスポンス形式")
+            logger.error(f"image_data内容: {image_data}")
+            return None
+    else:
+        logger.error(f"画像生成: 空のレスポンス - response.data: {response.data}")
         return None
+except Exception as e:
+    logger.error(f"画像生成エラー: {e}")
+    # OpenAIの安全システムエラーの場合は詳細をログに記録
+    if "safety system" in str(e) or "content_policy_validation" in str(e):
+        logger.warning(f"OpenAI安全システムによる画像生成拒否: {enhanced_prompt}")
+    return None
 
 # カスタムログハンドラー（書き込み時のみファイルを開く）
 class SyncFriendlyFileHandler(logging.Handler):
