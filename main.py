@@ -1859,6 +1859,7 @@ async def on_raw_reaction_add(payload):
                                 summary = response_content
                             
                             # X投稿用のURLを生成
+                            import urllib.parse
                             x_intent_url = f"https://twitter.com/intent/tweet?text={urllib.parse.quote(summary)}"
                             
                             # URLを短縮
@@ -2462,7 +2463,7 @@ async def on_raw_reaction_add(payload):
                             file_message = await channel.send(upload_message, file=discord.File(file_obj, filename=filename))
                             
                             # URLコンテンツファイルに自動でリアクションを追加
-                            reactions = ['👍', '❓', '✏️', '📝']  # ❤️褒めメッセージ機能は停止
+                            reactions = ['👍', '❓', '✏️', '📝', '👀', '🙌']  # ❤️褒めメッセージ機能は停止
                             for reaction in reactions:
                                 try:
                                     await file_message.add_reaction(reaction)
