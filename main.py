@@ -16,6 +16,7 @@ import re
 import aiohttp
 import time
 import subprocess
+import io
 from utils.article_extractor import article_extractor
 from deep_translator import GoogleTranslator
 from typing import Optional
