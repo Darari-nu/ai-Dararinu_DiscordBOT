@@ -2711,14 +2711,24 @@ async def on_raw_reaction_add(payload):
                                 if tweets:
                                     first_tweet = tweets[0][2].strip()
                                     import urllib.parse
-                                    encoded_tweet = urllib.parse.quote(first_tweet[:280])  # X投稿の文字制限
+                                    # URLが長すぎないよう短縮（100文字程度に制限）
+                                    short_tweet = first_tweet[:100] + "..." if len(first_tweet) > 100 else first_tweet
+                                    encoded_tweet = urllib.parse.quote(short_tweet)
                                     x_post_url = f"https://x.com/intent/post?text={encoded_tweet}"
                                     
-                                    header_embed.add_field(
-                                        name="🔗 X投稿リンク",
-                                        value=f"[1ツイート目をXで投稿]({x_post_url})",
-                                        inline=False
-                                    )
+                                    # URL全体が長すぎる場合はシンプルなリンクにする
+                                    if len(x_post_url) > 900:  # 安全マージン
+                                        header_embed.add_field(
+                                            name="🔗 X投稿リンク",
+                                            value="[X で投稿する](https://x.com/intent/post)",
+                                            inline=False
+                                        )
+                                    else:
+                                        header_embed.add_field(
+                                            name="🔗 X投稿リンク",
+                                            value=f"[1ツイート目をXで投稿]({x_post_url})",
+                                            inline=False
+                                        )
                                 
                                 header_embed.add_field(
                                     name="💡 使い方",
