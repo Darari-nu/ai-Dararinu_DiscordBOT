@@ -127,6 +127,21 @@ The AI Darari-nu Discord Bot is deployed and running 24/7 on Xserver VPS with fu
   - 未使用import削除（urllib.parse, PIL, random, io等）
   - コード構造の最適化
 
+#### **Issue #10: 👍機能 - urllib.parse モジュールエラー**
+- **症状**: 👍機能でURL含むメッセージ処理時に`NameError: name 'urllib' is not defined`エラー
+- **原因**: 👍機能でX投稿URL生成時に`urllib.parse.quote()`を使用しているが、importが不足
+- **修正**:
+  - main.py 1862行目に`import urllib.parse`を追加
+  - URLエンコード処理を正常化
+  - 👍機能のX投稿生成が完全復旧
+
+#### **Issue #11: 🌐機能 - 自動リアクション不足**
+- **症状**: 🌐機能後に👀と🙌リアクションが自動追加されない
+- **原因**: 自動リアクション配列に👀と🙌が含まれていない
+- **修正**:
+  - reactions配列を`['👍', '❓', '✏️', '📝']`→`['👍', '❓', '✏️', '📝', '👀', '🙌']`に拡張
+  - 🌐機能後に6つの関連機能リアクションが自動追加
+
 ### Current Status (Updated 2025-07-25):
 - ✅ **全ての既知の問題は修正済み** 
 - ✅ **👀機能は完全安定稼働中**（画像生成含む）
