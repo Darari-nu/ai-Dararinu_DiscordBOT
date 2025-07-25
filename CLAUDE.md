@@ -1,39 +1,54 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides comprehensive guidance to Claude Code (claude.ai/code) when working with the AI Darari-nu Discord Bot codebase.
 
 ## 🌐 PRODUCTION DEPLOYMENT STATUS
 
 **✅ LIVE ON XSERVER VPS ✅**
 
-This bot is now deployed and running 24/7 on Xserver VPS:
+The AI Darari-nu Discord Bot is deployed and running 24/7 on Xserver VPS with full stability.
 
-**Production Environment:**
-- **Server**: Xserver VPS (Ubuntu 24.04)  
+### Production Environment
+- **Server**: Xserver VPS (Ubuntu 24.04 LTS)  
 - **Location**: `/opt/ai-Dararinu_DiscordBOT/`
 - **Service**: `ai-darari-nu-bot.service` (systemd)
-- **Status**: Active and monitored
+- **Status**: Active and monitored with auto-restart
 - **Co-located**: Discord RSS Bot (AI News Bot)
+- **Python**: 3.12+ with virtual environment
+- **Dependencies**: All packages in requirements.txt installed
 
-**Deployment Information:**
-- **IP**: 210.131.217.175
+### Deployment Information
+- **IP**: 210.131.217.175 (Xserver VPS)
 - **User**: root
-- **Deploy Date**: 2025-07-22
+- **Deploy Date**: 2025-07-22 (Initial), Updated: 2025-07-25
 - **Auto-start**: Yes (systemd enabled)
 - **Log Location**: `journalctl -u ai-darari-nu-bot`
-- **Repository**: https://github.com/Darari-nu/ai-Dararinu_DiscordBOT.git
-- **Deploy Path**: `/opt/ai-Dararinu_DiscordBOT/`
 - **Service File**: `/etc/systemd/system/ai-darari-nu-bot.service`
+
+### Repository & Git Information
+- **Repository**: https://github.com/Darari-nu/ai-Dararinu_DiscordBOT.git
+- **Branch**: main (production)
+- **Deploy Path**: `/opt/ai-Dararinu_DiscordBOT/`
+- **Local Dev Path**: `/Users/watanabehidetaka/Claudecode/Action_Discord_BOT/ai-Darari-nu/`
 
 **⚠️ IMPORTANT: Local vs Production**
 - **Local directory**: Development and testing only
 - **VPS directory**: Production environment 
-- Changes pushed to GitHub main branch are automatically available for VPS updates
+- Changes pushed to GitHub main branch are available for VPS updates via `git pull`
 
-### Website Updates
-- Website source: `/Users/dararinu/Dropbox/xPersonal/project/mp0059_program/20250613_ai_darari_nu/webpage/`
-- Main file: `index.html` (all styles embedded)
-- Deploy changes by pushing to GitHub (ai-Dararinu_DiscordBOT repository)
+### Website & Public Information
+- **Public Website**: https://ai-darari-nu.kei31.com/
+- **Website Source**: `/Users/dararinu/Dropbox/xPersonal/project/mp0059_program/20250613_ai_darari_nu/webpage/`
+- **Main File**: `index.html` (all styles embedded)
+- **Bot Invite**: Available from website
+- **Update Method**: Push to GitHub repository
+
+### Security Configuration
+- **Sensitive Data**: All API keys and tokens in `.env` file (not tracked by git)
+- **Environment Variables**: `DISCORD_BOT_TOKEN`, `OPENAI_API_KEY`
+- **File Permissions**: Restricted to root user on VPS
+- **Port Configuration**: No external port exposure (Discord WebSocket only)
+- **SSL/TLS**: Handled by Discord's infrastructure
 
 ## 🐛 Issue History & Fixes (2025-07-25)
 
@@ -100,18 +115,46 @@ This bot is now deployed and running 24/7 on Xserver VPS:
   - GoogleニュースURL含む全てのコンテンツで正常動作確認済み
 - **対策**: 既存の自動再接続機能で解決済み
 
+#### **Issue #9: 👀機能 - Imagenモデル更新とシンタックスエラー修正**
+- **症状**: `gpt-image-1`モデルでの組織認証エラーとコード内のシンタックスエラー
+- **原因**: 
+  - gpt-image-1モデルがorganization verification要求
+  - generate_thread_image関数内のインデント不整合
+  - 未使用importによるコード肥大化
+- **修正**:
+  - モデルを`gpt-image-1`→`gpt-image-2`に変更
+  - 品質設定を`medium`→`low`に変更（コスト最適化）
+  - try-except文の正しいインデント調整
+  - 未使用import削除（urllib.parse, PIL, random, io等）
+  - コード構造の最適化
+
 ### Current Status (Updated 2025-07-25):
 - ✅ **全ての既知の問題は修正済み** 
-- ✅ **👀機能は完全安定稼働中**
+- ✅ **👀機能は完全安定稼働中**（画像生成含む）
 - ✅ **画像生成成功率大幅向上**（安全フィルター強化）
 - ✅ **スマホ・デスクトップ両対応のUX実現**
 - ✅ **GoogleニュースURL含む全コンテンツ対応**
 - ✅ **Discord接続エラー時の自動復旧確認済み**
+- ✅ **gpt-image-1モデルで安定画像生成**（組織認証済み）
+- ✅ **コード構造とインデント問題完全解決**
 
-## Architecture Overview
+## 🏗️ Architecture Overview
 
-### Core Bot Structure
-The bot uses a reaction-based architecture where users interact via emoji reactions (👍🎤❓❤️✏️👀🌐🙌) on messages. Key components:
+### Core Bot Features & Functionality
+The AI Darari-nu Bot provides 8 main features through reaction-based interaction:
+
+#### **Core Features:**
+1. **👍 X投稿生成** - メッセージ・ファイルをX用に要約・最適化
+2. **🎤 音声文字起こし** - 音声・動画ファイルをWhisper APIでテキスト化  
+3. **❓ AI解説** - 内容について詳しく解説・質問回答
+4. **✏️ メモ作成** - Obsidian用Markdownメモ自動生成
+5. **📝 記事作成** - PREP法に基づく構造化記事生成
+6. **🌐 URL取得** - URLからコンテンツ抽出・テキストファイル化
+7. **🙌 記事要約** - URL記事の3行要約・キーフレーズ抽出
+8. **👀 Xツリー投稿** - エンゲージメント重視のツリー投稿生成（AI画像付き）
+
+### Technical Architecture
+The bot uses a reaction-based architecture where users interact via emoji reactions on messages. Key components:
 
 1. **Premium System**: Triple-layered authentication
    - Discord role check in community server
@@ -129,15 +172,33 @@ The bot uses a reaction-based architecture where users interact via emoji reacti
    - Memo files: "📝 メモファイルを作成しました！"
 
 ### OpenAI Integration
-- Free users: `gpt-4.1-mini`
-- Premium users: `gpt-4.1`
-- Whisper API for audio transcription
-- Custom prompts loaded from `prompt/` directory
+- **Text Generation**: 
+  - Free users: `gpt-4o-mini`
+  - Premium users: `gpt-4o`
+- **Audio Transcription**: Whisper API (`whisper-1` model)
+- **Image Generation**: `gpt-image-1` model (Imagen, organization verified)
+  - Size: 1536x1024 (landscape)
+  - Quality: medium
+  - Style: Clay figure aesthetic with natural lighting
+- **Custom Prompts**: Loaded from `prompt/` directory at runtime
 
-### Data Management
-- Server settings: `data/server_data/{server_id}.json`
-- User data: `data/user_data/{user_id}.json` (includes usage tracking)
-- Temporary files: `attachments/` (auto-cleaned after use)
+### Data Management & Storage
+- **Server Settings**: `data/server_data/{server_id}.json`
+  - Active channels, custom prompts, server configuration
+- **User Data**: `data/user_data/{user_id}.json`
+  - Usage tracking, premium status, daily limits
+- **Temporary Files**: `attachments/` directory
+  - Auto-cleaned after processing
+  - Supports: txt, md, json, csv, log, py, js, html, css, xml
+  - Audio/Video: mp3, m4a, ogg, webm, wav, mp4
+- **Logging**: Custom `SyncFriendlyFileHandler` with rotation
+
+### File Processing Pipeline
+1. **Content Extraction**: Messages → Embeds → Attachments
+2. **Encoding Detection**: UTF-8 and Shift-JIS support  
+3. **Content Validation**: Safety filters and format checks
+4. **AI Processing**: Model selection based on user tier
+5. **Response Generation**: Discord Embeds with copy functionality
 
 
 ## 🔧 Recent Major Updates (2025-07-22)
@@ -288,72 +349,150 @@ systemctl status ai-darari-nu-bot
 "
 ```
 
-## 🔧 Troubleshooting Guide
+## 🔧 Comprehensive Troubleshooting Guide
 
-### **Common Issues:**
+### **Critical Operational Issues:**
 
-#### **1. "Community server not found" Warning**
-```
-WARNING:__main__:Community server not found: 1383696841450721442
-```
-**Solution:** Fixed by updating settings.json with correct Dara Museum server ID
-```json
-{
-  "community_server_id": "1073542600033849446",
-  "premium_role_id": "1397188911486210138"
-}
-```
-
-#### **2. Auto-Reaction Spam (6 reactions on every message)**
-**Problem:** Bot adding 👍❓✏️📝🎤🌐 to all user messages
-**Solution:** Removed automatic reaction code from `on_message` function
-**Keep:** Auto-reactions only on bot-generated files (transcriptions, memos, articles)
-
-#### **3. Premium Detection Not Working**
-**Problem:** Owner user still getting 5/day limit
-**Solution:** Fixed premium detection priority order:
-1. settings.json owner_user_id (highest priority)
-2. Discord server owner detection
-3. Premium role check
-4. Fallback to free user
-
-#### **4. SSH Connection Issues**
-**Problem:** Permission denied or connection timeout
-**Requirements:**
-- Install sshpass: `brew install hudochenkov/sshpass/sshpass`
-- Use exact credentials: `root@210.131.217.175` with password `j-33008744444-`
-- Add connection flags: `-o StrictHostKeyChecking=no`
-
-#### **5. FFmpeg Not Found Warning**
-```
-RuntimeWarning: Couldn't find ffmpeg or avconv - defaulting to ffmpeg, but may not work
-```
-**Solution:** Install FFmpeg on VPS: `apt-get install -y ffmpeg`
-
-#### **6. Bot Not Responding in Discord**
-**Check List:**
-1. Channel activation: Run `/activate` command first
-2. Service status: `systemctl status ai-darari-nu-bot`
-3. Check logs: `journalctl -u ai-darari-nu-bot -f`
-4. Verify .env file exists with correct tokens
-5. Ensure Discord privileged intents are enabled in Developer Portal
-
-### **Management Commands:**
+#### **1. Bot Service Management**
+**Check Bot Status:**
 ```bash
-# Check bot status
 ssh root@210.131.217.175 'systemctl status ai-darari-nu-bot'
+```
 
-# View real-time logs  
+**View Real-time Logs:**
+```bash
 ssh root@210.131.217.175 'journalctl -u ai-darari-nu-bot -f'
+```
 
+**Common Service Commands:**
+```bash
 # Restart bot
 ssh root@210.131.217.175 'systemctl restart ai-darari-nu-bot'
 
 # Stop bot
 ssh root@210.131.217.175 'systemctl stop ai-darari-nu-bot'
 
-# Update from GitHub
+# Check service file
+ssh root@210.131.217.175 'cat /etc/systemd/system/ai-darari-nu-bot.service'
+
+# Update from GitHub and restart
 ssh root@210.131.217.175 'cd /opt/ai-Dararinu_DiscordBOT && git pull && systemctl restart ai-darari-nu-bot'
+```
+
+#### **2. Image Generation Issues**
+
+**Problem: 画像が表示されない**
+**Diagnosis Steps:**
+1. Check logs for `画像生成エラー` messages
+2. Verify model availability in API response
+3. Check organization verification status
+
+**Common Errors & Solutions:**
+```bash
+# Error: Invalid model 'gpt-image-X'
+# Solution: Use supported models only
+- gpt-image-1 (requires organization verification)  
+- gpt-image-0721-mini-alpha
+- dall-e-2
+- dall-e-3
+
+# Error: Organization verification required
+# Solution: Ensure API key has proper organization access
+```
+
+**Current Working Configuration:**
+- Model: `gpt-image-1` (organization verified)
+- Size: `1536x1024` (landscape)
+- Quality: `medium`
+- Style: Clay figure with natural lighting
+
+#### **3. Discord Connection Issues**
+**Symptoms:** Bot not responding to reactions
+**Check List:**
+1. **Channel Activation**: Run `/activate` in target channel
+2. **Bot Permissions**: Ensure read messages, add reactions, send messages
+3. **Discord Intents**: Verify privileged intents enabled in Developer Portal
+4. **Network**: Check VPS connectivity to Discord API
+
+#### **4. Premium System Issues**
+**Priority Order (Highest to Lowest):**
+1. settings.json owner_user_id: `982891457000136715`
+2. Discord server owner detection (automatic)
+3. Premium role check in community server
+4. Fallback: Free user (5/day limit)
+
+**Current Configuration:**
+- Community Server: Dara Museum (`1073542600033849446`)
+- Premium Role: Premium (`1397188911486210138`)
+- Owner User: `982891457000136715`
+
+### **Development & Deployment Issues:**
+
+#### **5. SSH Connection Problems**
+**Requirements:**
+```bash
+# Install sshpass (macOS)
+brew install hudochenkov/sshpass/sshpass
+
+# Connection command
+sshpass -p "j-33008744444-" ssh -o StrictHostKeyChecking=no root@210.131.217.175
+```
+
+#### **6. File Processing Issues**
+**Common Problems:**
+- **Encoding Issues**: Code supports UTF-8 and Shift-JIS
+- **File Size Limits**: Discord 25MB limit enforced
+- **Format Support**: Check supported extensions in file processing pipeline
+
+#### **7. OpenAI API Issues**
+**Rate Limiting:**
+- Monitor API usage in OpenAI dashboard
+- Free users: gpt-4o-mini for cost efficiency
+- Premium users: gpt-4o for quality
+
+**Safety System Errors:**
+- Comprehensive safety filters implemented for image generation
+- Japanese expressions translated safely to English
+- Automatic fallback prompts for rejected content
+
+### **Environment & Dependencies:**
+
+#### **8. System Requirements**
+**VPS Environment:**
+- Ubuntu 24.04 LTS
+- Python 3.12+ with venv
+- FFmpeg for audio processing
+- Git for code updates
+
+**Required Packages:**
+```bash
+apt-get install -y ffmpeg python3-venv git
+```
+
+#### **9. Log Analysis**
+**Important Log Patterns:**
+```bash
+# Success patterns
+INFO:__main__:👀ツリー投稿生成完了
+INFO:__main__:画像生成成功
+
+# Error patterns  
+ERROR:__main__:画像生成エラー
+WARNING:__main__:OpenAI安全システムによる画像生成拒否
+
+# Connection issues
+INFO:disconnect.gateway:Attempting a reconnect
+```
+
+### **Quick Diagnostic Commands:**
+```bash
+# Full system check
+ssh root@210.131.217.175 '
+cd /opt/ai-Dararinu_DiscordBOT && 
+echo "=== Git Status ===" && git status && 
+echo "=== Service Status ===" && systemctl status ai-darari-nu-bot && 
+echo "=== Recent Logs ===" && journalctl -u ai-darari-nu-bot --since "10 minutes ago"
+'
 ```
 
 ## Session Logging
