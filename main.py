@@ -346,9 +346,31 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
             n=1
         )
         
-        image_url = response.data[0].url
-        logger.info(f"画像生成成功: {image_url}")
-        return image_url
+        # Imagenのレスポンス処理（デバッグ情報付き）
+        logger.info(f"画像生成レスポンス構造: {type(response.data)}, 長さ: {len(response.data) if response.data else 'None'}")
+        
+        if response.data and len(response.data) > 0:
+            image_data = response.data[0]
+            logger.info(f"画像データ構造: {type(image_data)}, 属性: {dir(image_data)}")
+            
+            # URL形式の場合
+            if hasattr(image_data, 'url') and image_data.url:
+                image_url = image_data.url
+                logger.info(f"画像生成成功 (URL): {image_url}")
+                return image_url
+            
+            # base64形式の場合は一時的にNoneを返す（将来的にはbase64処理を追加）
+            elif hasattr(image_data, 'b64_json') and image_data.b64_json:
+                logger.warning(f"画像生成: base64形式のレスポンスは現在未対応")
+                return None
+            
+            else:
+                logger.error(f"画像生成: 不明なレスポンス形式")
+                logger.error(f"image_data内容: {image_data}")
+                return None
+        else:
+            logger.error(f"画像生成: 空のレスポンス - response.data: {response.data}")
+            return None
         
     except Exception as e:
         logger.error(f"画像生成エラー: {e}")
