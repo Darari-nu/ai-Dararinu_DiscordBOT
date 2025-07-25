@@ -341,7 +341,7 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
         response = client_openai.images.generate(
             model="gpt-image-1",
             prompt=enhanced_prompt,
-            size="1792x1024",
+            size="1536x1024",
             quality="low",
             n=1
         )
