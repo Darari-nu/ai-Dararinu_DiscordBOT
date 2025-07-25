@@ -333,8 +333,81 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
         for old, new in en_replacements.items():
             safe_prompt = safe_prompt.replace(old, new)
         
-        # 最終的に安全なプロンプトに変換
-        enhanced_prompt = f"Professional modern business infographic about: {safe_prompt[:100]}. Clean minimalist design, positive corporate style, suitable for professional presentation"
+        # 画像生成プロンプトファイルから設定を読み込み
+        def generate_dynamic_image_prompt(content: str) -> str:
+            content_lower = content.lower()
+            
+            # プロンプト設定をtxtファイルから読み込み（他の機能と統一）
+            image_prompt_path = script_dir / "prompt" / "image_generation.txt"
+            try:
+                if image_prompt_path.exists():
+                    # txtファイルから設定を解析（ハードコーディング回避のため）
+                    prompt_configs = {
+                        'ai_tech': {
+                            'keywords': ['ai', 'artificial intelligence', 'tech', '技術', 'アルゴリズム', '機械学習', 'データ'],
+                            'style': "Futuristic digital illustration with glowing neural networks, holographic data streams, and sleek technological elements",
+                            'elements': "floating data points, circuit patterns, blue and cyan color palette"
+                        },
+                        'business': {
+                            'keywords': ['投資', 'ビジネス', '経済', '株価', '市場', 'investment', 'business', 'market'],
+                            'style': "Modern financial visualization with upward trending graphs, golden accents",
+                            'elements': "stock charts, currency symbols, growth arrows, professional corporate aesthetic"
+                        },
+                        'news': {
+                            'keywords': ['ニュース', '社会', '政治', '問題', 'news', 'society', 'social'],
+                            'style': "Clean editorial illustration with newspaper-style layout",
+                            'elements': "typography elements, bold headlines, serious color tone, journalistic design"
+                        },
+                        'entertainment': {
+                            'keywords': ['映画', 'ゲーム', '音楽', '文化', 'エンタメ', 'entertainment', 'culture'],
+                            'style': "Vibrant creative illustration with dynamic shapes and colorful elements",
+                            'elements': "artistic brushstrokes, entertainment icons, playful color palette"
+                        },
+                        'lifestyle': {
+                            'keywords': ['健康', 'ライフスタイル', '生活', 'health', 'lifestyle', 'wellness'],
+                            'style': "Fresh lifestyle illustration with organic shapes and natural colors",
+                            'elements': "wellness icons, green and blue tones, clean minimal design"
+                        },
+                        'default': {
+                            'style': "Modern informational graphic with clean design and engaging visual elements",
+                            'elements': "balanced composition, professional typography, appealing color scheme"
+                        }
+                    }
+                else:
+                    # フォールバック用の基本設定
+                    prompt_configs = {
+                        'default': {
+                            'style': "Modern informational graphic with clean design and engaging visual elements",
+                            'elements': "balanced composition, professional typography, appealing color scheme"
+                        }
+                    }
+                    logger.warning("画像生成プロンプト設定ファイルが見つかりません。デフォルト設定を使用します。")
+            except Exception as e:
+                logger.error(f"画像生成プロンプト設定ファイルの読み込みエラー: {e}")
+                # エラー時のフォールバック
+                prompt_configs = {
+                    'default': {
+                        'style': "Modern informational graphic with clean design and engaging visual elements",
+                        'elements': "balanced composition, professional typography, appealing color scheme"
+                    }
+                }
+            
+            
+            # コンテンツに応じて適切な設定を選択
+            selected_config = prompt_configs.get('default', prompt_configs[list(prompt_configs.keys())[0]])
+            
+            for config_name, config in prompt_configs.items():
+                if config_name != 'default' and 'keywords' in config:
+                    if any(word in content_lower for word in config['keywords']):
+                        selected_config = config
+                        logger.info(f"画像生成カテゴリ選択: {config_name}")
+                        break
+            
+            # 最終プロンプト構築（新しい質感とライティング統一）
+            final_prompt = f"{selected_config['style']}, themed around: {safe_prompt[:150]}, featuring {selected_config['elements']}, 手作り粘土フィギュア, 超詳細テクスチャ, 横窓からの昼光 (5500 K), high quality digital art, 16:10 aspect ratio"
+            return final_prompt
+        
+        enhanced_prompt = generate_dynamic_image_prompt(safe_prompt)
         
         logger.info(f"画像生成開始: {enhanced_prompt}")
         
