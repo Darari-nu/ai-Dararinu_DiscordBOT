@@ -73,11 +73,40 @@ This bot is now deployed and running 24/7 on Xserver VPS:
   - コードブロック(```)でコピーボタン追加
   - ヘッダーEmbed + 個別ツイートEmbedの構成に変更
 
-### Current Status:
-- ✅ 全ての既知の問題は修正済み
-- ✅ 👀機能は安定稼働中
-- ✅ 画像生成エラー時も処理続行
-- ✅ スマホ・デスクトップ両対応のUX実現
+#### **Issue #6: 👀機能 - OpenAI画像生成安全フィルター強化**
+- **症状**: 日本語の比喩表現（「頭を殴られた」等）が英訳時にOpenAI安全システムに拒否される
+- **原因**: 翻訳後の英語表現「hit in the head」「shocked」等が暴力的と判定
+- **修正**:
+  - 包括的な安全フィルター辞書を追加（日本語・英語両対応）
+  - 日本語: 殴られた→驚いた、頭を殴られた→驚きを感じた、衝撃→印象
+  - 英語: hit in the head→surprised、shocked→impressed、attack→approach
+  - プロンプトスタイルを「business infographic」に変更
+  - 文字数を100文字に制限してリスク軽減
+
+#### **Issue #7: 👀機能 - ヘッダーEmbed文字数制限エラー**
+- **症状**: `Invalid Form Body In embeds.0.fields.1.value: Must be 1024 or fewer in length`
+- **原因**: X投稿URLが長文ツイート時に1024文字制限を超過
+- **修正**:
+  - X投稿用ツイートを100文字に制限
+  - URL全体が900文字超過時はシンプルリンクにフォールバック
+  - Discord Embed field制限を確実に回避
+
+#### **Issue #8: 👀機能 - 断続的エラーの原因分析**
+- **症状**: エラーが出たり出なかったりする不安定な動作
+- **分析結果**: URLの種類ではなく一時的なDiscord接続問題が原因
+- **詳細**: 
+  - `11:18:27`: Discord API接続切断時のみエラー（`Attempting a reconnect`）
+  - OpenAI処理は全て成功、Discord送信時のみ失敗
+  - GoogleニュースURL含む全てのコンテンツで正常動作確認済み
+- **対策**: 既存の自動再接続機能で解決済み
+
+### Current Status (Updated 2025-07-25):
+- ✅ **全ての既知の問題は修正済み** 
+- ✅ **👀機能は完全安定稼働中**
+- ✅ **画像生成成功率大幅向上**（安全フィルター強化）
+- ✅ **スマホ・デスクトップ両対応のUX実現**
+- ✅ **GoogleニュースURL含む全コンテンツ対応**
+- ✅ **Discord接続エラー時の自動復旧確認済み**
 
 ## Architecture Overview
 
