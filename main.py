@@ -343,7 +343,7 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
             model="gpt-image-1", 
             prompt=enhanced_prompt,
             size="1536x1024",
-            quality="low",
+            quality="medium",
             n=1
         )
         
@@ -2766,9 +2766,20 @@ async def on_raw_reaction_add(payload):
                                 if tweets:
                                     first_tweet = tweets[0][2].strip()
                                     import urllib.parse
-                                    # URLが長すぎないよう短縮（100文字程度に制限）
-                                    short_tweet = first_tweet[:100] + "..." if len(first_tweet) > 100 else first_tweet
-                                    encoded_tweet = urllib.parse.quote(short_tweet)
+                                    # 140文字制限内で適切に切り取り（日本語考慮）
+                                    max_chars = 135  # URL短縮やハッシュタグのためのマージン
+                                    if len(first_tweet) > max_chars:
+                                        # 文末が不自然にならないよう調整
+                                        short_tweet = first_tweet[:max_chars].rstrip('。、！？')
+                                        # 文の途中で切れる場合は前の文で終了
+                                        last_period = max(short_tweet.rfind('。'), short_tweet.rfind('！'), short_tweet.rfind('？'))
+                                        if last_period > max_chars * 0.5:  # 半分以上の文字があれば採用
+                                            short_tweet = short_tweet[:last_period + 1]
+                                    else:
+                                        short_tweet = first_tweet
+                                    
+                                    # 日本語対応URLエンコード
+                                    encoded_tweet = urllib.parse.quote(short_tweet, safe='')
                                     x_post_url = f"https://x.com/intent/post?text={encoded_tweet}"
                                     
                                     # URL全体が長すぎる場合はシンプルなリンクにする
