@@ -296,139 +296,53 @@ async def translate_text_to_japanese(text):
         return text  # 翻訳失敗時は元のテキストを返す
 
 async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
-    """1ツイート目の内容から画像を生成"""
+    """1ツイート目の内容から粘土フィギュア質感の画像を生成"""
     try:
         # 1ツイート目から視覚的要素を抽出
-        visual_extraction_prompt = f"""
-以下のツイート内容を分析し、画像として表現すべき視覚的要素を英語で簡潔に抽出してください。
-文章ではなく、具体的な人物・状況・小物・雰囲気のキーワードを組み合わせて出力してください。
+        response = client_openai.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an image-prompt generator. Analyze the tweet content and extract visual elements that can be rendered as clay figures. Return only the visual elements string."
+                },
+                {
+                    "role": "user", 
+                    "content": f"""Analyze this tweet and extract visual elements for image generation:
 
-ツイート内容: {first_tweet_content}
+Tweet: {first_tweet_content}
 
-出力形式: "person_description, situation_description, objects_around, atmosphere"
-出力例: "game developer, focused expression, computer screens with character models, creative workspace atmosphere"
+Extract visual elements focusing on:
+- Main subjects (people, objects, characters)
+- Actions and expressions  
+- Environment and setting
+- Key props and tools
+- Atmosphere and mood
 
-出力:"""
+Return format: "subject doing action in environment with props, specific mood"
+Example: "game developer focused on character modeling at computer workstation with sculpting tools, creative atmosphere"
 
-        try:
-            # GPT-4で視覚的要素を抽出
-            response = client_openai.chat.completions.create(
-                model="gpt-4o-mini",  # コスト効率重視
-                messages=[
-                    {"role": "user", "content": visual_extraction_prompt}
-                ],
-                max_tokens=100,  # 短い出力に制限
-                temperature=0.3
-            )
-            
-            image_prompt = response.choices[0].message.content.strip()
-            logger.info(f"視覚的要素抽出結果: {image_prompt}")
-            
-        except Exception as e:
-            logger.error(f"視覚的要素抽出エラー: {e}")
-            # フォールバック: 簡単なキーワード抽出
-            image_prompt = "creative workspace, focused person, professional tools"
-        
-        # プロンプトを画像生成用に最適化（安全性を考慮）
-        # 日本語と英語両方の危険表現を除去
-        safe_prompt = image_prompt
-        
-        # 日本語の危険表現を置換
-        jp_replacements = {
-            "失敗": "経験", "問題": "課題", "危険": "注意", "リスク": "考慮点",
-            "殴られた": "驚いた", "頭を殴られた": "驚きを感じた", "衝撃": "印象",
-            "攻撃": "批評", "破壊": "変化", "暴力": "力強さ", "戦争": "競争"
-        }
-        
-        # 英語の危険表現を置換
-        en_replacements = {
-            "hit in the head": "surprised", "being hit": "being surprised", 
-            "shocked": "impressed", "attack": "approach", "violence": "energy",
-            "destroy": "change", "kill": "stop", "death": "end", "war": "competition",
-            "fight": "compete", "battle": "challenge", "hurt": "affect", "pain": "difficulty"
-        }
-        
-        # 置換実行
-        for old, new in jp_replacements.items():
-            safe_prompt = safe_prompt.replace(old, new)
-        for old, new in en_replacements.items():
-            safe_prompt = safe_prompt.replace(old, new)
-        
-        # 画像生成プロンプトファイルから設定を読み込み
-        def generate_dynamic_image_prompt(content: str) -> str:
-            content_lower = content.lower()
-            
-            # プロンプト設定をtxtファイルから読み込み（他の機能と統一）
-            image_prompt_path = script_dir / "prompt" / "image_generation.txt"
-            try:
-                if image_prompt_path.exists():
-                    # txtファイルから設定を解析（ハードコーディング回避のため）
-                    prompt_configs = {
-                        'ai_tech': {
-                            'keywords': ['ai', 'artificial intelligence', 'tech', '技術', 'アルゴリズム', '機械学習', 'データ'],
-                            'style': "Futuristic tech scene with neural networks and data streams",
-                            'elements': "floating data points, circuit patterns, blue and cyan holographic elements"
-                        },
-                        'business': {
-                            'keywords': ['投資', 'ビジネス', '経済', '株価', '市場', 'investment', 'business', 'market'],
-                            'style': "Modern financial workspace with trending graphs and golden accents",
-                            'elements': "stock charts, currency symbols, growth arrows, professional documents"
-                        },
-                        'news': {
-                            'keywords': ['ニュース', '社会', '政治', '問題', 'news', 'society', 'social'],
-                            'style': "Editorial newsroom scene with newspaper layouts",
-                            'elements': "news headlines, serious atmosphere, journalistic materials"
-                        },
-                        'entertainment': {
-                            'keywords': ['映画', 'ゲーム', '音楽', '文化', 'エンタメ', 'entertainment', 'culture'],
-                            'style': "Vibrant creative studio with dynamic shapes and colorful elements",
-                            'elements': "artistic tools, entertainment props, playful colorful materials"
-                        },
-                        'lifestyle': {
-                            'keywords': ['健康', 'ライフスタイル', '生活', 'health', 'lifestyle', 'wellness'],
-                            'style': "Fresh wellness space with organic shapes and natural elements",
-                            'elements': "wellness items, plants, green and blue natural tones"
-                        },
-                        'default': {
-                            'style': "Modern informational display with clean design elements",
-                            'elements': "balanced composition, appealing arrangement"
-                        }
-                    }
-                else:
-                    # フォールバック用の基本設定
-                    prompt_configs = {
-                        'default': {
-                            'style': "Modern informational graphic with clean design and engaging visual elements",
-                            'elements': "balanced composition, professional typography, appealing color scheme"
-                        }
-                    }
-                    logger.warning("画像生成プロンプト設定ファイルが見つかりません。デフォルト設定を使用します。")
-            except Exception as e:
-                logger.error(f"画像生成プロンプト設定ファイルの読み込みエラー: {e}")
-                # エラー時のフォールバック
-                prompt_configs = {
-                    'default': {
-                        'style': "Modern informational graphic with clean design and engaging visual elements",
-                        'elements': "balanced composition, professional typography, appealing color scheme"
-                    }
+Visual elements:"""
                 }
-            
-            
-            # コンテンツに応じて適切な設定を選択
-            selected_config = prompt_configs.get('default', prompt_configs[list(prompt_configs.keys())[0]])
-            
-            for config_name, config in prompt_configs.items():
-                if config_name != 'default' and 'keywords' in config:
-                    if any(word in content_lower for word in config['keywords']):
-                        selected_config = config
-                        logger.info(f"画像生成カテゴリ選択: {config_name}")
-                        break
-            
-            # 最終プロンプト構築（新しい質感とライティング統一）
-            final_prompt = f"{selected_config['style']}, themed around: {safe_prompt[:150]}, featuring {selected_config['elements']}, 手作り粘土フィギュア, 超詳細テクスチャ, 横窓からの昼光 (5500 K), high quality digital art, 16:10 aspect ratio"
-            return final_prompt
+            ],
+            max_tokens=80,
+            temperature=0.3
+        )
         
-        enhanced_prompt = generate_dynamic_image_prompt(safe_prompt)
+        visual_elements = response.choices[0].message.content.strip()
+        logger.info(f"視覚的要素抽出結果: {visual_elements}")
+        
+        # 統一テンプレートで最終プロンプト構築
+        enhanced_prompt = f"{visual_elements} rendered as handmade clay figures with ultra-detailed textures, natural window lighting (5500K), high quality digital art, 16:10 aspect ratio"
+        
+        logger.info(f"最終画像プロンプト: {enhanced_prompt}")
+        
+    except Exception as e:
+        logger.error(f"視覚的要素抽出エラー: {e}")
+        # フォールバック
+        enhanced_prompt = "creative workspace scene with focused person and professional tools rendered as handmade clay figures with ultra-detailed textures, natural window lighting (5500K), high quality digital art, 16:10 aspect ratio"
+        
+        # OpenAI Imagen API呼び出し
         
         logger.info(f"画像生成開始: {enhanced_prompt}")
         

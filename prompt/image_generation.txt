@@ -1,38 +1,12 @@
 # 画像生成プロンプトテンプレート
 
-## AI・技術系
-style: Futuristic tech scene with neural networks and data streams
-elements: floating data points, circuit patterns, blue and cyan holographic elements
-keywords: ai, artificial intelligence, tech, 技術, アルゴリズム, 機械学習, データ
-
-## ビジネス・投資系  
-style: Modern financial workspace with trending graphs and golden accents
-elements: stock charts, currency symbols, growth arrows, professional documents
-keywords: 投資, ビジネス, 経済, 株価, 市場, investment, business, market
-
-## ニュース・社会問題系
-style: Editorial newsroom scene with newspaper layouts
-elements: typography elements, bold headlines, serious atmosphere, journalistic materials
-keywords: ニュース, 社会, 政治, 問題, news, society, social
-
-## エンターテイメント・文化系
-style: Vibrant creative studio with dynamic shapes and colorful elements
-elements: artistic tools, entertainment props, playful colorful materials
-keywords: 映画, ゲーム, 音楽, 文化, エンタメ, entertainment, culture
-
-## 健康・ライフスタイル系
-style: Fresh wellness space with organic shapes and natural elements
-elements: wellness items, plants, green and blue natural tones
-keywords: 健康, ライフスタイル, 生活, health, lifestyle, wellness
-
-## デフォルト（汎用）
-style: Modern informational display with clean design elements
-elements: balanced composition, professional materials, appealing arrangement
-keywords: default
-
-## 共通設定
-質感: "手作り粘土フィギュア, 超詳細テクスチャ"
-ライティング: "横窓からの昼光 (5500 K)"
+## 基本コンセプト
+全ての画像は手作り粘土フィギュア質感で統一し、横窓からの自然光でレンダリングする
 
 ## プロンプト構築テンプレート
-{style}, themed around: {content}, featuring {elements}, 手作り粘土フィギュア, 超詳細テクスチャ, 横窓からの昼光 (5500 K), high quality digital art, 16:10 aspect ratio
+"{visual_elements} rendered as handmade clay figures with ultra-detailed textures, natural window lighting (5500K), high quality digital art, 16:10 aspect ratio"
+
+## 使用方法
+1. 1ツイート目から視覚的要素を抽出
+2. 上記テンプレートの{visual_elements}に代入
+3. 統一された質感とライティングで画像生成
