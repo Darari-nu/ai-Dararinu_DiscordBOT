@@ -6,17 +6,13 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from openai import OpenAI
-import urllib.parse
 import requests
 from datetime import datetime, timezone, timedelta
 import logging
 import asyncio
 import tempfile
 from pydub import AudioSegment
-from PIL import Image, ImageDraw, ImageFont
-import random
 import re
-import io
 import aiohttp
 import time
 import subprocess
@@ -341,20 +337,19 @@ Visual elements:"""
         logger.error(f"視覚的要素抽出エラー: {e}")
         # フォールバック
         enhanced_prompt = "creative workspace scene with focused person and professional tools rendered as handmade clay figures with ultra-detailed textures, natural window lighting (5500K), high quality digital art, 16:10 aspect ratio"
-        
+    
         # OpenAI Imagen API呼び出し
-        
         logger.info(f"画像生成開始: {enhanced_prompt}")
         
         # OpenAI Imagen API呼び出し（低品質・低コスト設定・横長）
         response = client_openai.images.generate(
-            model="gpt-image-1", 
+            model="gpt-image-2", 
             prompt=enhanced_prompt,
             size="1536x1024",
-            quality="medium",
+            quality="low",
             n=1
         )
-        
+            
         # Imagenのレスポンス処理（デバッグ情報付き）
         logger.info(f"画像生成レスポンス構造: {type(response.data)}, 長さ: {len(response.data) if response.data else 'None'}")
         
@@ -372,7 +367,6 @@ Visual elements:"""
             elif hasattr(image_data, 'b64_json') and image_data.b64_json:
                 try:
                     import base64
-                    import io
                     
                     # base64データをデコード
                     image_bytes = base64.b64decode(image_data.b64_json)
