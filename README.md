@@ -36,10 +36,8 @@ Discord上で8つのAI機能を提供する多機能Botです。メッセージ�
 ## 🚀 Bot導入ガイド
 
 ### **Step 1: Bot招待**
-1. **公式サイトにアクセス**
-   - 🌐 **https://ai-darari-nu.kei31.com/**
-   
-2. **Botをサーバーに招待**
+1. **Botをサーバーに招待**
+   - Discord Developer PortalまたはBot管理者から招待リンクを取得
    - 必要な権限：メッセージ送信、リアクション追加、ファイル添付
 
 ### **Step 2: 初期設定**
@@ -54,7 +52,7 @@ Discord上で8つのAI機能を提供する多機能Botです。メッセージ�
 ### **プレミアムプラン**
 - **対象サーバー**: Dara Museum Discord
 - **ロール**: Premium
-- **申込**: 公式サイトからお問い合わせ
+- **申込**: Bot管理者へ直接お問い合わせ
 
 ## 🔄 使用例ワークフロー
 
@@ -227,17 +225,16 @@ journalctl -u ai-darari-nu-bot --since "1 hour ago"
 
 ## 🆘 サポート・問い合わせ
 
-### **公式サイト**
-🌐 **https://ai-darari-nu.kei31.com/**
-
 ### **機能に関する質問**
 - Bot使用方法
-- プレミアムプラン申込
+- プレミアムプラン申込  
 - カスタマイズ相談
+- **連絡先**: Bot管理者へ直接Discord DM
 
 ### **技術的な問題**
-- GitHub Issues: https://github.com/Darari-nu/ai-Dararinu_DiscordBOT/issues
-- 開発者向けドキュメント: `CLAUDE.md`
+- **GitHub Issues**: https://github.com/Darari-nu/ai-Dararinu_DiscordBOT/issues
+- **開発者向けドキュメント**: `CLAUDE.md`
+- **バグ報告・機能要望**: GitHub Issues推奨
 
 ### **開発協力**
 - **貢献歓迎**: Pull Request, Issue報告

@@ -36,11 +36,10 @@ The AI Darari-nu Discord Bot is deployed and running 24/7 on Xserver VPS with fu
 - **VPS directory**: Production environment 
 - Changes pushed to GitHub main branch are available for VPS updates via `git pull`
 
-### Website & Public Information
-- **Public Website**: https://ai-darari-nu.kei31.com/
-- **Website Source**: `/Users/dararinu/Dropbox/xPersonal/project/mp0059_program/20250613_ai_darari_nu/webpage/`
-- **Main File**: `index.html` (all styles embedded)
-- **Bot Invite**: Available from website
+### Public Information
+- **Bot Invite**: Through Discord Developer Portal or Bot administrator
+- **Repository**: Public on GitHub
+- **Documentation**: README.md and CLAUDE.md
 - **Update Method**: Push to GitHub repository
 
 ### Security Configuration
