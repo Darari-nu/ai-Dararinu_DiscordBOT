@@ -337,11 +337,11 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
         
         logger.info(f"画像生成開始: {enhanced_prompt}")
         
-        # OpenAI Imagen API呼び出し（低品質・低コスト設定）
+        # OpenAI Imagen API呼び出し（低品質・低コスト設定・横長）
         response = client_openai.images.generate(
             model="gpt-image-1",
             prompt=enhanced_prompt,
-            size="1024x1024",
+            size="1792x1024",
             quality="low",
             n=1
         )
