@@ -2779,8 +2779,15 @@ async def on_raw_reaction_add(payload):
                                         last_period = max(short_tweet.rfind('。'), short_tweet.rfind('！'), short_tweet.rfind('？'))
                                         if last_period > max_chars * 0.5:  # 半分以上の文字があれば採用
                                             short_tweet = short_tweet[:last_period + 1]
+                                        # 空文字になった場合は元の短縮版を使用
+                                        if not short_tweet.strip():
+                                            short_tweet = first_tweet[:max_chars]
                                     else:
                                         short_tweet = first_tweet
+                                    
+                                    # 最終的に空文字の場合は代替テキストを使用
+                                    if not short_tweet.strip():
+                                        short_tweet = "興味深い内容をシェアします"
                                     
                                     # 日本語対応URLエンコード
                                     encoded_tweet = urllib.parse.quote(short_tweet, safe='')
