@@ -2782,6 +2782,11 @@ async def on_raw_reaction_add(payload):
                                     encoded_tweet = urllib.parse.quote(short_tweet, safe='')
                                     x_post_url = f"https://x.com/intent/post?text={encoded_tweet}"
                                     
+                                    # デバッグ：URL生成をログ出力
+                                    logger.info(f"X投稿URL生成: 元テキスト={first_tweet[:50]}...")
+                                    logger.info(f"X投稿URL生成: 短縮テキスト={short_tweet[:50]}...")
+                                    logger.info(f"X投稿URL生成: URL長={len(x_post_url)}")
+                                    
                                     # URL全体が長すぎる場合はシンプルなリンクにする
                                     if len(x_post_url) > 900:  # 安全マージン
                                         header_embed.add_field(
