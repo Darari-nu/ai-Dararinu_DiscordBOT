@@ -298,15 +298,36 @@ async def translate_text_to_japanese(text):
 async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
     """1ツイート目の内容から画像を生成"""
     try:
-        # 画像生成用プロンプトを作成（英語）
-        # 日本語コンテンツの場合は英語に翻訳
-        if is_english_content(first_tweet_content):
-            image_prompt = first_tweet_content[:200]
-        else:
-            # 日本語の場合は英語に翻訳
-            translator = GoogleTranslator(source='ja', target='en')
-            translated_content = translator.translate(first_tweet_content[:200])
-            image_prompt = translated_content
+        # 1ツイート目から視覚的要素を抽出
+        visual_extraction_prompt = f"""
+以下のツイート内容を分析し、画像として表現すべき視覚的要素を英語で簡潔に抽出してください。
+文章ではなく、具体的な人物・状況・小物・雰囲気のキーワードを組み合わせて出力してください。
+
+ツイート内容: {first_tweet_content}
+
+出力形式: "person_description, situation_description, objects_around, atmosphere"
+出力例: "game developer, focused expression, computer screens with character models, creative workspace atmosphere"
+
+出力:"""
+
+        try:
+            # GPT-4で視覚的要素を抽出
+            response = client_openai.chat.completions.create(
+                model="gpt-4o-mini",  # コスト効率重視
+                messages=[
+                    {"role": "user", "content": visual_extraction_prompt}
+                ],
+                max_tokens=100,  # 短い出力に制限
+                temperature=0.3
+            )
+            
+            image_prompt = response.choices[0].message.content.strip()
+            logger.info(f"視覚的要素抽出結果: {image_prompt}")
+            
+        except Exception as e:
+            logger.error(f"視覚的要素抽出エラー: {e}")
+            # フォールバック: 簡単なキーワード抽出
+            image_prompt = "creative workspace, focused person, professional tools"
         
         # プロンプトを画像生成用に最適化（安全性を考慮）
         # 日本語と英語両方の危険表現を除去
