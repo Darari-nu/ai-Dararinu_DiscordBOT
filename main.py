@@ -18,6 +18,7 @@ import random
 import re
 import io
 import aiohttp
+import time
 import subprocess
 from utils.article_extractor import article_extractor
 from deep_translator import GoogleTranslator
@@ -338,8 +339,9 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
         logger.info(f"画像生成開始: {enhanced_prompt}")
         
         # OpenAI Imagen API呼び出し（低品質・低コスト設定・横長）
+        # モデル名を確認：gpt-image-1が組織認証必要な場合はgpt-image-2を試す
         response = client_openai.images.generate(
-            model="gpt-image-1",
+            model="gpt-image-2", 
             prompt=enhanced_prompt,
             size="1536x1024",
             quality="low",
@@ -353,16 +355,37 @@ async def generate_thread_image(first_tweet_content: str) -> Optional[str]:
             image_data = response.data[0]
             logger.info(f"画像データ構造: {type(image_data)}, 属性: {dir(image_data)}")
             
-            # URL形式の場合
+            # URL形式の場合（DALL-E 3パターン）
             if hasattr(image_data, 'url') and image_data.url:
                 image_url = image_data.url
                 logger.info(f"画像生成成功 (URL): {image_url}")
                 return image_url
             
-            # base64形式の場合は一時的にNoneを返す（将来的にはbase64処理を追加）
+            # base64形式の場合（Imagenパターン）
             elif hasattr(image_data, 'b64_json') and image_data.b64_json:
-                logger.warning(f"画像生成: base64形式のレスポンスは現在未対応")
-                return None
+                try:
+                    import base64
+                    import io
+                    
+                    # base64データをデコード
+                    image_bytes = base64.b64decode(image_data.b64_json)
+                    
+                    # 一時ファイルとして保存
+                    temp_filename = f"temp_image_{int(time.time())}.png"
+                    temp_path = script_dir / "attachments" / temp_filename
+                    
+                    # attachmentsディレクトリを作成（存在しない場合）
+                    temp_path.parent.mkdir(exist_ok=True)
+                    
+                    with open(temp_path, 'wb') as f:
+                        f.write(image_bytes)
+                    
+                    logger.info(f"画像生成成功 (base64): 一時ファイル {temp_path} に保存")
+                    return str(temp_path)
+                    
+                except Exception as e:
+                    logger.error(f"base64画像処理エラー: {e}")
+                    return None
             
             else:
                 logger.error(f"画像生成: 不明なレスポンス形式")
@@ -2725,9 +2748,20 @@ async def on_raw_reaction_add(payload):
                                 )
                                 
                                 # 画像を設定
+                                image_file = None
                                 if image_url:
-                                    header_embed.set_image(url=image_url)
-                                    header_embed.add_field(name="🎨", value="AI生成画像付き", inline=True)
+                                    if image_url.startswith('http'):
+                                        # URL形式の場合
+                                        header_embed.set_image(url=image_url)
+                                        header_embed.add_field(name="🎨", value="AI生成画像付き", inline=True)
+                                    else:
+                                        # ファイルパス形式の場合（base64から生成された一時ファイル）
+                                        import pathlib
+                                        temp_path = pathlib.Path(image_url)
+                                        if temp_path.exists():
+                                            image_file = discord.File(str(temp_path), filename="ai_generated_image.png")
+                                            header_embed.set_image(url="attachment://ai_generated_image.png")
+                                            header_embed.add_field(name="🎨", value="AI生成画像付き", inline=True)
                                 
                                 # 1ツイート目のX投稿リンク
                                 if tweets:
@@ -2758,8 +2792,11 @@ async def on_raw_reaction_add(payload):
                                     inline=False
                                 )
                                 
-                                # ヘッダーEmbedを送信
-                                await channel.send(embed=header_embed)
+                                # ヘッダーEmbedを送信（画像ファイルがある場合は添付）
+                                if image_file:
+                                    await channel.send(embed=header_embed, file=image_file)
+                                else:
+                                    await channel.send(embed=header_embed)
                                 
                                 # 各ツイートを個別のEmbedとして送信
                                 for i, (tweet_num, total, content) in enumerate(tweets):
@@ -2776,6 +2813,17 @@ async def on_raw_reaction_add(payload):
                                     
                                     await channel.send(embed=tweet_embed)
                                 logger.info(f"👀ツリー投稿生成完了: {len(tweets)}ツイート")
+                                
+                                # 一時画像ファイルのクリーンアップ
+                                if image_url and not image_url.startswith('http'):
+                                    try:
+                                        import pathlib
+                                        temp_path = pathlib.Path(image_url)
+                                        if temp_path.exists():
+                                            temp_path.unlink()  # ファイル削除
+                                            logger.info(f"一時画像ファイルを削除: {temp_path}")
+                                    except Exception as cleanup_error:
+                                        logger.warning(f"一時ファイル削除エラー: {cleanup_error}")
                             
                             else:
                                 await channel.send(f"{user.mention} ❌ ツリー投稿の生成に失敗しました。")
