@@ -344,10 +344,10 @@ Visual elements:"""
         
         # OpenAI Imagen API呼び出し（低品質・低コスト設定・横長）
         response = client_openai.images.generate(
-            model="dall-e-3", 
+            model="gpt-image-0721-mini-alpha", 
             prompt=enhanced_prompt,
             size="1536x1024",
-            quality="standard",
+            quality="low",
             n=1
         )
             
